@@ -48,6 +48,13 @@ class Html5Test extends Express_TestCase
 						'<e value="1" disabled>'
 				),
 
+				// setMultiple()
+				array(Html5::createSub('e')->setMultiple(), '<e multiple>'),
+				array(Html5::createSub('e')->setMultiple(false), '<e>'),
+
+				// setName()
+				array(Html5::createSub('e')->setName('php'), '<e name="php">'),
+
 				// setReadonly()
 				array(Html5::createSub('e')->setReadonly(), '<e readonly>'),
 				array(Html5::createSub('e')->setReadonly(false), '<e>'),
@@ -66,6 +73,9 @@ class Html5Test extends Express_TestCase
 						Html5::createSub('e')->setValue(1)->setSelected([0, 1]),
 						'<e value="1" selected>'
 				),
+
+				// setSize()
+				array(Html5::createSub('e')->setSize(20), '<e size="20">')
 		);
 	}
 }

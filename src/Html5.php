@@ -73,6 +73,37 @@ class Html5 extends \ML_Express\Xml
 	}
 
 	/**
+	 * Whether to allow multiple values.
+	 *
+	 * @see select()
+	 *
+	 * @param    boolean    $multiple
+	 */
+	public function setMultiple($multiple = true)
+	{
+		return $this->attrib('multiple', $multiple);
+	}
+
+	/**
+	 * <ul>
+	 * <li><code>meta()</code>:<br>Metadata name
+	 * <li><code>iframe()</code>, <code>object()</code>:<br>Name of nested browsing context
+	 * <li><code>param()</code> Name of parameter
+	 * <li><code>map()</code>:<br>Name of image map to reference from the usemap attribute
+	 * <li><code>form()</code>:<br>Name of form to use in the <code>document.forms</code> API
+	 * <li><code>checkbox()</code>, <code>radio()</code>, <code>select()</code>:<br>
+	 * Name of form control to use for form submission and in the <code>form.elements</code> API
+	 * </ul>
+	 *
+	 * @param    string    $name
+	 */
+	public function setName($name)
+	{
+		return $this->attrib('name', $name);
+	}
+
+
+	/**
 	 * Whether to allow the value to be edited by the user.
 	 *
 	 * @see text()
@@ -105,7 +136,7 @@ class Html5 extends \ML_Express\Xml
 	 *
 	 * @see option()
 	 *
-	 * @param     mixed    $selected
+	 * @param    mixed    $selected
 	 */
 	public function setSelected($selected = true)
 	{
@@ -113,22 +144,32 @@ class Html5 extends \ML_Express\Xml
 	}
 
 	/**
+	 * Size of the control.
+	 *
+	 * @see text()
+	 * @see search()
+	 * @see select()
+	 *
+	 * @param    int    $size
+	 */
+	public function setSize($size)
+	{
+		return $this->attrib('size', $size);
+	}
+
+	/**
 	 * <ul>
-	 * <li><code>li()</code>: Ordinal value of the list item
-	 * <li><code>data()</code>: Machine-readable value
-	 * <li><code>param()</code>: Value of parameter
-	 * <li><code>checkbox()</code>, <code>radio()</code>: Value of the form control
-	 * <li><code>option()</code>: Value to be used for form submission
+	 * <li><code>li()</code>:<br>Ordinal value of the list item
+	 * <li><code>data()</code>:<br>Machine-readable value
+	 * <li><code>param()</code>:<br>Value of parameter
+	 * <li><code>checkbox()</code>, <code>radio()</code>:<br>Value of the form control
+	 * <li><code>option()</code>:<br>Value to be used for form submission
 	 * </ul>
 	 *
-	 * @param     string|int    $value
+	 * @param    string|int    $value
 	 */
 	public function setValue($value)
 	{
 		return $this->attrib('value', $value);
-	}
-
-	public function xtest() {
-		$this->setValue('php');
 	}
 }
