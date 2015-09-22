@@ -88,6 +88,13 @@ class Html5AttributesTest extends Express_TestCase
 						'<e value="1" checked>'
 				),
 
+				// setData()
+				array(Html5::createSub('e')->setData('demo.swf'), '<e data="demo.swf">'),
+				array(
+						Html5::createSub('e')->setData('user', 'M. E. Lee'),
+						'<e data-user="M. E. Lee">'
+				),
+
 				// setDirname()
 				array(
 						Html5::createSub('e')->setDirname('comment.dir'),

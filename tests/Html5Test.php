@@ -16,7 +16,13 @@ class Html5Test extends Express_TestCase
 	public function provider()
 	{
 		return array(
+				// createHtml()
 				array(Html5::createHtml(), "<!DOCTYPE html>\n<html>"),
+				array(Html5::createHtml('en'), "<!DOCTYPE html>\n<html lang=\"en\">"),
+				array(
+						Html5::createHtml(null, 'app.manifest'),
+						"<!DOCTYPE html>\n<html manifest=\"app.manifest\">"
+				)
 		);
 	}
 }

@@ -28,6 +28,12 @@ class Html5FormsTest extends Express_TestCase
 	</label>
 </fieldset>';
 
+	const expectedOptions = '<select name="choice">
+	<option value="cpp" disabled>C++</option>
+	<option value="php" selected>PHP</option>
+	<option value="python">Python</option>
+</select>';
+
 	public function provider()
 	{
 		return array(
@@ -45,9 +51,32 @@ class Html5FormsTest extends Express_TestCase
 
 				// label()
 				array(
-						Html5::createSub()->label('Your name', 'name'),
-						'<label for="name">Your name</label>',
+						Html5::createSub()->label('User', 'user', 'login'),
+						'<label for="user" form="login">User</label>'
 				),
+
+				// hidden()
+				array(
+						Html5::createSub()->hidden('category', 'Cats', 'search'),
+						'<input type="hidden" name="category" value="Cats" form="search">'
+				),
+
+				// hiddens()
+				array(
+						Html5::createSub()->hiddens(
+								null, ['cat' => 'Cats', 'items-per-page' => 5], 'search'),
+						'<input type="hidden" name="cat" value="Cats"' .
+						' form="search">' .
+						'<input type="hidden" name="items-per-page" value="5"' .
+						' form="search">'
+				),
+				array(
+						Html5::createSub()->hiddens(array(
+								array('cat', 'Cats'),
+								array('per-page', 5)
+						)),
+						'<input type="hidden" name="cat" value="Cats">' .
+						'<input type="hidden" name="per-page" value="5">'),
 
 				// text()
 				array(
@@ -140,6 +169,143 @@ class Html5FormsTest extends Express_TestCase
 								array('C++', 'PHP', 'Python'),
 								array('php', 'python'), true, 'cpp', true),
 						self::expectedCheckboxes
+				),
+				array(
+						Html5::createSub()->append('fieldset')->checkboxes(
+								'choice[]', null,
+								array(
+										'cpp' => 'C++',
+										'php' => 'PHP',
+										'python' => 'Python'),
+								array('php', 'python'), true, 'cpp', true),
+						self::expectedCheckboxes
+				),
+				array(
+						Html5::createSub()->append('fieldset')->checkboxes(
+								'choice[]',
+								array(
+										(object) array(
+												'val' => 'cpp',
+												'label' => 'C++'),
+										array(
+												'val' => 'php',
+												'label' => 'PHP'),
+										array(
+												'val' => 'python',
+												'label' => 'Python')),
+								null,
+								array('php', 'python'), true, 'cpp', true),
+						self::expectedCheckboxes
+				),
+				array(
+						Html5::createSub()->append('fieldset')->checkboxes(
+								'choice[]',
+								array(
+										array(1, 'cpp', 'C++'),
+										array(2, 'php', 'PHP'),
+										array(3, 'python', 'Python')),
+								array(1, 2),
+								array('php', 'python'), true, 'cpp', true),
+						self::expectedCheckboxes
+				),
+				array(
+						Html5::createSub()->append('fieldset')->checkboxes(
+								'choice[]', null,
+								array(
+										'cpp' => 'C++',
+										'php' => 'PHP',
+										'python' => 'Python'),
+								null, null, true, true),
+						str_replace(
+								array(' checked', ' required', '">'),
+								array('', '', '" disabled>'),
+								self::expectedCheckboxes)
+				),
+				array(
+						Html5::createSub()->append('fieldset')->radios(
+								'choice',
+								array('cpp', 'php', 'python'),
+								array('C++', 'PHP', 'Python'),
+								'php', true, 'cpp', true),
+						str_replace(
+								array('checkbox', '[]', 'python" checked'),
+								array('radio', '', 'python"'),
+								self::expectedCheckboxes)
+				),
+				array(
+						Html5::createSub()->file(
+								'upload', array(HTML5::ACCEPT_IMAGE, '.webm'),
+								true, true, true, true, 'form-2'),
+						'<input type="file" name="upload" accept="image/*,.webm"' .
+						' multiple autofocus required disabled form="form-2">'
+				),
+				array(
+						Html5::createSub()->submit(
+								'OK', 'ok', true, true, 'index.php',
+								HTML5::METHOD_GET, HTML5::ENCTYPE_APPLICATION,
+								true, HTML5::TARGET_PARENT, 'form-2'),
+						'<input type="submit" name="ok" value="OK"' .
+						' formaction="index.php" formmethod="get"' .
+						' formenctype="application/x-www-form-urlencoded"' .
+						' formnovalidate formtarget="_parent" autofocus' .
+						' disabled form="form-2">'
+				),
+				array(
+						Html5::createSub()->image(
+								'button.png', 'OK', 80, 60, 'ok', true, true,
+								'index.php', HTML5::METHOD_GET,
+								HTML5::ENCTYPE_APPLICATION, true,
+								HTML5::TARGET_PARENT, 'form-2'),
+						'<input type="submit" name="ok" src="button.png" alt="OK"' .
+						' width="80" height="60" formaction="index.php"' .
+						' formmethod="get"' .
+						' formenctype="application/x-www-form-urlencoded"' .
+						' formnovalidate formtarget="_parent" autofocus' .
+						' disabled form="form-2">'
+				),
+				array(
+						Html5::createSub()->reset(
+								'Reset', 'reset', true, true, 'form-2'),
+						'<input type="reset" name="reset" value="Reset"' .
+						' autofocus disabled form="form-2">'
+				),
+				array(
+						Html5::createSub()->inpButton(
+								'Button', 'button', true, true, 'form-2'),
+						'<input type="button" name="button" value="Button"' .
+						' autofocus disabled form="form-2">'
+				),
+				array(
+						Html5::createSub()->select(
+								'choice', true, HTML5::AUTOCOMPLETE_ON, true,
+								true, 5, true, 'form-2'),
+						'<select name="choice[]" multiple autocomplete="on" size="5"' .
+						' autofocus required disabled form="form-2"></select>'
+				),
+				array(
+						Html5::createSub()->option('PHP', 'php', true, true),
+						'<option value="php" selected disabled>PHP</option>'
+				),
+				array(
+						Html5::createSub()->option('PHP', 'php', true, true, true),
+						'<option label="PHP" value="php" selected disabled>'
+				),
+				array(
+						Html5::createSub()->select('choice')->options(
+								array('cpp', 'php', 'python'),
+								array('C++', 'PHP', 'Python'),
+								'php', 'cpp'),
+						self::expectedOptions
+				),
+				array(
+						Html5::createSub()->select('choice')->options(
+								array(
+										array('v' => 'cpp', 'l' => 'C++'),
+										array('v' => 'php', 'l' => 'PHP'),
+										array('v' => 'python', 'l' => 'Python')
+								),
+								null, array('php'), 'cpp'),
+						self::expectedOptions
 				),
 		);
 	}
