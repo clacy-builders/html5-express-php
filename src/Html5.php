@@ -1520,7 +1520,8 @@ class Html5 extends Xml
 				->setSorted($sorted);
 	}
 
-	public function tcells($data, $keys = null, $cellCallback = null, $cellCallbackData = null)
+	public function tcells($data, $keys = null,
+			$cellCallback = null, $cellCallbackData = null)
 	{
 		if (!is_array($keys)) {
 			$keys = \ML_Express\keys($data, $keys);
@@ -1535,8 +1536,7 @@ class Html5 extends Xml
 		return $this;
 	}
 
-	public function trows(
-			$data, $keys = null,
+	public function trows($data, $keys = null,
 			$cellCallback = null, $cellCallbackData = null,
 			$rowCallback = null, $rowCallbackData = null)
 	{
@@ -1546,12 +1546,7 @@ class Html5 extends Xml
 			if (isset($rowCallback)) {
 				$rowCallback($tr, $data, $i, $rowCallbackData);
 			}
-			foreach ($keys as $key) {
-				$td = $tr->td(\ML_Express\value($rowData, $key));
-				if (isset($cellCallback)) {
-					$cellCallback($td, $data, $i, $key, $cellCallbackData);
-				}
-			}
+			$tr->tcells($data[$i], $keys, $cellCallback, $cellCallbackData);
 		}
 		return $this;
 	}

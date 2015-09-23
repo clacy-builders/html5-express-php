@@ -131,149 +131,74 @@ class Html5TabularDataTest extends Express_TestCase
 						"<table>\n\t<tr>" .
 						"\n\t\t<th>Foo</th>\n\t\t<td>Berlin</td>\n\t\t<td>12</td>" .
 						"\n\t</tr>\n</table>"
-				)
+				),
 
-		);
-	}
-
-	/**
-	 * @dataProvider trowsProvider
-	 */
-	public function testTrows($html, $expected)
-	{
-		$this->test($html, $expected);
-	}
-
-	public function trowsProvider()
-	{
-		$resultsArr = self::$result1;
-		$resultsObj = array();
-		foreach ($resultsArr as $row) {
-			$resultsObj[] = (object) $row;
-		}
-
-		$keys = array('town', 'name', 'price');
-
-		$cellCallback1 = function($td, $data, $i, $key) {
-			if ($key == 'name') $td->th();
-		};
-		$cellCallback2 = function($td, $data, $i, $key, $options) {
-			if ($key == $options['key']) $td->th();
-		};
-		$cellOptions = array('key' => 'name');
-
-		$rowCallback1 = function($tr, $data, $i) {
-			$tr->attrib('data-name', \ML_Express\value($data[$i], 'name'));
-		};
-		$rowCallback2 = function($tr, $data, $i, $options) {
-			$attribute = 'data-' . $options['attributeName'];
-			$tr->attrib($attribute, \ML_Express\value($data[$i], 'name'));
-		};
-		$rowOptions = array('attributeName' => 'name');
-
-		$expected = array('<table>
-	<tr>
-		<td>Foo</td>
-		<td>Berlin</td>
-		<td>20</td>
-	</tr>
-	<tr>
-		<td>Foo</td>
-		<td>Berlin</td>
-		<td>12</td>
-	</tr>
-	<tr>
-		<td>Foo</td>
-		<td>Cologne</td>
-		<td>12</td>
-	</tr>
-	<tr>
-		<td>Bar</td>
-		<td>Cologne</td>
-		<td>12</td>
-	</tr>
-	<tr>
-		<td>Bar</td>
-		<td>Hamburg</td>
-		<td>15</td>
-	</tr>
-	<tr>
-		<td>Bar</td>
-		<td>Hamburg</td>
-		<td>15</td>
-	</tr>
-</table>', '<table>
-	<tr>
-		<td>Berlin</td>
-		<td>Foo</td>
-	</tr>
-	<tr>
-		<td>Berlin</td>
-		<td>Foo</td>
-	</tr>
-	<tr>
-		<td>Cologne</td>
-		<td>Foo</td>
-	</tr>
-	<tr>
-		<td>Cologne</td>
-		<td>Bar</td>
-	</tr>
-	<tr>
-		<td>Hamburg</td>
-		<td>Bar</td>
-	</tr>
-	<tr>
-		<td>Hamburg</td>
-		<td>Bar</td>
-	</tr>
-</table>', '<table>
-	<tr data-name="Foo">
-		<th>Foo</th>
-		<td>Berlin</td>
-		<td>20</td>
-	</tr>
-	<tr data-name="Foo">
-		<th>Foo</th>
-		<td>Berlin</td>
-		<td>12</td>
-	</tr>
-	<tr data-name="Foo">
-		<th>Foo</th>
-		<td>Cologne</td>
-		<td>12</td>
-	</tr>
-	<tr data-name="Bar">
-		<th>Bar</th>
-		<td>Cologne</td>
-		<td>12</td>
-	</tr>
-	<tr data-name="Bar">
-		<th>Bar</th>
-		<td>Hamburg</td>
-		<td>15</td>
-	</tr>
-	<tr data-name="Bar">
-		<th>Bar</th>
-		<td>Hamburg</td>
-		<td>15</td>
-	</tr>
-</table>');
-		return array(
-				array(Html5::createSub()->table()->trows($resultsArr), $expected[0]),
-				array(Html5::createSub()->table()->trows($resultsObj), $expected[0]),
-				array(Html5::createSub()->table()->trows($resultsArr, $keys), $expected[1]),
-				array(Html5::createSub()->table()->trows($resultsObj, $keys), $expected[1]),
+				// trows()
 				array(
-						Html5::createSub()->table()->trows(
-								$resultsArr, null, $cellCallback2, $cellOptions, $rowCallback1),
-						$expected[2]
+						Html5::createSub()->table()->trows(self::$result2),
+						"<table>" .
+						"\n\t<tr>\n\t\t<td>Foo</td>\n\t\t<td>Berlin</td>\n\t</tr>" .
+						"\n\t<tr>\n\t\t<td>Bar</td>\n\t\t<td>Cologne</td>\n\t</tr>" .
+						"\n\t<tr>\n\t\t<td>Bar</td>\n\t\t<td>Hamburg</td>\n\t</tr>" .
+						"\n\t<tr>\n\t\t<td>Foo</td>\n\t\t<td>Cologne</td>\n\t</tr>" .
+						"\n</table>"
 				),
 				array(
-						Html5::createSub()->table()->trows(
-								$resultsArr, null, $cellCallback2, $cellOptions, $rowCallback1),
-						$expected[2]
-				)
+						Html5::createSub()
+								->table()
+								->trows(self::$result2, ['town', 'name', 'city']),
+						"<table>" .
+						"\n\t<tr>\n\t\t<td>Berlin</td>\n\t\t<td>Foo</td>\n\t</tr>" .
+						"\n\t<tr>\n\t\t<td>Cologne</td>\n\t\t<td>Bar</td>\n\t</tr>" .
+						"\n\t<tr>\n\t\t<td>Hamburg</td>\n\t\t<td>Bar</td>\n\t</tr>" .
+						"\n\t<tr>\n\t\t<td>Cologne</td>\n\t\t<td>Foo</td>\n\t</tr>" .
+						"\n</table>"
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2, null, null, null,
+										function($tr, $data, $i) {
+											$tr->setClass('r' . ($i % 2 + 1));
+										}),
+						"<table>" .
+						"\n\t<tr class=\"r1\">\n\t\t<td>Foo</td>\n\t\t<td>Berlin</td>\n\t</tr>" .
+						"\n\t<tr class=\"r2\">\n\t\t<td>Bar</td>\n\t\t<td>Cologne</td>\n\t</tr>" .
+						"\n\t<tr class=\"r1\">\n\t\t<td>Bar</td>\n\t\t<td>Hamburg</td>\n\t</tr>" .
+						"\n\t<tr class=\"r2\">\n\t\t<td>Foo</td>\n\t\t<td>Cologne</td>\n\t</tr>" .
+						"\n</table>"
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2, null, null, null,
+										function($tr, $data, $i, $options) {
+											$tr->setClass($options['class'] . ($i % 2 + 1));
+										}, ['class' => 'r']),
+						"<table>" .
+						"\n\t<tr class=\"r1\">\n\t\t<td>Foo</td>\n\t\t<td>Berlin</td>\n\t</tr>" .
+						"\n\t<tr class=\"r2\">\n\t\t<td>Bar</td>\n\t\t<td>Cologne</td>\n\t</tr>" .
+						"\n\t<tr class=\"r1\">\n\t\t<td>Bar</td>\n\t\t<td>Hamburg</td>\n\t</tr>" .
+						"\n\t<tr class=\"r2\">\n\t\t<td>Foo</td>\n\t\t<td>Cologne</td>\n\t</tr>" .
+						"\n</table>"
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2, null,
+										function($td, $data, $key, $options) {
+											if ($key == $options['key']) $td->th();
+										}, ['key' => 'name'],
+										function($tr, $data, $i, $options) {
+											$tr->setClass($options['class'] . ($i % 2 + 1));
+										}, ['class' => 'r']),
+						"<table>" .
+						"\n\t<tr class=\"r1\">\n\t\t<th>Foo</th>\n\t\t<td>Berlin</td>\n\t</tr>" .
+						"\n\t<tr class=\"r2\">\n\t\t<th>Bar</th>\n\t\t<td>Cologne</td>\n\t</tr>" .
+						"\n\t<tr class=\"r1\">\n\t\t<th>Bar</th>\n\t\t<td>Hamburg</td>\n\t</tr>" .
+						"\n\t<tr class=\"r2\">\n\t\t<th>Foo</th>\n\t\t<td>Cologne</td>\n\t</tr>" .
+						"\n</table>"
+				),
 		);
 	}
 
@@ -309,60 +234,4 @@ class Html5TabularDataTest extends Express_TestCase
 </table>';
 		$this->assertEquals($expected, $html->getMarkup());
 	}
-
-// 	/**
-// 	 * @dataProvider stripesProvider
-// 	 */
-// 	public function testStripes($html, $expected)
-// 	{
-// 		$this->test($html, $expected);
-// 	}
-
-// 	public function stripesProvider()
-// 	{
-// 		$expectedClasses = array(
-// 				array(null, 'every-2nd', null, 'every-2nd'),
-// 				array(null, 'every-2nd', 'every-2nd', null),
-// 				array('backgr-1', 'backgr-2', 'backgr-1', 'backgr-2'),
-// 				array('backgr-1', 'backgr-2', 'backgr-2', 'backgr-1')
-// 		);
-
-// 		$expected = array();
-// 		for ($i = 0; $i < 4; $i++) {
-// 			$html = Html5::createSub();
-// 			$table = $html->table()->trows(self::$result2)->rowspans();
-// 			foreach ($expectedClasses[$i] as $k => $class) {
-// 				$table->getChild($k)->setClass($class);
-// 			}
-// 			$expected[] = $html->getMarkup();
-// 		}
-
-// 		return array(
-// 				array(self::createStriped('every-2nd'), $expected[0]),
-// 				array(self::createStriped('backgr-', 2), $expected[2]),
-// 				array(self::createStriped('every-2nd', true), $expected[1]),
-// 				array(self::createStriped('backgr-', 2, true), $expected[3]),
-// 				array(self::createStriped('every-2nd', null, true), $expected[1]),
-// 				array(self::createStriped(array(null, 'every-2nd')), $expected[0]),
-// 				array(self::createStriped(array(null, 'every-2nd'), true), $expected[1]),
-// 				array(self::createStriped(array(null, 'every-2nd'), null, true), $expected[1])
-// 		);
-// 	}
-
-// 	private static function createTrows($result, $keys = null,
-// 			$cellCallback = null, $cellCallbackData = null,
-// 			$rowCallback = null, $rowCallbackData = null)
-// 	{
-// 		return Html5::createSub()->table()->trows($result, $keys,
-// 				$cellCallback, $cellCallbackData,
-// 				$rowCallback, $rowCallbackData);
-// 	}
-
-// 	private static function createStriped($classes, $count = 0, $onContentChanged = false)
-// 	{
-// 		return self::createTrows($result2)
-// 				->rowspans()
-// 				->stripes($classes, $count, $onContentChanged);
-// 	}
-
 }
