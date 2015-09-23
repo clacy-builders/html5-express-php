@@ -31,6 +31,7 @@ class Html5TabularDataTest extends Express_TestCase
 	public function provider()
 	{
 		return array(
+				// Basics
 				array(Html5::createSub()->table(true), '<table sortable></table>'),
 				array(Html5::createSub()->caption('content'), '<caption>content</caption>'),
 				array(
@@ -75,6 +76,63 @@ class Html5TabularDataTest extends Express_TestCase
 								->th(null, null, null, 'something', null, 'c'),
 						'<th headers="something" abbr="c">content</th>'
 				),
+
+				// tcells()
+				array(
+						Html5::createSub()
+								->table()->tr()
+								->tcells(array_keys(self::$result1[1])),
+						"<table>\n\t<tr>" .
+						"\n\t\t<td>name</td>\n\t\t<td>town</td>\n\t\t<td>amount</td>" .
+						"\n\t</tr>\n</table>"
+				),
+				array(
+						Html5::createSub()
+								->table()->tr()
+								->tcells(array_keys(self::$result1[1]), [1, 2], true),
+						"<table>\n\t<tr>" .
+						"\n\t\t<th>town</th>\n\t\t<th>amount</th>" .
+						"\n\t</tr>\n</table>"
+				),
+				array(
+						Html5::createSub()
+								->table()->tr()
+								->tcells((object) self::$result1[1]),
+						"<table>\n\t<tr>" .
+						"\n\t\t<td>Foo</td>\n\t\t<td>Berlin</td>\n\t\t<td>12</td>" .
+						"\n\t</tr>\n</table>"
+				),
+				array(
+						Html5::createSub()
+								->table()->tr()
+								->tcells(self::$result1[1], ['name', 'town']),
+						"<table>\n\t<tr>" .
+						"\n\t\t<td>Foo</td>\n\t\t<td>Berlin</td>" .
+						"\n\t</tr>\n</table>"
+				),
+				array(
+						Html5::createSub()
+								->table()->tr()
+								->tcells(self::$result1[1], null,
+										function($td, $data, $key) {
+											if ($key == 'name') $td->th();
+										}),
+						"<table>\n\t<tr>" .
+						"\n\t\t<th>Foo</th>\n\t\t<td>Berlin</td>\n\t\t<td>12</td>" .
+						"\n\t</tr>\n</table>"
+				),
+				array(
+						Html5::createSub()
+								->table()->tr()
+								->tcells((object) self::$result1[1], null,
+										function($td, $data, $key, $options) {
+											if ($key == $options['key']) $td->th();
+										}, ['key' => 'name']),
+						"<table>\n\t<tr>" .
+						"\n\t\t<th>Foo</th>\n\t\t<td>Berlin</td>\n\t\t<td>12</td>" .
+						"\n\t</tr>\n</table>"
+				)
+
 		);
 	}
 
@@ -251,4 +309,60 @@ class Html5TabularDataTest extends Express_TestCase
 </table>';
 		$this->assertEquals($expected, $html->getMarkup());
 	}
+
+// 	/**
+// 	 * @dataProvider stripesProvider
+// 	 */
+// 	public function testStripes($html, $expected)
+// 	{
+// 		$this->test($html, $expected);
+// 	}
+
+// 	public function stripesProvider()
+// 	{
+// 		$expectedClasses = array(
+// 				array(null, 'every-2nd', null, 'every-2nd'),
+// 				array(null, 'every-2nd', 'every-2nd', null),
+// 				array('backgr-1', 'backgr-2', 'backgr-1', 'backgr-2'),
+// 				array('backgr-1', 'backgr-2', 'backgr-2', 'backgr-1')
+// 		);
+
+// 		$expected = array();
+// 		for ($i = 0; $i < 4; $i++) {
+// 			$html = Html5::createSub();
+// 			$table = $html->table()->trows(self::$result2)->rowspans();
+// 			foreach ($expectedClasses[$i] as $k => $class) {
+// 				$table->getChild($k)->setClass($class);
+// 			}
+// 			$expected[] = $html->getMarkup();
+// 		}
+
+// 		return array(
+// 				array(self::createStriped('every-2nd'), $expected[0]),
+// 				array(self::createStriped('backgr-', 2), $expected[2]),
+// 				array(self::createStriped('every-2nd', true), $expected[1]),
+// 				array(self::createStriped('backgr-', 2, true), $expected[3]),
+// 				array(self::createStriped('every-2nd', null, true), $expected[1]),
+// 				array(self::createStriped(array(null, 'every-2nd')), $expected[0]),
+// 				array(self::createStriped(array(null, 'every-2nd'), true), $expected[1]),
+// 				array(self::createStriped(array(null, 'every-2nd'), null, true), $expected[1])
+// 		);
+// 	}
+
+// 	private static function createTrows($result, $keys = null,
+// 			$cellCallback = null, $cellCallbackData = null,
+// 			$rowCallback = null, $rowCallbackData = null)
+// 	{
+// 		return Html5::createSub()->table()->trows($result, $keys,
+// 				$cellCallback, $cellCallbackData,
+// 				$rowCallback, $rowCallbackData);
+// 	}
+
+// 	private static function createStriped($classes, $count = 0, $onContentChanged = false)
+// 	{
+// 		return self::createTrows($result2)
+// 				->rowspans()
+// 				->stripes($classes, $count, $onContentChanged);
+// 	}
+
 }

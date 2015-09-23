@@ -2,6 +2,7 @@
 	"name": "ml-express/html5",
 	"description": "This library generates HTML5",
 	"license": "MIT",
+	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.4.0",
 		"ml-express/xml": "dev-master@dev"

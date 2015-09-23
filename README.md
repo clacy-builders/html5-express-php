@@ -19,23 +19,16 @@ Run `composer install` or `composer update`.
 
 ## Basic Usage
 
-`Adhoc` allows you to use any method name not previously defined to add XML elements or attributes.
-
     <?php
     require_once 'vendor/autoload.php';
     
-    use \ML_Express\Html5;
+    use \ML_Express\HTML5\Html5;
     use \ML_Express\Adhoc;
     
-    class Html extends Html5
-    {
-        use Adhoc;
-    }
-    
-    $html = Html::createHtml();
+    $html = Html5::createHtml();
     $body = $html->body();
     $body
-            ->p('Lorem ' . Html::em('ipsum') . ' dolor' . Html::br());
+            ->p('Lorem ipsum dolor');
     
     print $html->getMarkup();
 
@@ -44,6 +37,6 @@ This is the generated markup:
     <!DOCTYPE html>
     <html>
         <body>
-            <p>Lorem <em>ipsum</em> dolor<br></p>
+            <p>Lorem ipsum dolor<br></p>
         </body>
     </html>

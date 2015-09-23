@@ -1,8 +1,6 @@
 <?php
 namespace ML_Express\HTML5;
 
-require_once __DIR__ . '/../vendor/ml-express/xml/src/Functions.php';
-
 use ML_Express\Xml;
 
 class Html5 extends Xml
@@ -1227,13 +1225,13 @@ class Html5 extends Xml
 	 * ->sources('uploads/1258/%s')
 	 * ->appendText('Your Browser doesn't support &hellip;');
 	 * </pre></code>
-	 * generates: <code><pre><![cdata[
-	 * <video width="320" height="200" poster="media/poster.jpg" controls>
-	 *     <source src="uploads/1258/mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-	 *     <source src="uploads/1258/webm" type="video/webm; codecs=vp8,vorbis">
-	 *     <source src="uploads/1258/ogv" type="video/ogg; codecs=theora,vorbis">
+	 * generates: <code><pre>
+	 * &lt;video width="320" height="200" poster="media/poster.jpg" controls>
+	 *     &lt;source src="uploads/1258/mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+	 *     &lt;source src="uploads/1258/webm" type="video/webm; codecs=vp8,vorbis">
+	 *     &lt;source src="uploads/1258/ogv" type="video/ogg; codecs=theora,vorbis">
 	 *      Your Browser doesn't support &hellip;
-	 * </video>]]>
+	 * &lt;/video></pre></code>
 	 *
 	 * @param    string               $path
 	 * @param    array|null           $types
@@ -1520,6 +1518,21 @@ class Html5 extends Xml
 				->setScope($scope)
 				->setAbbr($abbr)
 				->setSorted($sorted);
+	}
+
+	public function tcells($data, $keys = null, $cellCallback = null, $cellCallbackData = null)
+	{
+		if (!is_array($keys)) {
+			$keys = \ML_Express\keys($data, $keys);
+		}
+		$cell = $cellCallback === true ? 'th' : 'td';
+		foreach ($keys as $key) {
+			$td = $this->$cell(\ML_Express\value($data, $key));
+			if (is_callable($cellCallback)) {
+				$cellCallback($td, $data, $key, $cellCallbackData);
+			}
+		}
+		return $this;
 	}
 
 	public function trows(
@@ -1889,7 +1902,7 @@ class Html5 extends Xml
 	/**
 	 * Appends a group of checkboxes.
 	 *
-	 * There are different ways to define <code>$values</code> and code>$labels</code>:<br>
+	 * There are different ways to define <code>$values</code> and <code>$labels</code>:<br>
 	 *
 	 *<code><pre>
 	 *     // Ad hoc
@@ -1915,18 +1928,18 @@ class Html5 extends Xml
 	 *             true, 'java');
 	 *</pre></code>
 	 * Result:
-	 *<code><pre><![cdata[
+	 *<code><pre>
 	 *     …
-	 *     <label>
-	 *         <checkbox name="languages[]" value="c++" checked required>
-	 *         <span>C++</span>
-	 *     </label>
-	 *     <label>
-	 *         <checkbox name="languages[]" value="java" disabled>
-	 *         <span>Java</span>
-	 *     </label>
+	 *     &lt;label>
+	 *         &lt;checkbox name="languages[]" value="c++" checked required>
+	 *         &lt;span>C++&lt;/span>
+	 *     &lt;/label>
+	 *     &lt;label>
+	 *         &lt;checkbox name="languages[]" value="java" disabled>
+	 *         &lt;span>Java&lt;/span>
+	 *     &lt;/label>
 	 *     …
-	 *]]></pre></code>
+	 * </pre></code>
 	 *
 	 * @see checkbox()
 	 * @see radios()
