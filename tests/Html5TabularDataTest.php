@@ -199,14 +199,9 @@ class Html5TabularDataTest extends Express_TestCase
 						"\n\t<tr class=\"r2\">\n\t\t<th>Foo</th>\n\t\t<td>Cologne</td>\n\t</tr>" .
 						"\n</table>"
 				),
-		);
-	}
-
-	public function testRowspans()
-	{
-		$html = Html5::createSub();
-		$html->table()->trows(self::$result1)->rowspans();
-		$expected = '<table>
+				array(
+						Html5::createSub()->table()->trows(self::$result1)->rowspans(),
+						'<table>
 	<tr>
 		<td rowspan="3">Foo</td>
 		<td rowspan="2">Berlin</td>
@@ -231,7 +226,200 @@ class Html5TabularDataTest extends Express_TestCase
 	<tr>
 		<td>15</td>
 	</tr>
-</table>';
-		$this->assertEquals($expected, $html->getMarkup());
+</table>'
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2)
+								->rowspans()
+								->stripes('every-2nd'),
+						'<table>
+	<tr>
+		<td>Foo</td>
+		<td>Berlin</td>
+	</tr>
+	<tr class="every-2nd">
+		<td rowspan="2">Bar</td>
+		<td>Cologne</td>
+	</tr>
+	<tr>
+		<td>Hamburg</td>
+	</tr>
+	<tr class="every-2nd">
+		<td>Foo</td>
+		<td>Cologne</td>
+	</tr>
+</table>'
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2)
+								->rowspans()
+								->stripes('backgr-', 2),
+						'<table>
+	<tr class="backgr-1">
+		<td>Foo</td>
+		<td>Berlin</td>
+	</tr>
+	<tr class="backgr-2">
+		<td rowspan="2">Bar</td>
+		<td>Cologne</td>
+	</tr>
+	<tr class="backgr-1">
+		<td>Hamburg</td>
+	</tr>
+	<tr class="backgr-2">
+		<td>Foo</td>
+		<td>Cologne</td>
+	</tr>
+</table>'
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2)
+								->rowspans()
+								->stripes('every-2nd', true),
+						'<table>
+	<tr>
+		<td>Foo</td>
+		<td>Berlin</td>
+	</tr>
+	<tr class="every-2nd">
+		<td rowspan="2">Bar</td>
+		<td>Cologne</td>
+	</tr>
+	<tr class="every-2nd">
+		<td>Hamburg</td>
+	</tr>
+	<tr>
+		<td>Foo</td>
+		<td>Cologne</td>
+	</tr>
+</table>'
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2)
+								->rowspans()
+								->stripes('backgr-', 2, true),
+						'<table>
+	<tr class="backgr-1">
+		<td>Foo</td>
+		<td>Berlin</td>
+	</tr>
+	<tr class="backgr-2">
+		<td rowspan="2">Bar</td>
+		<td>Cologne</td>
+	</tr>
+	<tr class="backgr-2">
+		<td>Hamburg</td>
+	</tr>
+	<tr class="backgr-1">
+		<td>Foo</td>
+		<td>Cologne</td>
+	</tr>
+</table>'
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2)
+								->rowspans()
+								->stripes('every-2nd', null, true),
+						'<table>
+	<tr>
+		<td>Foo</td>
+		<td>Berlin</td>
+	</tr>
+	<tr class="every-2nd">
+		<td rowspan="2">Bar</td>
+		<td>Cologne</td>
+	</tr>
+	<tr class="every-2nd">
+		<td>Hamburg</td>
+	</tr>
+	<tr>
+		<td>Foo</td>
+		<td>Cologne</td>
+	</tr>
+</table>'
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2)
+								->rowspans()
+								->stripes(array(null, 'every-2nd')),
+						'<table>
+	<tr>
+		<td>Foo</td>
+		<td>Berlin</td>
+	</tr>
+	<tr class="every-2nd">
+		<td rowspan="2">Bar</td>
+		<td>Cologne</td>
+	</tr>
+	<tr>
+		<td>Hamburg</td>
+	</tr>
+	<tr class="every-2nd">
+		<td>Foo</td>
+		<td>Cologne</td>
+	</tr>
+</table>'
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2)
+								->rowspans()
+								->stripes(array(null, 'every-2nd'), true),
+						'<table>
+	<tr>
+		<td>Foo</td>
+		<td>Berlin</td>
+	</tr>
+	<tr class="every-2nd">
+		<td rowspan="2">Bar</td>
+		<td>Cologne</td>
+	</tr>
+	<tr class="every-2nd">
+		<td>Hamburg</td>
+	</tr>
+	<tr>
+		<td>Foo</td>
+		<td>Cologne</td>
+	</tr>
+</table>'
+				),
+				array(
+						Html5::createSub()
+								->table()
+								->trows(self::$result2)
+								->rowspans()
+								->stripes(array(null, 'every-2nd'), null, true),
+						'<table>
+	<tr>
+		<td>Foo</td>
+		<td>Berlin</td>
+	</tr>
+	<tr class="every-2nd">
+		<td rowspan="2">Bar</td>
+		<td>Cologne</td>
+	</tr>
+	<tr class="every-2nd">
+		<td>Hamburg</td>
+	</tr>
+	<tr>
+		<td>Foo</td>
+		<td>Cologne</td>
+	</tr>
+</table>'
+				),
+		);
 	}
 }

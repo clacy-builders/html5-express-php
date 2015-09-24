@@ -1536,6 +1536,12 @@ class Html5 extends Xml
 		return $this;
 	}
 
+	public function trow($data, $keys = null,
+			$cellCallback = null, $cellCallbackData = null)
+	{
+		return $this->tr()->tcells($data, $keys, $cellCallback, $cellCallbackData);
+	}
+
 	public function trows($data, $keys = null,
 			$cellCallback = null, $cellCallbackData = null,
 			$rowCallback = null, $rowCallbackData = null)
