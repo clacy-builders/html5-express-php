@@ -2237,6 +2237,53 @@ class Html5 extends Xml
 		return $this;
 	}
 
+	/**
+	 *
+	 * @param  string   $content
+	 * @param  string   $name          Name of form control to use for form submission
+	 *                                 and in the <code>form.elements</code> API
+	 * @param  int      $cols          Maximum number of characters per line
+	 * @param  int      $rows          Number of lines to show
+	 * @param  string   $wrap          How the value of the form control is to be wrapped
+	 *                                 for form submission
+	 * @param  string   $placeholder   User-visible label to be placed within the form control
+	 * @param  int      $minlength     Minimum length of value
+	 * @param  int      $maxlength     Maximum length of value
+	 * @param  boolean  $required      Whether the control is required for form submission
+	 * @param  string   $autocomplete  Hint for form autofill feature
+	 * @param  boolean  $readonly      Whether to allow the value to be edited by the user
+	 * @param  boolean  $disabled      Whether the form control is disabled
+	 * @param  boolean  $autofocus     Automatically focus the form control when the page is loaded
+	 * @param  string   $dirname       Name of form field to use for sending the element's
+	 *                                 directionality in form submission
+	 * @param  string   $inputmode     Hint for selecting an input modality
+	 * @param  string   $form          Associates the control with a <code>form<code> element
+	 */
+	public function textarea($content = '',
+			$name = null, $cols = null, $rows = null, $wrap = null,
+			$placeholder = null, $minlength = null, $maxlength = null,
+			$required = false, $autocomplete = null, $readonly = false,
+			$disabled = false, $autofocus = false, $dirname = null,
+			$inputmode = null, $form = null)
+	{
+		return $this->append('textarea', $content)
+				->setName($name)
+				->setCols($cols)
+				->setRows($rows)
+				->setWrap($wrap)
+				->setPlaceholder($placeholder)
+				->setMinlength($minlength)
+				->setMaxlength($maxlength)
+				->setRequired($required)
+				->setAutocomplete($autocomplete)
+				->setReadonly($readonly)
+				->setDisabled($disabled)
+				->setAutofocus($autofocus)
+				->setDirname($dirname)
+				->setInputmode($inputmode)
+				->setForm($form);
+	}
+
 	//////// Attributes ////////
 
 	/**
@@ -2389,19 +2436,6 @@ class Html5 extends Xml
 		return $this->booleanAttrib($checked, 'checked', 'value');
 	}
 
-	/**
-	 * Number of columns that the cell is to span.
-	 *
-	 * @see td()
-	 * @see th()
-	 *
-	 * @param int $colspan
-	 */
-	public function setColspan($colspan)
-	{
-		return $this->attrib('colspan', $colspan);
-	}
-
 	public function setClass($className)
 	{
 		if (is_array($className))
@@ -2412,6 +2446,24 @@ class Html5 extends Xml
 	public function addClass($className)
 	{
 		return $this->attrib('class', $className, ' ', true);
+	}
+
+	public  function setCols($cols)
+	{
+		return $this->attrib('cols', $cols);
+	}
+
+	/**
+	 * Number of columns that the cell is to span.
+	 *
+	 * @see td()
+	 * @see th()
+	 *
+	 * @param int $colspan
+	 */
+	public function setColspan($colspan)
+	{
+		return $this->attrib('colspan', $colspan > 1 ? $colspan : null);
 	}
 
 	/**
@@ -2465,12 +2517,13 @@ class Html5 extends Xml
 	 * Address of the resource
 	 *
 	 * @see object()
+	 *
 	 * @param string $data
 	 */
-	public function setData($data, $value = null)
+	public function setData($data, $name = null)
 	{
-		if ($value !== null) {
-			return $this->attrib('data-' . $data, $value);
+		if ($name !== null) {
+			return $this->attrib('data-' . $name, $data);
 		}
 		return $this->attrib('data', $data);
 	}
@@ -3057,6 +3110,11 @@ class Html5 extends Xml
 		return $this->attrib('reversed', $reversed);
 	}
 
+	public function setRows($rows)
+	{
+		return $this->attrib('rows', $rows);
+	}
+
 	/**
 	 * Number of rows that the cell is to span.
 	 *
@@ -3067,7 +3125,7 @@ class Html5 extends Xml
 	 */
 	public function setRowspan($rowspan)
 	{
-		return $this->attrib('rowspan', $rowspan);
+		return $this->attrib('rowspan', $rowspan > 1 ? $rowspan : null);
 	}
 
 	const SANDBOX_FORMS = 'allow-forms';
@@ -3403,5 +3461,17 @@ class Html5 extends Xml
 	public function setWidth($width)
 	{
 		return $this->attrib('width', $width);
+	}
+
+	const WRAP_SOFT = 'soft';
+	const WRAP_HARD = 'hard';
+
+	/**
+	 *
+	 * @param  string  $wrap
+	 */
+	public function setWrap($wrap = self::WRAP_HARD)
+	{
+		return $this->attrib('wrap', $wrap);
 	}
 }

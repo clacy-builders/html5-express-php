@@ -91,7 +91,7 @@ class Html5AttributesTest extends Express_TestCase
 				// setData()
 				array(Html5::createSub('e')->setData('demo.swf'), '<e data="demo.swf">'),
 				array(
-						Html5::createSub('e')->setData('user', 'M. E. Lee'),
+						Html5::createSub('e')->setData('M. E. Lee', 'user'),
 						'<e data-user="M. E. Lee">'
 				),
 

@@ -66,7 +66,7 @@ class Html5FormsTest extends Express_TestCase
 						Html5::createSub()->hiddens(
 								null, ['cat' => 'Cats', 'items-per-page' => 5], 'search'),
 						'<input type="hidden" name="cat" value="Cats"' .
-						' form="search">' .
+						' form="search">' . "\n" .
 						'<input type="hidden" name="items-per-page" value="5"' .
 						' form="search">'
 				),
@@ -75,7 +75,7 @@ class Html5FormsTest extends Express_TestCase
 								array('cat', 'Cats'),
 								array('per-page', 5)
 						)),
-						'<input type="hidden" name="cat" value="Cats">' .
+						'<input type="hidden" name="cat" value="Cats">' . "\n" .
 						'<input type="hidden" name="per-page" value="5">'),
 
 				// text()
@@ -221,6 +221,8 @@ class Html5FormsTest extends Express_TestCase
 								array('', '', '" disabled>'),
 								self::expectedCheckboxes)
 				),
+
+				// radios()
 				array(
 						Html5::createSub()->append('fieldset')->radios(
 								'choice',
@@ -232,6 +234,8 @@ class Html5FormsTest extends Express_TestCase
 								array('radio', '', 'python"'),
 								self::expectedCheckboxes)
 				),
+
+				// file()
 				array(
 						Html5::createSub()->file(
 								'upload', array(HTML5::ACCEPT_IMAGE, '.webm'),
@@ -239,6 +243,8 @@ class Html5FormsTest extends Express_TestCase
 						'<input type="file" name="upload" accept="image/*,.webm"' .
 						' multiple autofocus required disabled form="form-2">'
 				),
+
+				// submit()
 				array(
 						Html5::createSub()->submit(
 								'OK', 'ok', true, true, 'index.php',
@@ -250,6 +256,8 @@ class Html5FormsTest extends Express_TestCase
 						' formnovalidate formtarget="_parent" autofocus' .
 						' disabled form="form-2">'
 				),
+
+				// image()
 				array(
 						Html5::createSub()->image(
 								'button.png', 'OK', 80, 60, 'ok', true, true,
@@ -263,18 +271,24 @@ class Html5FormsTest extends Express_TestCase
 						' formnovalidate formtarget="_parent" autofocus' .
 						' disabled form="form-2">'
 				),
+
+				// reset()
 				array(
 						Html5::createSub()->reset(
 								'Reset', 'reset', true, true, 'form-2'),
 						'<input type="reset" name="reset" value="Reset"' .
 						' autofocus disabled form="form-2">'
 				),
+
+				// inpButton()
 				array(
 						Html5::createSub()->inpButton(
 								'Button', 'button', true, true, 'form-2'),
 						'<input type="button" name="button" value="Button"' .
 						' autofocus disabled form="form-2">'
 				),
+
+				// select()
 				array(
 						Html5::createSub()->select(
 								'choice', true, HTML5::AUTOCOMPLETE_ON, true,
@@ -282,6 +296,8 @@ class Html5FormsTest extends Express_TestCase
 						'<select name="choice[]" multiple autocomplete="on" size="5"' .
 						' autofocus required disabled form="form-2"></select>'
 				),
+
+				// option()
 				array(
 						Html5::createSub()->option('PHP', 'php', true, true),
 						'<option value="php" selected disabled>PHP</option>'
@@ -290,6 +306,8 @@ class Html5FormsTest extends Express_TestCase
 						Html5::createSub()->option('PHP', 'php', true, true, true),
 						'<option label="PHP" value="php" selected disabled>'
 				),
+
+				// options()
 				array(
 						Html5::createSub()->select('choice')->options(
 								array('cpp', 'php', 'python'),
@@ -307,6 +325,21 @@ class Html5FormsTest extends Express_TestCase
 								null, array('php'), 'cpp'),
 						self::expectedOptions
 				),
+
+				// textarea()
+				array(
+						Html5::createSub()->textarea('Lorem ipsum dolor',
+								'suggestions', 40, 10, Html5::WRAP_HARD,
+								'Your suggestions', 5, 140, true, true, true, true, true,
+								'suggestions.dir', Html5::INPUTMODE_LATIN_PROSE,
+								'form-2'),
+						'<textarea name="suggestions" cols="40" rows="10" wrap="hard"' .
+						' placeholder="Your suggestions" minlength="5" maxlength="140" required' .
+						' autocomplete="on" readonly disabled autofocus' .
+						' dirname="suggestions.dir" inputmode="latin-prose" form="form-2">' .
+						'Lorem ipsum dolor</textarea>'
+				),
+
 		);
 	}
 }
