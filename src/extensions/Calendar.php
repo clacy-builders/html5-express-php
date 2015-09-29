@@ -4,10 +4,9 @@ namespace ML_Express\HTML5;
 
 trait Calendar
 {
-	public function calendar(
-			$from, $till, $firstWeekday = 0,
-			$cellCallback = null, $cellCallbackArgs = null,
-			$weekdayNames = null, $monthNames = null)
+	public function calendar($from, $till,
+			$firstWeekday = 0, $cellCallback = null, $cellCallbackArgs = null,
+			$cols = null, $weekdayNames = null, $monthNames = null)
 	{
 		if (!is_array($weekdayNames)) {
 			$weekdayNames = $this->getWeekdays();
@@ -25,8 +24,16 @@ trait Calendar
 
 			// new month or first day?
 			if ($d == 1 || $first) {
-				//if (!isset($table))
 				$table = $this->table();
+
+				// distinguish weekdays
+				if ($cols === true) {
+					$table->markSundays($firstWeekday);
+				}
+				elseif ($cols instanceof Html5) {
+					$table->inject($cols);
+				}
+
 				$m = $day->format('m');
 				$t = $day->format('t');
 				$y = $day->format('Y');
@@ -63,9 +70,9 @@ trait Calendar
 			$td = $tr ->td()->in_line();
 			$time = $td->time(null, $iso);
 			if (!empty($link)) {
-				$time->a(sprintf($link, $d, $m, $y), $d);
+				$time->a($d, sprintf($link, $d, $m, $y));
 				$time->addClass($classes);
-				$time->title($title);
+				$time->setTitle($title);
 			}
 			else {
 				$time->appendText($d);
@@ -83,7 +90,8 @@ trait Calendar
 		return $this;
 	}
 
-	private static function getNames($interval, $count, $format, $encoding) {
+	private static function getNames($interval, $count, $format, $encoding)
+	{
 		$array = array();
 		$day = new \DateTime('2014-01-06');
 		for ($i = 0; $i < $count; $i++) {
@@ -96,24 +104,39 @@ trait Calendar
 		return $array;
 	}
 
-	public static function getWeekdayNames($encoding = self::UTF8) {
+	public static function getWeekdayNames($encoding = self::UTF8)
+	{
 		return self::getNames('P1D', 7, '%a', $encoding);
 	}
 
 
-	public static function getMonthNames($encoding = self::UTF8) {
+	public static function getMonthNames($encoding = self::UTF8)
+	{
 		return self::getNames('P31D', 12, '%B', $encoding);
 	}
 
-	protected function getWeekdays() {
+	private function getWeekdays()
+	{
 		$class = get_class($this->getRoot());
 		return self::getWeekdayNames($class::CHARACTER_ENCODING);
 	}
 
-	protected function getMonths() {
+	private function getMonths()
+	{
 		$class = get_class($this->getRoot());
 		return self::getMonthNames($class::CHARACTER_ENCODING);
 	}
+
+	private function markSundays($firstWeekday)
+	{
+		if ($firstWeekday == 0) {
+			$this->colgroup(6);
+			$this->col()->setClass('sunday');
+		}
+		else {
+			$this->col()->setClass('sunday');
+			$this->colgroup(6);
+		}
+		return $this;
+	}
 }
-
-
