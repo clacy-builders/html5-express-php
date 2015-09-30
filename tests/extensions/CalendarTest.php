@@ -353,6 +353,64 @@ class CalendarTest extends Express_TestCase
 				array(
 						Html::createSub()->setLocale('en')->calendar(
 								new DateTime('2015-02-27'),
+								new DateTime('2015-03-02'), 0,
+								array(
+										'2015-02-28' => array(
+												'link' => '/birthdays/2015/m-e-lee',
+												'classes' => 'birthday',
+												'title' => 'M. E. Lee\'s birthday'
+										)
+								)),
+						'<table>
+	<thead>
+		<tr class="month">
+			<th colspan="7">February</th>
+		</tr>
+		<tr class="weekdays">
+			<th>Mon</th>
+			<th>Tue</th>
+			<th>Wed</th>
+			<th>Thu</th>
+			<th>Fri</th>
+			<th>Sat</th>
+			<th>Sun</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="4"></td>
+			<td><time datetime="2015-02-27">27</time></td>
+			<td><time datetime="2015-02-28" class="birthday" title="M. E. Lee\'s birthday"><a href="/birthdays/2015/m-e-lee">28</a></time></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<thead>
+		<tr class="month">
+			<th colspan="7">March</th>
+		</tr>
+		<tr class="weekdays">
+			<th>Mon</th>
+			<th>Tue</th>
+			<th>Wed</th>
+			<th>Thu</th>
+			<th>Fri</th>
+			<th>Sat</th>
+			<th>Sun</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="6"></td>
+			<td><time datetime="2015-03-01">1</time></td>
+		</tr>
+	</tbody>
+</table>'
+				),
+				array(
+						Html::createSub()->setLocale('en')->calendar(
+								new DateTime('2015-02-27'),
 								new DateTime('2015-03-02'), 6,
 								null, null, true),
 						'<table>
@@ -454,6 +512,64 @@ class CalendarTest extends Express_TestCase
 		<tr>
 			<td><time datetime="2015-03-01">1</time></td>
 			<td colspan="6"></td>
+		</tr>
+	</tbody>
+</table>'
+				),
+				array(
+						Html::createSub()->setLocale('en')->calendar(
+								new DateTime('2015-02-27'),
+								new DateTime('2015-03-02'), 'MV',
+								null, null, true),
+						'<table>
+	<colgroup span="2">
+	<col class="sunday">
+	<colgroup span="4">
+	<thead>
+		<tr class="month">
+			<th colspan="7">February</th>
+		</tr>
+		<tr class="weekdays">
+			<th>Fri</th>
+			<th>Sat</th>
+			<th>Sun</th>
+			<th>Mon</th>
+			<th>Tue</th>
+			<th>Wed</th>
+			<th>Thu</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><time datetime="2015-02-27">27</time></td>
+			<td><time datetime="2015-02-28">28</time></td>
+			<td colspan="5"></td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<colgroup span="2">
+	<col class="sunday">
+	<colgroup span="4">
+	<thead>
+		<tr class="month">
+			<th colspan="7">March</th>
+		</tr>
+		<tr class="weekdays">
+			<th>Fri</th>
+			<th>Sat</th>
+			<th>Sun</th>
+			<th>Mon</th>
+			<th>Tue</th>
+			<th>Wed</th>
+			<th>Thu</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="2"></td>
+			<td><time datetime="2015-03-01">1</time></td>
+			<td colspan="4"></td>
 		</tr>
 	</tbody>
 </table>'

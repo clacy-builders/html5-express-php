@@ -42,6 +42,10 @@ class Html5TabularDataTest extends Express_TestCase
 						Html5::createSub()->colgroup(5)->col(2)->getRoot(),
 						"<colgroup span=\"5\">\n\t<col span=\"2\">\n</colgroup>"
 				),
+				array(Html5::createSub()->colgroup(), '<colgroup>'),
+				array(Html5::createSub()->colgroup(0), ''),
+				array(Html5::createSub()->colgroup(1), '<col>'),
+				array(Html5::createSub()->colgroup(2), '<colgroup span="2">'),
 				array(Html5::createSub()->tbody(), '<tbody></tbody>'),
 				array(Html5::createSub()->thead(), '<thead></thead>'),
 				array(Html5::createSub()->tfoot(), '<tfoot></tfoot>'),

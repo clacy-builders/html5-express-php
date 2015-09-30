@@ -1431,9 +1431,9 @@ class Html5 extends Xml
 	 */
 	public function colgroup($span = null)
 	{
-		return $this
-				->append('colgroup')
-				->setSpan($span);
+		if ($span === 0) return $this;
+		if ($span == 1) return $this->col();
+		return $this->append('colgroup')->setSpan($span);
 	}
 
 	/**
