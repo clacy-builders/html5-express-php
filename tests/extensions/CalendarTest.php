@@ -71,6 +71,56 @@ class CalendarTest extends Express_TestCase
 </table>'
 				),
 				array(
+						Html::createSub()->setLocale('en')->calendar('2015-09-29', '2015-10-02'),
+						'<table>
+	<thead>
+		<tr class="month">
+			<th colspan="7">September</th>
+		</tr>
+		<tr class="weekdays">
+			<th>Mon</th>
+			<th>Tue</th>
+			<th>Wed</th>
+			<th>Thu</th>
+			<th>Fri</th>
+			<th>Sat</th>
+			<th>Sun</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td><time datetime="2015-09-29">29</time></td>
+			<td><time datetime="2015-09-30">30</time></td>
+			<td colspan="4"></td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<thead>
+		<tr class="month">
+			<th colspan="7">October</th>
+		</tr>
+		<tr class="weekdays">
+			<th>Mon</th>
+			<th>Tue</th>
+			<th>Wed</th>
+			<th>Thu</th>
+			<th>Fri</th>
+			<th>Sat</th>
+			<th>Sun</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="3"></td>
+			<td><time datetime="2015-10-01">1</time></td>
+			<td colspan="3"></td>
+		</tr>
+	</tbody>
+</table>'
+				),
+				array(
 						Html::createSub()->setLocale('en')->calendar(
 								new DateTime('2015-09-29'),
 								new DateTime('2015-10-02'),
@@ -574,7 +624,6 @@ class CalendarTest extends Express_TestCase
 	</tbody>
 </table>'
 				),
-
 		);
 	}
 }

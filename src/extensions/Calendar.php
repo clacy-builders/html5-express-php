@@ -8,6 +8,12 @@ trait Calendar
 			$firstWeekday = 0, $cellCallback = null, $cellCallbackArgs = null,
 			$cols = null, $weekdayNames = null, $monthNames = null)
 	{
+		if (is_string($from)) {
+			$from = new \DateTime($from);
+		}
+		if (is_string($till)) {
+			$till = new \DateTime($till);
+		}
 		if (is_string($firstWeekday)) {
 			$firstWeekday = self::getFirstWeekday($firstWeekday);
 		}
