@@ -8,6 +8,6 @@
 		"ml-express/xml": "dev-master@dev"
 	},
 	"autoload": {
-		"files": ["src/Html5.php"]
+		"files": ["src/Html5.php", "src/extensions/Calendar.php"]
 	}
 }
