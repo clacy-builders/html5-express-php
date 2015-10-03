@@ -34,9 +34,15 @@ trait Calendar
 			$t = $day->format('t');
 			$y = $day->format('Y');
 
+			// new year?
+			if (($d == 1 && $m == 1) || $first) {
+				$section = $this->section()->setClass('year year-' . $y);
+				$section->h1($y);
+			}
+
 			// new month or first day?
 			if ($d == 1 || $first) {
-				$table = $this->table();
+				$table = $section->table()->setClass('month month-' . $m);
 
 				// distinguish weekdays
 				if ($cols === true) {
@@ -48,7 +54,7 @@ trait Calendar
 
 				$thead = $table->thead();
 				// name of month
-				$thead->tr()->setClass('month')->th($monthNames[$m - 1], 7);
+				$thead->tr()->setClass('month-title')->th($monthNames[$m - 1], 7);
 
 				// weekdays
 				$tr = $thead->tr();
