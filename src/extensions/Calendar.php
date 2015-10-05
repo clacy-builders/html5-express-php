@@ -5,33 +5,38 @@ namespace ML_Express\HTML5;
 trait Calendar
 {
 	/**
-	 * @param from
+	 *
+	 *
+	 * @param from \DateTime|string
 	 * <p>First day which should be shown on the calendar.<br>
 	 * A string of the format <code>Y-m-d</code> or a <code>DateTime</code> object.</p>
 	 *
-	 * @param till
+	 * @param till \DateTime|string
 	 * <p>Day after the last day which should be shown on the calendar.</p>
 	 *
-	 * @param firstWeekday [optional]
+	 * @param firstWeekday int|string [optional]
 	 * <p>0 (for Monday) through 6 (for Sunday) or a country code for example
 	 * 'FR', 'US', 'SY' or 'MV'.</p>
 	 *
-	 * @param cellCallback [optional]
-	 * @param cellCallbackArgs [optional]
+	 * @param links array [optional]
+	 * <p>An assotiative array of assotiave arrays. For example:<br>
+	 * <code>
+	 * ['2015-04-03' => ['link' => '/archive/2016/04/foo', 'title' => 'Foo', 'classes' => 'post']]
+	 * </code></p>
 	 *
-	 * @param cols [optional]
+	 * @param cols Html5|true [optional]
 	 * <p>A subtree of <code>&lt;col></code> and <code>&lt;colgroup></code> elements
 	 * or <code>true</code> if you want to mark Sundays.</p>
 	 *
-	 * @param weekdayNames array[optional]
+	 * @param weekdayNames array [optional]
 	 * <p>Variant weekday names. For example: <code>['S', 'M', 'T', 'W', 'T', 'F', 'S']</code></p>
 	 *
-	 * @param monthNames array[optional]
-	 * <p>Variant month names.</code>
+	 * @param monthNames array [optional]
+	 * <p>Variant month names.</p>
 	 */
 	public function calendar($from, $till,
-			$firstWeekday = 0, $cellCallback = null, $cellCallbackArgs = null,
-			$cols = null, $weekdayNames = null, $monthNames = null)
+			$firstWeekday = 0, $links = null, $cols = null,
+			$weekdayNames = null, $monthNames = null)
 	{
 		if (is_string($from)) {
 			$from = new \DateTime($from);
@@ -101,26 +106,17 @@ trait Calendar
 			}
 
 			// day
-			if (is_callable($cellCallback)) {
-				list($link, $classes, $title) =
-						$cellCallback($iso, $d, $m, $y, $w, $cellCallbackArgs);
-			}
-			elseif (is_array($cellCallback) && isset($cellCallback[$iso])) {
-				$link    = $cellCallback[$iso]['link'];
-				$classes = $cellCallback[$iso]['classes'];
-				$title   = $cellCallback[$iso]['title'];
-			}
 			$td = $tr ->td()->in_line();
-			$time = $td->time(null, $iso);
-			if (!empty($link)) {
-				$time->a($d, sprintf($link, $d, $m, $y));
-				$time->addClass($classes);
-				$time->setTitle($title);
-				$link = null;
+			$link = $title = $classes = null;
+			if (is_array($links) && isset($links[$iso])) {
+				$link = $links[$iso]['link'];
+				$title = $links[$iso]['title'];
+				$classes = $links[$iso]['classes'];
 			}
-			else {
-				$time->appendText($d);
-			}
+			$time = !empty($link) ? $td->a(null, $link)->time($d, $iso) : $td->time($d, $iso);
+			$time->setTitle($title);
+			$time->addClass($classes);
+			$link = null;
 
 			// $day is not needed anymore but $next
 			$next = $day->add(new \DateInterval('P1D'));
