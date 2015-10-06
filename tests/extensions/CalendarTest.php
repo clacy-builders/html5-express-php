@@ -18,13 +18,6 @@ class CalendarTest extends Express_TestCase
 						'<section class="calendar year-2015">
 	<h1>2015</h1>
 	<table class="month-09">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">September</th>
@@ -42,20 +35,13 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td></td>
-				<td><time datetime="2015-09-29">29</time></td>
-				<td><time datetime="2015-09-30">30</time></td>
+				<td><time datetime="2015-09-29" class="tue">29</time></td>
+				<td><time datetime="2015-09-30" class="wed">30</time></td>
 				<td colspan="4"></td>
 			</tr>
 		</tbody>
 	</table>
 	<table class="month-10">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">October</th>
@@ -73,7 +59,7 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="3"></td>
-				<td><time datetime="2015-10-01">1</time></td>
+				<td><time datetime="2015-10-01" class="thu">1</time></td>
 				<td colspan="3"></td>
 			</tr>
 		</tbody>
@@ -85,13 +71,6 @@ class CalendarTest extends Express_TestCase
 						'<section class="calendar year-2015">
 	<h1>2015</h1>
 	<table class="month-09">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">September</th>
@@ -109,20 +88,13 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td></td>
-				<td><time datetime="2015-09-29">29</time></td>
-				<td><time datetime="2015-09-30">30</time></td>
+				<td><time datetime="2015-09-29" class="tue">29</time></td>
+				<td><time datetime="2015-09-30" class="wed">30</time></td>
 				<td colspan="4"></td>
 			</tr>
 		</tbody>
 	</table>
 	<table class="month-10">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">October</th>
@@ -140,7 +112,7 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="3"></td>
-				<td><time datetime="2015-10-01">1</time></td>
+				<td><time datetime="2015-10-01" class="thu">1</time></td>
 				<td colspan="3"></td>
 			</tr>
 		</tbody>
@@ -152,13 +124,6 @@ class CalendarTest extends Express_TestCase
 						'<section class="calendar year-2015">
 	<h1>2015</h1>
 	<table class="month-12">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">December</th>
@@ -175,10 +140,10 @@ class CalendarTest extends Express_TestCase
 		</thead>
 		<tbody>
 			<tr>
-				<td><time datetime="2015-12-28">28</time></td>
-				<td><time datetime="2015-12-29">29</time></td>
-				<td><time datetime="2015-12-30">30</time></td>
-				<td><time datetime="2015-12-31">31</time></td>
+				<td><time datetime="2015-12-28" class="mon">28</time></td>
+				<td><time datetime="2015-12-29" class="tue">29</time></td>
+				<td><time datetime="2015-12-30" class="wed">30</time></td>
+				<td><time datetime="2015-12-31" class="thu">31</time></td>
 				<td colspan="3"></td>
 			</tr>
 		</tbody>
@@ -187,13 +152,6 @@ class CalendarTest extends Express_TestCase
 <section class="calendar year-2016">
 	<h1>2016</h1>
 	<table class="month-01">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">January</th>
@@ -211,9 +169,9 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="4"></td>
-				<td><time datetime="2016-01-01">1</time></td>
-				<td><time datetime="2016-01-02">2</time></td>
-				<td><time datetime="2016-01-03">3</time></td>
+				<td><time datetime="2016-01-01" class="fri">1</time></td>
+				<td><time datetime="2016-01-02" class="sat">2</time></td>
+				<td><time datetime="2016-01-03" class="sun">3</time></td>
 			</tr>
 		</tbody>
 	</table>
@@ -227,13 +185,6 @@ class CalendarTest extends Express_TestCase
 						'<section class="calendar year-2015">
 	<h1>2015</h1>
 	<table class="month-09">
-		<col class="sun">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
 		<thead>
 			<tr class="month">
 				<th colspan="7">September</th>
@@ -251,20 +202,13 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="2"></td>
-				<td><time datetime="2015-09-29">29</time></td>
-				<td><time datetime="2015-09-30">30</time></td>
+				<td><time datetime="2015-09-29" class="tue">29</time></td>
+				<td><time datetime="2015-09-30" class="wed">30</time></td>
 				<td colspan="3"></td>
 			</tr>
 		</tbody>
 	</table>
 	<table class="month-10">
-		<col class="sun">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
 		<thead>
 			<tr class="month">
 				<th colspan="7">October</th>
@@ -282,7 +226,7 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="4"></td>
-				<td><time datetime="2015-10-01">1</time></td>
+				<td><time datetime="2015-10-01" class="thu">1</time></td>
 				<td colspan="2"></td>
 			</tr>
 		</tbody>
@@ -299,13 +243,6 @@ class CalendarTest extends Express_TestCase
 						'<section class="calendar year-2015">
 	<h1>2015</h1>
 	<table class="month-02">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">Februar</th>
@@ -323,20 +260,13 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="4"></td>
-				<td><time datetime="2015-02-27">27</time></td>
-				<td><time datetime="2015-02-28">28</time></td>
+				<td><time datetime="2015-02-27" class="fri">27</time></td>
+				<td><time datetime="2015-02-28" class="sat">28</time></td>
 				<td></td>
 			</tr>
 		</tbody>
 	</table>
 	<table class="month-03">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">März</th>
@@ -354,7 +284,7 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="6"></td>
-				<td><time datetime="2015-03-01">1</time></td>
+				<td><time datetime="2015-03-01" class="sun">1</time></td>
 			</tr>
 		</tbody>
 	</table>
@@ -367,13 +297,6 @@ class CalendarTest extends Express_TestCase
 						'<section class="calendar year-2015">
 	<h1>2015</h1>
 	<table class="month-02">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">Februar</th>
@@ -391,20 +314,13 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="4"></td>
-				<td><time datetime="2015-02-27">27</time></td>
-				<td><time datetime="2015-02-28">28</time></td>
+				<td><time datetime="2015-02-27" class="fri">27</time></td>
+				<td><time datetime="2015-02-28" class="sat">28</time></td>
 				<td></td>
 			</tr>
 		</tbody>
 	</table>
 	<table class="month-03">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">März</th>
@@ -422,7 +338,7 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="6"></td>
-				<td><time datetime="2015-03-01">1</time></td>
+				<td><time datetime="2015-03-01" class="sun">1</time></td>
 			</tr>
 		</tbody>
 	</table>
@@ -440,7 +356,7 @@ class CalendarTest extends Express_TestCase
 										),
 										'2015-03-01' => array(
 												'link' => null,
-												'classes' => 'foo',
+												'classes' => ['foo', 'bar'],
 												'title' => 'Foo'
 										),
 										'2015-05-31' => array(
@@ -452,13 +368,6 @@ class CalendarTest extends Express_TestCase
 						'<section class="calendar year-2015">
 	<h1>2015</h1>
 	<table class="month-02">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">February</th>
@@ -476,22 +385,15 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="4"></td>
-				<td><time datetime="2015-02-27">27</time></td>
+				<td><time datetime="2015-02-27" class="fri">27</time></td>
 				<td><a href="/birthdays/m-e-lee">' .
-		'<time datetime="2015-02-28" title="M. E. Lee\'s birthday" class="birthday">28</time>' .
+		'<time datetime="2015-02-28" title="M. E. Lee\'s birthday" class="sat birthday">28</time>' .
 		'</a></td>
 				<td></td>
 			</tr>
 		</tbody>
 	</table>
 	<table class="month-03">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
 		<thead>
 			<tr class="month">
 				<th colspan="7">March</th>
@@ -509,7 +411,7 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="6"></td>
-				<td><time datetime="2015-03-01" title="Foo" class="foo">1</time></td>
+				<td><time datetime="2015-03-01" title="Foo" class="sun foo bar">1</time></td>
 			</tr>
 		</tbody>
 	</table>
@@ -522,13 +424,6 @@ class CalendarTest extends Express_TestCase
 							'<section class="calendar year-2015">
 	<h1>2015</h1>
 	<table class="month-02">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
 		<thead>
 			<tr class="month">
 				<th colspan="7">February</th>
@@ -545,20 +440,13 @@ class CalendarTest extends Express_TestCase
 		</thead>
 		<tbody>
 			<tr>
-				<td><time datetime="2015-02-27">27</time></td>
-				<td><time datetime="2015-02-28">28</time></td>
+				<td><time datetime="2015-02-27" class="fri">27</time></td>
+				<td><time datetime="2015-02-28" class="sat">28</time></td>
 				<td colspan="5"></td>
 			</tr>
 		</tbody>
 	</table>
 	<table class="month-03">
-		<col class="fri">
-		<col class="sat">
-		<col class="sun">
-		<col class="mon">
-		<col class="tue">
-		<col class="wed">
-		<col class="thu">
 		<thead>
 			<tr class="month">
 				<th colspan="7">March</th>
@@ -576,7 +464,7 @@ class CalendarTest extends Express_TestCase
 		<tbody>
 			<tr>
 				<td colspan="2"></td>
-				<td><time datetime="2015-03-01">1</time></td>
+				<td><time datetime="2015-03-01" class="sun">1</time></td>
 				<td colspan="4"></td>
 			</tr>
 		</tbody>

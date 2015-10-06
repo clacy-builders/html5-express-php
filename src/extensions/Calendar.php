@@ -51,9 +51,10 @@ trait Calendar
 			$monthNames = $this->getMonths();
 		}
 
+		list($weekdayNames, $weekdayClasses) = self::reorderWeekdays($firstWeekday, $weekdayNames);
+
 		$day = clone $from;
 		$first = true;
-
 		while ($day != $till) {
 			$iso = $day->format('Y-m-d');
 			$w = ((int) $day->format('N') - $firstWeekday + 6) % 7;
@@ -72,17 +73,14 @@ trait Calendar
 			if ($d == 1 || $first) {
 				$table = $section->table()->setClass('month-' . $m);
 
-				// distinguish weekdays
-				$table->cols($firstWeekday);
-
 				$thead = $table->thead();
 				// name of month
 				$thead->tr()->setClass('month')->th($monthNames[$m - 1], 7);
 
 				// weekdays
-				$tr = $thead->tr();
-				for ($i = $firstWeekday; $i < $firstWeekday + 7; $i++) {
-					$tr->setClass('weekdays')->th($weekdayNames[$i % 7]);
+				$tr = $thead->tr()->setClass('weekdays');
+				foreach ($weekdayNames as $weekdayName) {
+					$tr->th($weekdayName);
 				}
 
 				$tbody = $table->tbody();
@@ -107,6 +105,7 @@ trait Calendar
 			}
 			$time = !empty($link) ? $td->a(null, $link)->time($d, $iso) : $td->time($d, $iso);
 			$time->setTitle($title);
+			$time->addClass($weekdayClasses[$w]);
 			$time->addClass($classes);
 			$link = null;
 
@@ -197,14 +196,18 @@ trait Calendar
 		return self::getMonthNames($class::CHARACTER_ENCODING);
 	}
 
-	private function cols($firstWeekday)
-	{
-		$classes = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-		$i = $firstWeekday;
-		do {
-			$this->col()->setClass($classes[$i]);
-			$i = ++$i % 7;
-		} while ($i != $firstWeekday);
-		return $this;
+	private static function reorderWeekdays($firstWeekday, $weekdayNames) {
+		$weekdayClasses = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+		if ($firstWeekday > 0) {
+			$wdn = $wdc = array();
+			for ($i = $firstWeekday; $i < $firstWeekday + 7; $i++) {
+				$index = $i % 7;
+				$wdn[] = $weekdayNames[$index];
+				$wdc[] = $weekdayClasses[$index];
+			}
+			$weekdayNames = $wdn;
+			$weekdayClasses = $wdc;
+		}
+		return array($weekdayNames, $weekdayClasses);
 	}
 }
