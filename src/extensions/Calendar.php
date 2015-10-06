@@ -27,7 +27,8 @@ trait Calendar
 	 * </code></p>
 	 *
 	 * @param weekdayNames array [optional]
-	 * <p>Variant weekday names. For example: <code>['S', 'M', 'T', 'W', 'T', 'F', 'S']</code></p>
+	 * <p>Variant weekday names starting with Monday.<br>
+	 * For example: <code>['M', 'T', 'W', 'T', 'F', 'S', 'S']</code></p>
 	 *
 	 * @param monthNames array [optional]
 	 * <p>Variant month names.</p>
@@ -99,9 +100,9 @@ trait Calendar
 			$td = $tr ->td()->in_line();
 			$link = $title = $classes = null;
 			if (is_array($links) && isset($links[$iso])) {
-				$link = $links[$iso]['link'];
-				$title = $links[$iso]['title'];
-				$classes = $links[$iso]['classes'];
+				if (isset($links[$iso]['link'])) $link = $links[$iso]['link'];
+				if (isset($links[$iso]['title'])) $title = $links[$iso]['title'];
+				if (isset($links[$iso]['classes'])) $classes = $links[$iso]['classes'];
 			}
 			$time = !empty($link) ? $td->a(null, $link)->time($d, $iso) : $td->time($d, $iso);
 			$time->setTitle($title);

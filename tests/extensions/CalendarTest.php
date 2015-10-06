@@ -355,7 +355,6 @@ class CalendarTest extends Express_TestCase
 												'title' => 'M. E. Lee\'s birthday'
 										),
 										'2015-03-01' => array(
-												'link' => null,
 												'classes' => ['foo', 'bar'],
 												'title' => 'Foo'
 										),
