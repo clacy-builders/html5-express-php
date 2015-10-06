@@ -5,7 +5,9 @@ namespace ML_Express\HTML5;
 trait Calendar
 {
 	/**
+	 * Appends a calendar.
 	 *
+	 * Years are represented by sections, months are represented by tables.
 	 *
 	 * @param from \DateTime|string
 	 * <p>First day which should be shown on the calendar.<br>
@@ -15,7 +17,7 @@ trait Calendar
 	 * <p>Day after the last day which should be shown on the calendar.</p>
 	 *
 	 * @param firstWeekday int|string [optional]
-	 * <p>0 (for Monday) through 6 (for Sunday) or a country code for example
+	 * <p>0 (for Monday) through 6 (for Sunday) or a country code. For example:<br>
 	 * 'FR', 'US', 'SY' or 'MV'.</p>
 	 *
 	 * @param links array [optional]
@@ -24,10 +26,6 @@ trait Calendar
 	 * ['2015-04-03' => ['link' => '/archive/2016/04/foo', 'title' => 'Foo', 'classes' => 'post']]
 	 * </code></p>
 	 *
-	 * @param cols Html5|true [optional]
-	 * <p>A subtree of <code>&lt;col></code> and <code>&lt;colgroup></code> elements
-	 * or <code>true</code> if you want to mark Sundays.</p>
-	 *
 	 * @param weekdayNames array [optional]
 	 * <p>Variant weekday names. For example: <code>['S', 'M', 'T', 'W', 'T', 'F', 'S']</code></p>
 	 *
@@ -35,8 +33,7 @@ trait Calendar
 	 * <p>Variant month names.</p>
 	 */
 	public function calendar($from, $till,
-			$firstWeekday = 0, $links = null, $cols = null,
-			$weekdayNames = null, $monthNames = null)
+			$firstWeekday = 0, $links = null, $weekdayNames = null, $monthNames = null)
 	{
 		if (is_string($from)) {
 			$from = new \DateTime($from);
@@ -76,12 +73,7 @@ trait Calendar
 				$table = $section->table()->setClass('month-' . $m);
 
 				// distinguish weekdays
-				if ($cols === true) {
-					$table->markSundays($firstWeekday);
-				}
-				elseif ($cols instanceof Html5) {
-					$table->inject($cols);
-				}
+				$table->cols($firstWeekday);
 
 				$thead = $table->thead();
 				// name of month
@@ -159,7 +151,7 @@ trait Calendar
 	 * Data from: http://unicode.org/repos/cldr/trunk/common/supplemental/supplementalData.xml
 	 *
 	 * @param   string  $countryCode
-	 * @return  int     0 for Monday 6 for Sunday
+	 * @return  int     0 for Monday, 6 for Sunday
 	 */
 	public static function getFirstWeekday($countryCode)
 	{
@@ -205,11 +197,14 @@ trait Calendar
 		return self::getMonthNames($class::CHARACTER_ENCODING);
 	}
 
-	private function markSundays($firstWeekday)
+	private function cols($firstWeekday)
 	{
-		$this->colgroup(6 - $firstWeekday);
-		$this->col()->setClass('sunday');
-		$this->colgroup($firstWeekday);
+		$classes = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+		$i = $firstWeekday;
+		do {
+			$this->col()->setClass($classes[$i]);
+			$i = ++$i % 7;
+		} while ($i != $firstWeekday);
 		return $this;
 	}
 }
