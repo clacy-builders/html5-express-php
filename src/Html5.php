@@ -727,7 +727,8 @@ class Html5 extends Xml
 	 */
 	public function time($content = '', $datetime = null)
 	{
-		return $this->append('time', $content)->setDatetime($datetime);
+		return $this->append('time', $content)
+				->setDatetime($datetime == $content ? null : $datetime);
 	}
 
 	/**
