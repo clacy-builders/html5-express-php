@@ -26,16 +26,27 @@ trait Calendar
 	 * ['2015-04-03' => ['link' => '/archive/2016/04/foo', 'title' => 'Foo', 'classes' => 'post']]
 	 * </code></p>
 	 *
-	 * @param weekdayNames array [optional]
-	 * <p>Variant weekday names starting with Monday.<br>
-	 * For example: <code>['M', 'T', 'W', 'T', 'F', 'S', 'S']</code></p>
+	 * @param weekdayFormat string|array [optional]
+	 * <p>Neither a format string containing <code>%a</code> or <code>%A</code>
+	 * or an array starting with Monday, for example:<br>
+	 * <code>['M', 'T', 'W', 'T', 'F', 'S', 'S']</code></p>
 	 *
-	 * @param monthNames array [optional]
-	 * <p>Variant month names.</p>
+	 * @param monthFormat string [optional]
+	 * <p>You may use <code>%b</code>, <code>%B</code> or <code>%m</code>, also in combination with
+	 * <code>%Y</code> or <code>%y</code></p>
+	 *
+	 * @param yearFormat string [optional]
+	 * <p>You may use <code>%Y</code> or <code>%y</code></p>
 	 */
-	public function calendar($from, $till,
-			$firstWeekday = 0, $links = null, $weekdayNames = null, $monthNames = null)
+	public function calendar($from, $till, $firstWeekday = 0, $links = null,
+			$weekdayFormat = null, $monthFormat = null, $yearFormat = null)
 	{
+		$dayFormat = null; // temporary
+		$dayFormat = $dayFormat === null ? '%e' : $dayFormat;
+		$weekdayFormat = $weekdayFormat === null ? '%a' : $weekdayFormat;
+		$monthFormat = $monthFormat === null ? '%B' : $monthFormat;
+		$yearFormat = $yearFormat === null ? '%Y' : $yearFormat;
+
 		if (is_string($from)) {
 			$from = new \DateTime($from);
 		}
@@ -45,14 +56,11 @@ trait Calendar
 		if (is_string($firstWeekday)) {
 			$firstWeekday = self::getFirstWeekday($firstWeekday);
 		}
-		if (!is_array($weekdayNames)) {
-			$weekdayNames = $this->getWeekdays();
-		}
-		if (!is_array($monthNames)) {
-			$monthNames = $this->getMonths();
+		if (!is_array($weekdayFormat)) {
+			$weekdayFormat = $this->getWeekdays($weekdayFormat);
 		}
 
-		list($weekdayNames, $weekdayClasses) = self::reorderWeekdays($firstWeekday, $weekdayNames);
+		list($weekdayFormat, $weekdayClasses) = self::reorderWeekdays($firstWeekday, $weekdayFormat);
 
 		$day = clone $from;
 		$first = true;
@@ -67,7 +75,9 @@ trait Calendar
 			// new year?
 			if (($d == 1 && $m == 1) || $first) {
 				$section = $this->section()->setClass('calendar year-' . $y);
-				$section->h1($y);
+				if ($yearFormat !== '') {
+					$section->h1()->in_line()->time($this->format($day, $yearFormat), $y);
+				}
 			}
 
 			// new month or first day?
@@ -75,12 +85,11 @@ trait Calendar
 				$table = $section->table()->setClass('month-' . $m);
 
 				$thead = $table->thead();
-				// name of month
-				$thead->tr()->setClass('month')->th($monthNames[$m - 1], 7);
+				$thead->tr()->setClass('month')->th($this->format($day, $monthFormat), 7);
 
 				// weekdays
 				$tr = $thead->tr()->setClass('weekdays');
-				foreach ($weekdayNames as $weekdayName) {
+				foreach ($weekdayFormat as $weekdayName) {
 					$tr->th($weekdayName);
 				}
 
@@ -122,31 +131,6 @@ trait Calendar
 		return $this;
 	}
 
-	private static function getNames($interval, $count, $format, $encoding)
-	{
-		$array = array();
-		$day = new \DateTime('2014-01-06');
-		for ($i = 0; $i < $count; $i++) {
-			$array[$i] = strftime($format, $day->getTimestamp());
-			if ($encoding == self::UTF8) {
-				$array[$i] = utf8_encode($array[$i]);
-			}
-			$day->add(new \DateInterval($interval));
-		}
-		return $array;
-	}
-
-	public static function getWeekdayNames($encoding = self::UTF8)
-	{
-		return self::getNames('P1D', 7, '%a', $encoding);
-	}
-
-
-	public static function getMonthNames($encoding = self::UTF8)
-	{
-		return self::getNames('P31D', 12, '%B', $encoding);
-	}
-
 	/**
 	 * Data from: http://unicode.org/repos/cldr/trunk/common/supplemental/supplementalData.xml
 	 *
@@ -185,19 +169,19 @@ trait Calendar
 		return 0;
 	}
 
-	private function getWeekdays()
+	private function getWeekdays($format = '%a')
 	{
-		$class = get_class($this->getRoot());
-		return self::getWeekdayNames($class::CHARACTER_ENCODING);
+		$array = array();
+		$day = new \DateTime('2014-01-06');
+		for ($i = 0; $i < 7; $i++) {
+			$array[$i] = $this->format($day, $format);
+			$day->add(new \DateInterval('P1D'));
+		}
+		return $array;
 	}
 
-	private function getMonths()
+	private static function reorderWeekdays($firstWeekday, $weekdayNames)
 	{
-		$class = get_class($this->getRoot());
-		return self::getMonthNames($class::CHARACTER_ENCODING);
-	}
-
-	private static function reorderWeekdays($firstWeekday, $weekdayNames) {
 		$weekdayClasses = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 		if ($firstWeekday > 0) {
 			$wdn = $wdc = array();
@@ -210,5 +194,11 @@ trait Calendar
 			$weekdayClasses = $wdc;
 		}
 		return array($weekdayNames, $weekdayClasses);
+	}
+
+	private function format(\DateTime $day, $format)
+	{
+		$class = get_class($this->getRoot());
+		return \ML_Express\formatDateTime($day, $format, $class::CHARACTER_ENCODING);
 	}
 }
