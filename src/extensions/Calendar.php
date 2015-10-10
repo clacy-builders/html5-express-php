@@ -39,10 +39,10 @@ trait Calendar
 	 * <p>You may use <code>%Y</code> or <code>%y</code></p>
 	 */
 	public function calendar($from, $till, $firstWeekday = 0, $links = null,
-			$weekdayFormat = null, $monthFormat = null, $yearFormat = null)
+			$weekdayFormat = null, $monthFormat = null, $yearFormat = null,
+			$dayFormat = null)
 	{
-		$dayFormat = null; // temporary
-		$dayFormat = $dayFormat === null ? '%e' : $dayFormat;
+		$dayFormat = $dayFormat === null ? '%#d' : $dayFormat;
 		$weekdayFormat = $weekdayFormat === null ? '%a' : $weekdayFormat;
 		$monthFormat = $monthFormat === null ? '%B' : $monthFormat;
 		$yearFormat = $yearFormat === null ? '%Y' : $yearFormat;
@@ -57,10 +57,13 @@ trait Calendar
 			$firstWeekday = self::getFirstWeekday($firstWeekday);
 		}
 		if (!is_array($weekdayFormat)) {
-			$weekdayFormat = $this->getWeekdays($weekdayFormat);
+			$weekdays = $this->getWeekdays($weekdayFormat);
+		}
+		else {
+			$weekdays = $weekdayFormat;
 		}
 
-		list($weekdayFormat, $weekdayClasses) = self::reorderWeekdays($firstWeekday, $weekdayFormat);
+		list($weekdays, $weekdayClasses) = self::reorderWeekdays($firstWeekday, $weekdays);
 
 		$day = clone $from;
 		$first = true;
@@ -85,11 +88,13 @@ trait Calendar
 				$table = $section->table()->setClass('month-' . $m);
 
 				$thead = $table->thead();
-				$thead->tr()->setClass('month')->th($this->format($day, $monthFormat), 7);
+				$thead->tr()->setClass('month')
+						->th(null, 7)->in_line()
+						->time($this->format($day, $monthFormat), $y . '-' . $m);
 
 				// weekdays
 				$tr = $thead->tr()->setClass('weekdays');
-				foreach ($weekdayFormat as $weekdayName) {
+				foreach ($weekdays as $weekdayName) {
 					$tr->th($weekdayName);
 				}
 
@@ -113,7 +118,8 @@ trait Calendar
 				if (isset($links[$iso]['title'])) $title = $links[$iso]['title'];
 				if (isset($links[$iso]['classes'])) $classes = $links[$iso]['classes'];
 			}
-			$time = !empty($link) ? $td->a(null, $link)->time($d, $iso) : $td->time($d, $iso);
+			$elem = !empty($link) ? $td->a(null, $link) : $td;
+			$time = $elem->time($this->format($day, $dayFormat), $iso);
 			$time->setTitle($title);
 			$time->addClass($weekdayClasses[$w]);
 			$time->addClass($classes);
