@@ -27,8 +27,7 @@ Run `composer install` or `composer update`.
     
     $html = Html5::createHtml();
     $body = $html->body();
-    $body
-            ->p('Lorem ipsum dolor');
+    $body->p('Lorem ipsum dolor');
     
     print $html->getMarkup();
 
@@ -37,6 +36,6 @@ This is the generated markup:
     <!DOCTYPE html>
     <html>
         <body>
-            <p>Lorem ipsum dolor<br></p>
+            <p>Lorem ipsum dolor</p>
         </body>
     </html>

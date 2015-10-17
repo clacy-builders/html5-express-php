@@ -36,7 +36,11 @@ trait Calendar
 	 * <code>%Y</code> or <code>%y</code></p>
 	 *
 	 * @param yearFormat string [optional]
-	 * <p>You may use <code>%Y</code> or <code>%y</code></p>
+	 * <p>You may use <code>%Y</code>, <code>%y</code> or an empty string.</p>
+	 *
+	 * @param dayFormat string [optional]
+	 * <p>You may use <code>%d</code> or <code>%#d</code>.
+	 * <code>%e</code>doesn't work on Windows</p>
 	 */
 	public function calendar($from, $till, $firstWeekday = 0, $links = null,
 			$weekdayFormat = null, $monthFormat = null, $yearFormat = null,
