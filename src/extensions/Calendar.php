@@ -39,8 +39,8 @@ trait Calendar
 	 * <p>You may use <code>%Y</code>, <code>%y</code> or an empty string.</p>
 	 *
 	 * @param dayFormat string [optional]
-	 * <p>You may use <code>%d</code> or <code>%#d</code>.
-	 * <code>%e</code>doesn't work on Windows</p>
+	 * <p>You may use <code>%d</code> or <code>%#d</code>
+	 * (<code>%e</code>doesn't work on Windows).</p>
 	 */
 	public function calendar($from, $till, $firstWeekday = 0, $links = null,
 			$weekdayFormat = null, $monthFormat = null, $yearFormat = null,
@@ -127,7 +127,6 @@ trait Calendar
 			$time->setTitle($title);
 			$time->addClass($weekdayClasses[$w]);
 			$time->addClass($classes);
-			$link = null;
 
 			// $day is not needed anymore but $next
 			$next = $day->add(new \DateInterval('P1D'));
@@ -142,10 +141,16 @@ trait Calendar
 	}
 
 	/**
-	 * Data from: http://unicode.org/repos/cldr/trunk/common/supplemental/supplementalData.xml
+	 * Returns first day of the week in a calendar page view for a given country.
 	 *
-	 * @param   string  $countryCode
-	 * @return  int     0 for Monday, 6 for Sunday
+	 * @link http://unicode.org/repos/cldr/trunk/common/supplemental/supplementalData.xml
+	 *
+	 * @param countryCode string
+	 * <p>An ISO 3166 country code
+	 * for example <code>BR</code> for Brazil, <code>SE</code> for Sweden.</p>
+	 *
+	 * @return
+	 * <p>0 for Monday trough 6 for Sunday.</p>
 	 */
 	public static function getFirstWeekday($countryCode)
 	{
@@ -190,6 +195,12 @@ trait Calendar
 		return $array;
 	}
 
+	private function format(\DateTime $day, $format)
+	{
+		$class = get_class($this->getRoot());
+		return \ML_Express\formatDateTime($day, $format, $class::CHARACTER_ENCODING);
+	}
+
 	private static function reorderWeekdays($firstWeekday, $weekdayNames)
 	{
 		$weekdayClasses = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
@@ -204,11 +215,5 @@ trait Calendar
 			$weekdayClasses = $wdc;
 		}
 		return array($weekdayNames, $weekdayClasses);
-	}
-
-	private function format(\DateTime $day, $format)
-	{
-		$class = get_class($this->getRoot());
-		return \ML_Express\formatDateTime($day, $format, $class::CHARACTER_ENCODING);
 	}
 }
