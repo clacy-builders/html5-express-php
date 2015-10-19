@@ -9,6 +9,8 @@ trait Calendar
 	 *
 	 * Years are represented by sections, months are represented by tables.
 	 *
+	 * @link http://php.net/manual/en/function.strftime.php
+	 *
 	 * @param from \DateTime|string
 	 * <p>First day which should be shown on the calendar.<br>
 	 * A string of the format <code>Y-m-d</code> or a <code>DateTime</code> object.</p>
@@ -17,11 +19,12 @@ trait Calendar
 	 * <p>Day after the last day which should be shown on the calendar.</p>
 	 *
 	 * @param firstWeekday int|string [optional]
-	 * <p>0 (for Monday) through 6 (for Sunday) or a country code. For example:<br>
-	 * 'FR', 'US', 'SY' or 'MV'.</p>
+	 * <p>0 (for Monday) through 6 (for Sunday) or an ISO 3166 country code
+	 * for example <code>BR</code> for Brazil, <code>SE</code> for Sweden.</p>
 	 *
 	 * @param links array [optional]
-	 * <p>An assotiative array of assotiave arrays. For example:<br>
+	 * <p>An assotiative array with ISO 8601 dates <code>YYYY-mm-dd</code> as keys.
+	 * For example:<br>
 	 * <code>
 	 * ['2015-04-03' => ['link' => '/archive/2016/04/foo', 'title' => 'Foo', 'classes' => 'post']]
 	 * </code></p>
@@ -40,11 +43,15 @@ trait Calendar
 	 *
 	 * @param dayFormat string [optional]
 	 * <p>You may use <code>%d</code> or <code>%#d</code>
-	 * (<code>%e</code>doesn't work on Windows).</p>
+	 * (<code>%e</code> doesn't work on Windows).</p>
+	 *
+	 * @param showWeekNumbers boolean|string [optional]
+	 * <p>Wether ISO 8601 week numbers are displayed or not.
+	 * You may use a string for the corresponding column header, for example <code>'Wk'</code>.</p>
 	 */
 	public function calendar($from, $till, $firstWeekday = 0, $links = null,
 			$weekdayFormat = null, $monthFormat = null, $yearFormat = null,
-			$dayFormat = null)
+			$dayFormat = null, $showWeekNumbers = false)
 	{
 		$dayFormat = $dayFormat === null ? '%#d' : $dayFormat;
 		$weekdayFormat = $weekdayFormat === null ? '%a' : $weekdayFormat;
@@ -65,6 +72,12 @@ trait Calendar
 		}
 		else {
 			$weekdays = $weekdayFormat;
+		}
+		if (is_string($showWeekNumbers)) {
+			$weekLabel = $showWeekNumbers;
+			$showWeekNumbers = true;
+		} else {
+			$weekLabel = '';
 		}
 
 		list($weekdays, $weekdayClasses) = self::reorderWeekdays($firstWeekday, $weekdays);
@@ -93,11 +106,14 @@ trait Calendar
 
 				$thead = $table->thead();
 				$thead->tr()->setClass('month')
-						->th(null, 7)->in_line()
+						->th(null, $showWeekNumbers ? 8 : 7)->in_line()
 						->time($this->format($day, $monthFormat), $y . '-' . $m);
 
 				// weekdays
 				$tr = $thead->tr()->setClass('weekdays');
+				if ($showWeekNumbers) {
+					$tr->th($weekLabel)->setClass('week');
+				}
 				foreach ($weekdays as $weekdayName) {
 					$tr->th($weekdayName);
 				}
@@ -108,6 +124,12 @@ trait Calendar
 			// new week
 			if ($w == 0 || $d == 1 || $first) {
 				$tr = $tbody->tr();
+				// number of week
+				if ($showWeekNumbers) {
+					$tr->td(null)->in_line()
+							->time($day->format('W'), $day->format('o-\WW'))
+							->setClass('week');
+				}
 				// empty cell
 				if ($w > 0) {
 					$tr->td('', $w);

@@ -554,6 +554,77 @@ class CalendarTest extends Express_TestCase
 			</tr>
 		</tbody>
 	</table>
+</section>',
+				),
+				array(
+						Html::createSub()->setLocale('en')->calendar(
+								new DateTime('2015-01-01'),
+								new DateTime('2015-01-05'),
+								null, null, null, null, null, null, true),
+						'<section class="calendar year-2015">
+	<h1><time>2015</time></h1>
+	<table class="month-01">
+		<thead>
+			<tr class="month">
+				<th colspan="8"><time datetime="2015-01">January</time></th>
+			</tr>
+			<tr class="weekdays">
+				<th class="week"></th>
+				<th>Mon</th>
+				<th>Tue</th>
+				<th>Wed</th>
+				<th>Thu</th>
+				<th>Fri</th>
+				<th>Sat</th>
+				<th>Sun</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><time datetime="2015-W01" class="week">01</time></td>
+				<td colspan="3"></td>
+				<td><time datetime="2015-01-01" class="thu">1</time></td>
+				<td><time datetime="2015-01-02" class="fri">2</time></td>
+				<td><time datetime="2015-01-03" class="sat">3</time></td>
+				<td><time datetime="2015-01-04" class="sun">4</time></td>
+			</tr>
+		</tbody>
+	</table>
+</section>'
+				),
+				array(
+						Html::createSub()->setLocale('en')->calendar(
+								new DateTime('2016-01-01'),
+								new DateTime('2016-01-04'),
+								null, null, null, null, null, null, 'Wk'),
+						'<section class="calendar year-2016">
+	<h1><time>2016</time></h1>
+	<table class="month-01">
+		<thead>
+			<tr class="month">
+				<th colspan="8"><time datetime="2016-01">January</time></th>
+			</tr>
+			<tr class="weekdays">
+				<th class="week">Wk</th>
+				<th>Mon</th>
+				<th>Tue</th>
+				<th>Wed</th>
+				<th>Thu</th>
+				<th>Fri</th>
+				<th>Sat</th>
+				<th>Sun</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><time datetime="2015-W53" class="week">53</time></td>
+				<td colspan="4"></td>
+				<td><time datetime="2016-01-01" class="fri">1</time></td>
+				<td><time datetime="2016-01-02" class="sat">2</time></td>
+				<td><time datetime="2016-01-03" class="sun">3</time></td>
+			</tr>
+		</tbody>
+	</table>
 </section>'
 				),
 		);
