@@ -2441,12 +2441,12 @@ class Html5 extends Xml
 	{
 		if (is_array($className))
 			return $this->attrib('class', $className, ' ', false);
-		return $this->attrib('class', $className);
+		return $this->attrib('class', $className, null);
 	}
 
 	public function addClass($className)
 	{
-		return $this->attrib('class', $className, ' ', true);
+		return $this->attrib('class', $className, ' ', true, true);
 	}
 
 	public  function setCols($cols)
