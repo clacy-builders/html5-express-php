@@ -1,14 +1,14 @@
-# ML Express
+# HTML5 Express PHP
 
 ## Installation
 
-ML Express for PHP requires PHP 5.4 or newer.
+HTML5 Express for PHP requires PHP 5.4 or newer.
 
 Add the following to your project's `composer.json` file:
 ```json
 {
     "require": {
-        "ml-express/html5": "0.1.*"
+        "ml-express/html5": ">=0.2"
     }
 }
 ```

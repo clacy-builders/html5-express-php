@@ -2,9 +2,13 @@
 namespace ML_Express\HTML5;
 
 use ML_Express\Xml;
+use ML_Express\ClassAttribute;
+use ML_Express\StyleAttribute;
 
 class Html5 extends Xml
 {
+	use ClassAttribute, StyleAttribute;
+
 	const MIME_TYPE = 'text/html';
 	const FILENAME_EXTENSION = 'html';
 	const XML_DECLARATION = false;
@@ -747,7 +751,7 @@ class Html5 extends Xml
 	 * For example: <code><pre>
 	 *     $section
 	 *             ->codeblock($html->getMarkup(), '  ')
-	 *             ->addClass('html5');
+	 *             ->setClass('html5');
 	 * </pre></code>
 	 *
 	 * @param    string         $content
@@ -1600,12 +1604,12 @@ class Html5 extends Xml
 				if (count($child->children) == $countCells) {
 					$i = ++$i % $count;
 				}
-				$child->addClass($classes[$i]);
+				$child->setClass($classes[$i]);
 			}
 		}
 		else {
 			foreach ($this->children as $i => $child) {
-				$child->addClass($classes[$i % $count]);
+				$child->setClass($classes[$i % $count]);
 			}
 		}
 		return $this;
@@ -2220,7 +2224,7 @@ class Html5 extends Xml
 	 * @param    array|null     $labels               See checkboxes()
 	 * @param    mixed|array    $selected             Is compared with the value attribute.<br>
 	 *                                                See setSelected()
-	 * @param    mixed|array    $disabled             Is compared with the value attribute.<br>
+	 * @psaram    mixed|array    $disabled             Is compared with the value attribute.<br>
 	 *                                                See setDisabled()
 	 * @param    boolean        $useLabelAttribute    Set it to <code>true</code> to use label
 	 *                                                attribute
@@ -2321,9 +2325,9 @@ class Html5 extends Xml
 	 *
 	 * @param    string|array    $accept
 	 */
-	public function setAccept($accept, $appendArray = false)
+	public function setAccept($accept)
 	{
-		return $this->attrib('accept', $accept, ',', $appendArray);
+		return $this->complexAttrib('accept', $accept, ',', true);
 	}
 
 	/**
@@ -2334,9 +2338,9 @@ class Html5 extends Xml
 	 *
 	 * @param    string|array    $accept_charset
 	 */
-	public function setAccept_charset($accept_charset, $appendArray = false)
+	public function setAccept_charset($accept_charset)
 	{
-		return $this->attrib('accept-charset', $accept_charset, ' ', $appendArray);
+		return $this->complexAttrib('accept-charset', $accept_charset, ' ', true);
 	}
 
 	public function setAllowfullscreen($allowfullscreen = false)
@@ -2435,18 +2439,6 @@ class Html5 extends Xml
 	public function setChecked($checked = true)
 	{
 		return $this->booleanAttrib($checked, 'checked', 'value');
-	}
-
-	public function setClass($className)
-	{
-		if (is_array($className))
-			return $this->attrib('class', $className, ' ', false);
-		return $this->attrib('class', $className, null);
-	}
-
-	public function addClass($className)
-	{
-		return $this->attrib('class', $className, ' ', true, true);
 	}
 
 	public  function setCols($cols)

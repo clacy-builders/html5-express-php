@@ -27,10 +27,6 @@ class Html5AttributesTest extends Express_TestCase
 				),
 				array(
 						Html5::createSub('e')->setAccept('.jpg')->setAccept(['.png']),
-						'<e accept=".png">'
-				),
-				array(
-						Html5::createSub('e')->setAccept('.jpg')->setAccept(['.png'], true),
 						'<e accept=".jpg,.png">'
 				),
 				// setAccept_charset()
@@ -46,12 +42,6 @@ class Html5AttributesTest extends Express_TestCase
 						Html5::createSub('e')
 								->setAccept_charset('ISO-8859-1')
 								->setAccept_charset(['ISO-8859-15']),
-						'<e accept-charset="ISO-8859-15">'
-				),
-				array(
-						Html5::createSub('e')
-								->setAccept_charset('ISO-8859-1')
-								->setAccept_charset(['ISO-8859-15'], true),
 						'<e accept-charset="ISO-8859-1 ISO-8859-15">'
 				),
 

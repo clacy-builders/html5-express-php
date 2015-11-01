@@ -2,6 +2,9 @@
 
 namespace ML_Express\HTML5;
 
+/**
+ * @link https://github.com/ml-express/html5-express-php/wiki/Calendar
+ */
 trait Calendar
 {
 	/**
@@ -147,8 +150,8 @@ trait Calendar
 			$elem = !empty($link) ? $td->a(null, $link) : $td;
 			$time = $elem->time($this->format($day, $dayFormat), $iso);
 			$time->setTitle($title);
-			$time->addClass($weekdayClasses[$w]);
-			$time->addClass($classes);
+			$time->setClass($weekdayClasses[$w]);
+			$time->setClass($classes);
 
 			// $day is not needed anymore but $next
 			$next = $day->add(new \DateInterval('P1D'));
