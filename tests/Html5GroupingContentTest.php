@@ -39,6 +39,25 @@ class Html5GroupingContentTest extends Express_TestCase
 				),
 				array(Html5::createSub()->ul(), '<ul>'),
 				array(Html5::createSub()->li('content', 5), '<li value="5">content</li>'),
+				array(
+						Html5::createSub()->liItems(['lorem', 'ipsum', 'dolor']),
+						'<li>lorem</li>
+<li>ipsum</li>
+<li>dolor</li>'
+				),
+				array(
+						Html5::createSub()->liItems(['lorem', 'ipsum', 'dolor'], true),
+						'<li value="0">lorem</li>
+<li value="1">ipsum</li>
+<li value="2">dolor</li>'
+				),
+				array(
+						Html5::createSub()
+								->liItems([2 => 'lorem', '1' => 'ipsum', 'foo' => 'dolor'], true),
+						'<li value="2">lorem</li>
+<li value="1">ipsum</li>
+<li>dolor</li>'
+				),
 				array(Html5::createSub()->dl(), '<dl>'),
 				array(Html5::createSub()->dt('content'), '<dt>content</dt>'),
 				array(Html5::createSub()->dd('content'), '<dd>content</dd>'),
