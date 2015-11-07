@@ -1579,59 +1579,6 @@ class Html5 extends Xml
 		return $this;
 	}
 
-	private static function prepareZebraClasses($classes, $count)
-	{
-		if (!is_array($classes)) {
-			if (empty($classes)) {
-				$classes = array(null);
-			}
-			else if ($count > 1) {
-				$class = $classes;
-				$classes = array();
-				for ($i = 1; $i <= $count; $i++) {
-					$classes[] = $class . $i;
-				}
-			}
-			else {
-				$classes = array(null, $classes);
-			}
-		}
-		return $classes;
-	}
-
-	/**
-	 * Adds alternating classes to child elements.
-	 *
-	 * @param classes array|string
-	 * @param count int|true
-	 * @param onContentChanged boolean
-	 */
-	public function stripes($classes, $count = 0, $onContentChanged = false)
-	{
-		if ($count === true) {
-			$count = 0;
-			$onContentChanged = true;
-		}
-		$classes = self::prepareZebraClasses($classes, $count);
-		$count = count($classes);
-		if ($onContentChanged) {
-			$i = -1;
-			$countCells = count($this->children[0]->children);
-			foreach ($this->children as $child) {
-				if (count($child->children) == $countCells) {
-					$i = ++$i % $count;
-				}
-				$child->setClass($classes[$i]);
-			}
-		}
-		else {
-			foreach ($this->children as $i => $child) {
-				$child->setClass($classes[$i % $count]);
-			}
-		}
-		return $this;
-	}
-
 	public function rowspans() {
 		// initialize array $tmp
 		$tmp = array(); $r = 0;
