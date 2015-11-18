@@ -2,8 +2,8 @@
 namespace ML_Express\HTML5;
 
 use ML_Express\Xml;
-use ML_Express\ClassAttribute;
-use ML_Express\StyleAttribute;
+use ML_Express\Shared\ClassAttribute;
+use ML_Express\Shared\StyleAttribute;
 
 class Html5 extends Xml
 {

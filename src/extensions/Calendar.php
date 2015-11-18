@@ -1,6 +1,6 @@
 <?php
 
-namespace ML_Express\HTML5;
+namespace ML_Express\HTML5\Extensions;
 
 /**
  * @link https://github.com/ml-express/html5-express-php/wiki/Calendar

@@ -1,10 +1,19 @@
 <?php
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+namespace ML_Express\HTML5\Tests;
 
-use ML_Express\Express_TestCase;
+require_once 'vendor/ml-express/xml/src/Xml.php';
+require_once 'vendor/ml-express/xml/src/XmlAttributes.php';
+require_once 'vendor/ml-express/xml/src/functions.php';
+require_once 'vendor/ml-express/xml/src/shared/ClassAttribute.php';
+require_once 'vendor/ml-express/xml/src/shared/StyleAttribute.php';
+require_once 'vendor/ml-express/xml/tests/Express_TestCase.php';
+require_once 'src/Html5.php';
+require_once 'src/extensions/Calendar.php';
+
+use ML_Express\Tests\Express_TestCase;
 use ML_Express\HTML5\Html5;
-use ML_Express\HTML5\Calendar;
+use ML_Express\HTML5\Extensions\Calendar;
 
 class CalendarTest extends Express_TestCase
 {
@@ -13,8 +22,8 @@ class CalendarTest extends Express_TestCase
 		return array(
 				array(
 						Html::createSub()->setLocale('en')->calendar(
-								new DateTime('2015-09-29'),
-								new DateTime('2015-10-02')),
+								new \DateTime('2015-09-29'),
+								new \DateTime('2015-10-02')),
 						'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-09">
@@ -267,8 +276,8 @@ class CalendarTest extends Express_TestCase
 				),
 				array(
 						Html::createSub()->setLocale('en')->calendar(
-								new DateTime('2015-09-29'),
-								new DateTime('2015-10-02'),
+								new \DateTime('2015-09-29'),
+								new \DateTime('2015-10-02'),
 								6),
 						'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
@@ -323,8 +332,8 @@ class CalendarTest extends Express_TestCase
 				),
 				array(
 						Html::createSub()->setLocale('en')->calendar(
-								new DateTime('2015-02-27'),
-								new DateTime('2015-03-02'),
+								new \DateTime('2015-02-27'),
+								new \DateTime('2015-03-02'),
 								6, null,
 								['M', 'T', 'W', 'T', 'F', 'S', 'S']),
 						'<section class="calendar year-2015">
@@ -378,8 +387,8 @@ class CalendarTest extends Express_TestCase
 				),
 				array(
 						Html::createSub()->setLocale('de')->calendar(
-								new DateTime('2015-02-27'),
-								new DateTime('2015-03-02')),
+								new \DateTime('2015-02-27'),
+								new \DateTime('2015-03-02')),
 						'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-02">
@@ -432,8 +441,8 @@ class CalendarTest extends Express_TestCase
 				),
 				array(
 						Html::createSub()->setLocale('en')->calendar(
-								new DateTime('2015-02-27'),
-								new DateTime('2015-03-02'), 0,
+								new \DateTime('2015-02-27'),
+								new \DateTime('2015-03-02'), 0,
 								array(
 										'2015-02-28' => array(
 												'link' => '/birthdays/m-e-lee',
@@ -504,8 +513,8 @@ class CalendarTest extends Express_TestCase
 				),
 				array(
 						Html::createSub()->setLocale('en')->calendar(
-								new DateTime('2015-02-27'),
-								new DateTime('2015-03-02'), 'MV'),
+								new \DateTime('2015-02-27'),
+								new \DateTime('2015-03-02'), 'MV'),
 							'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-02">
@@ -558,8 +567,8 @@ class CalendarTest extends Express_TestCase
 				),
 				array(
 						Html::createSub()->setLocale('en')->calendar(
-								new DateTime('2015-01-01'),
-								new DateTime('2015-01-05'),
+								new \DateTime('2015-01-01'),
+								new \DateTime('2015-01-05'),
 								null, null, null, null, null, null, true),
 						'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
@@ -594,8 +603,8 @@ class CalendarTest extends Express_TestCase
 				),
 				array(
 						Html::createSub()->setLocale('en')->calendar(
-								new DateTime('2016-01-01'),
-								new DateTime('2016-01-04'),
+								new \DateTime('2016-01-01'),
+								new \DateTime('2016-01-04'),
 								null, null, null, null, null, null, 'Wk'),
 						'<section class="calendar year-2016">
 	<h1><time>2016</time></h1>

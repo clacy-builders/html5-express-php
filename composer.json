@@ -6,9 +6,11 @@
 	"license": "MIT",
 	"require": {
 		"php": ">=5.4.0",
-		"ml-express/xml": "0.5.*"
+		"ml-express/xml": ">=0.6"
 	},
 	"autoload": {
-		"files": ["src/Html5.php", "src/extensions/Calendar.php"]
+		"psr-4": {
+			"ML_Express\\HTML5\\": "src/"
+		}
 	}
 }

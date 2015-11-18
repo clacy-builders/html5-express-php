@@ -1,14 +1,16 @@
 <?php
 
-namespace ML_Express\HTML5;
+namespace ML_Express\HTML5\Tests;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once 'vendor/ml-express/xml/src/Xml.php';
+require_once 'vendor/ml-express/xml/src/XmlAttributes.php';
+require_once 'vendor/ml-express/xml/src/functions.php';
+require_once 'vendor/ml-express/xml/src/shared/ClassAttribute.php';
+require_once 'vendor/ml-express/xml/src/shared/StyleAttribute.php';
+require_once 'vendor/ml-express/xml/tests/Express_TestCase.php';
+require_once 'src/Html5.php';
 
-require_once __DIR__ . '/../vendor/ml-express/xml/src/Xml.php';
-require_once __DIR__ . '/../vendor/ml-express/xml/tests/Express_TestCase.php';
-require_once __DIR__ . '/../src/Html5.php';
-
-use ML_Express\Express_TestCase;
+use ML_Express\Tests\Express_TestCase;
 use ML_Express\HTML5\Html5;
 
 class Html5GroupingContentTest extends Express_TestCase
