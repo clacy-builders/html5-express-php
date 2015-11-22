@@ -2253,6 +2253,42 @@ class Html5 extends Xml
 				->setForm($form);
 	}
 
+	/**
+	 * The <code>fieldset</code> element.
+	 *
+	 * The <code>fieldset</code> element represents a set of form controls optionally grouped
+	 * under a common name.
+	 *
+	 * @param name string [optional]
+	 * <p>Name of form control to use in the <code>form.elements</code> API</p>
+	 *
+	 * @param disabled boolean [optional]
+	 * <p>Whether the form control is disabled</p>
+	 *
+	 * @param form string [optional]
+	 * <p>Associates the control with a <code>form</code> element</p>
+	 */
+	public function fieldset($name = null, $disabled = false, $form = null)
+	{
+		return $this->append('fieldset')
+				->setName($name)
+				->setDisabled($disabled)
+				->setForm($form);
+	}
+
+	/**
+	 * The <code>legend</code> element.
+	 *
+	 * The <code>legend</code> element represents a caption for the rest of the contents
+	 * of the <code>legend</code> element's parent <code>fieldset</code> element, if any.
+	 *
+	 * @param content string [optional]
+	 */
+	public function legend($content = '')
+	{
+		return $this->append('legend', $content);
+	}
+
 	//////// Attributes ////////
 
 	/**

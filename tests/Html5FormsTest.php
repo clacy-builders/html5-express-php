@@ -342,6 +342,14 @@ class Html5FormsTest extends Express_TestCase
 						'Lorem ipsum dolor</textarea>'
 				),
 
+				// fieldset()
+				array(
+						Html5::createSub()
+								->fieldset('programming-languages', true, 'foo')
+								->label('Programming languages'),
+						'<fieldset name="programming-languages" disabled form="foo">' .
+						"\n\t<label>Programming languages</label>\n</fieldset>"
+				),
 		);
 	}
 }
