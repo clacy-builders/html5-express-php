@@ -1851,14 +1851,13 @@ class Html5 extends Xml
 		return $name;
 	}
 
-	private function checkables(
-			$type, $name, $values, $labels, $checked = array(),
-			$required = false, $disabled = array(), $autofocus = false)
+	private function checkables($type, $name, $values, $labels,
+			$checked, $required, $disabled, $autofocus)
 	{
-		if ($type == 'checkbox') {
+		list($values, $labels) = \ML_Express\arrays($values, $labels);
+		if ($type == 'checkbox' && count($values) > 1) {
 			$name = self::nameForGroup($name);
 		}
-		list($values, $labels) = \ML_Express\arrays($values, $labels);
 		foreach ($values as $i => $value) {
 			$label = $this->label();
 			$label->checkable(
@@ -1922,16 +1921,15 @@ class Html5 extends Xml
 	 *                                       Set it to <code>true</code>,
 	 *                                       to check all checkboxes.<br>
 	 *                                       See setChecked()
-	 * @param    boolean       $required     Markes the first item as required.
+	 * @param    boolean       $required     Marks the first item as required.
 	 * @param    mixed         $disabled     Is compared with the value attribute.<br>
 	 *                                       Set it to <code>true</code>,
 	 *                                       to disable all checkboxes.<br>
 	 *                                       See setDisabled()
-	 * @param    boolean       $autofocus    Markes the first item as autofocus.
+	 * @param    boolean       $autofocus    Marks the first item as autofocus.
 	 */
-	public function checkboxes(
-			$name, $values, $labels = null, $checked = array(),
-			$required = false, $disabled = array(), $autofocus = false)
+	public function checkboxes($name, $values, $labels = null,
+			$checked = [], $required = false, $disabled = [], $autofocus = false)
 	{
 		return $this->checkables(
 				'checkbox', $name, $values, $labels, $checked,
@@ -1946,16 +1944,15 @@ class Html5 extends Xml
 	 * @param    array|null    $labels       See checkboxes()
 	 * @param    mixed         $checked      Is compared with the value attribute.<br>
 	 *                                       See setChecked()
-	 * @param    boolean       $required     Markes the first item as required.
+	 * @param    boolean       $required     Marks the first item as required.
 	 * @param    mixed         $disabled     Is compared with the value attribute.<br>
 	 *                                       Set it to <code>true</code>,
 	 *                                       to disable all checkboxes.<br>
 	 *                                       See setDisabled()
-	 * @param    boolean       $autofocus    Markes the first item as autofocus.
+	 * @param    boolean       $autofocus    Marks the first item as autofocus.
 	 */
-	public function radios(
-			$name, $values, $labels = null, $checked = array(),
-			$required = false, $disabled = array(), $autofocus = false)
+	public function radios($name, $values, $labels = null,
+			$checked = [], $required = false, $disabled = [], $autofocus = false)
 	{
 		return $this->checkables(
 				'radio', $name, $values, $labels, $checked,
@@ -2438,7 +2435,7 @@ class Html5 extends Xml
 	 */
 	public function setChecked($checked = true)
 	{
-		return $this->booleanAttrib($checked, 'checked', 'value');
+		return $this->booleanAttrib('checked', $checked, 'value');
 	}
 
 	public  function setCols($cols)
@@ -2575,7 +2572,7 @@ class Html5 extends Xml
 	 */
 	public function setDisabled($disabled = true)
 	{
-		return $this->booleanAttrib($disabled, 'disabled', 'value');
+		return $this->booleanAttrib('disabled', $disabled, 'value');
 	}
 
 	/**
@@ -3200,7 +3197,7 @@ class Html5 extends Xml
 	 */
 	public function setSelected($selected = true)
 	{
-		return $this->booleanAttrib($selected, 'selected', 'value');
+		return $this->booleanAttrib('selected', $selected, 'value');
 	}
 
 	const SHAPE_RECT = 'rect';
