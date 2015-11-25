@@ -635,14 +635,21 @@ class Html5 extends Xml
 	 * @param array $queryParts Assotiave array with query arguments.
 	 */
 	public function addQuery($queryParts) {
+		$href = $this->attributes->getAttrib('href');
+
 		$query = array();
 		foreach ($queryParts as $key => $value) {
 			if (empty($value)) continue;
 			$query[] = $key . '=' . urlencode($value);
 		}
-		$href = $this->attributes->getAttrib('href');
 		$prefix = strpos($href, '?') === false ? '?' : '&';
-		return $this->setHref($href . $prefix . implode('&', $query));
+		$query = $prefix . implode('&', $query);
+
+		$position = strpos($href, '#');
+		if ($position === false) {
+			return $this->setHref($href . $query);
+		}
+		return $this->setHref(substr_replace($href, $query, $position, 0));
 	}
 
 	/**
