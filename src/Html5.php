@@ -623,33 +623,32 @@ class Html5 extends Xml
 	}
 
 	/**
-	 * Adds a query string to the href attribute.
+	 * Adds a query string to an attribute, the <code>href</code> attribute by default.
 	 *
-	 * For example: <code><pre>
-	 * $li->a('index.php')->addQuery(array(
-	 *         's' => 'lorem ipsum',
-	 *         'cat' => 'cats & dogs'
-	 * ));
-	 * </pre></code>
+	 * @param queryParts array
+	 * <p>Assotiave array with query arguments</p>
 	 *
-	 * @param array $queryParts Assotiave array with query arguments.
+	 * @param attribute string [optional]
+	 * <p>Name of the attribute</p>
 	 */
-	public function addQuery($queryParts) {
-		$href = $this->attributes->getAttrib('href');
+	public function addQuery($queryParts, $attribute = 'href') {
+		$url = $this->attributes->getAttrib($attribute);
 
 		$query = array();
 		foreach ($queryParts as $key => $value) {
 			if (empty($value)) continue;
-			$query[] = $key . '=' . urlencode($value);
+			$query[] = is_int($key) ? $value : $key . '=' . urlencode($value);
 		}
-		$prefix = strpos($href, '?') === false ? '?' : '&';
+		if (empty($query)) return $this;
+
+		$prefix = strpos($url, '?') === false ? '?' : '&';
 		$query = $prefix . implode('&', $query);
 
-		$position = strpos($href, '#');
+		$position = strpos($url, '#');
 		if ($position === false) {
-			return $this->setHref($href . $query);
+			return $this->attrib($attribute, $url . $query);
 		}
-		return $this->setHref(substr_replace($href, $query, $position, 0));
+		return $this->attrib($attribute, substr_replace($url, $query, $position, 0));
 	}
 
 	/**

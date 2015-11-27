@@ -77,6 +77,12 @@ class Html5SemanticsEditsTest extends Express_TestCase
 								->addQuery(['cat' => 'cats&dogs']),
 						'<a href="index.php?s=lorem+ipsum&cat=cats%26dogs#sticky">Search</a>'
 				),
+				array(
+						Html5::createSub()
+								->audio('/uploads/2711')
+								->addQuery(['mp3'], 'src'),
+						'<audio src="/uploads/2711?mp3"></audio>'
+				),
 				array(Html5::createSub()->em('content'), '<em>content</em>'),
 				array(Html5::createSub()->strong('content'), '<strong>content</strong>'),
 				array(Html5::createSub()->small('content'), '<small>content</small>'),
