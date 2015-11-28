@@ -3066,6 +3066,10 @@ class Html5 extends Xml
 	const REL_PINGBACK = 'pingback';
 	const REL_PREFETCH = 'prefetch';
 	const REL_PREV = 'prev';
+	const REL_SEARCH = 'search';
+	const REL_SIDEBAR = 'sidebar';
+	const REL_STYLESHEET = 'stylesheet';
+	const REL_TAG = 'tag';
 
 	/**
 	 * Relationship between the document containing the hyperlink and the destination resource.
@@ -3080,7 +3084,7 @@ class Html5 extends Xml
 	 */
 	public function setRel($rel)
 	{
-		return $this->attrib('rel', $rel);
+		return $this->complexAttrib('rel', $rel, ' ', true);
 	}
 
 

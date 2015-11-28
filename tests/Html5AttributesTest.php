@@ -116,6 +116,13 @@ class Html5AttributesTest extends Express_TestCase
 						'<e enctype="text/plain">'
 				),
 
+				// setRel()
+				array(
+						Html5::createSub('e')->setRel([
+								Html5::REL_AUTHOR, Html5::REL_NOFOLLOW, Html5::REL_AUTHOR]),
+						'<e rel="author nofollow">'
+				),
+
 				// setSelected()
 				array(Html5::createSub('e')->setValue(0)->setSelected(0), '<e value="0" selected>'),
 				array(Html5::createSub('e')->setValue(0)->setSelected(1), '<e value="0">'),
