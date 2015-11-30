@@ -45,7 +45,7 @@ class Html5SemanticsEditsTest extends Express_TestCase
 						'<a href="http://..." ping="stats.php?id=125">content</a>'),
 				array(
 						Html5::createSub()->a('content', 'http://...', null, null, null, null,
-								array('stats.php?id=125', 'foo.php')),
+								['stats.php?id=125', 'foo.php']),
 						'<a href="http://..." ping="stats.php?id=125 foo.php">content</a>'),
 				array(
 						Html5::createSub()

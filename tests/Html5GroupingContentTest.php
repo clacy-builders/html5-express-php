@@ -19,6 +19,10 @@ class Html5GroupingContentTest extends Express_TestCase
 	{
 		return array(
 				array(Html5::createSub()->p('content'), '<p>content</p>'),
+				array(
+						Html5::createSub()->p("lorem\nipsum\n\t\t\tdolor", true),
+						"<p>\n\tlorem\n\tipsum\n\tdolor\n</p>"
+				),
 				array(Html5::createSub()->p(), '<p></p>'),
 				array(Html5::createSub()->hr(), '<hr>'),
 				array(

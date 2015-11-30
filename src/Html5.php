@@ -314,7 +314,7 @@ class Html5 extends Xml
 				->setType($type)
 				->setMedia($media)
 				->setScoped($scoped)
-				->appendLines($content);
+				->appendLines($content, false);
 	}
 
 	//////// Sections ////////
@@ -436,13 +436,17 @@ class Html5 extends Xml
 	//////// Grouping Content ////////
 
 	/**
-	 * A p element.
+	 * The <code>p</code> element.
 	 *
-	 * @param string $content
+	 * @param content string
+	 * @param lines boolean
+	 * <p>Wether to split and indent the content or not.</p>
 	 */
-	public function p($content = '')
+	public function p($content = '', $lines = false, $ltrim = true)
 	{
-		return $this->append('p', $content);
+		return $lines
+				? $this->append('p')->appendLines($content, $ltrim)
+				: $this->append('p', $content);
 	}
 
 	/**
@@ -2996,7 +3000,7 @@ class Html5 extends Xml
 	 */
 	public function setPing($urls)
 	{
-		return $this->attrib('ping', \ML_Express\join($urls));
+		return $this->complexAttrib('ping', $urls, ' ', true);
 	}
 
 	/**
@@ -3063,6 +3067,7 @@ class Html5 extends Xml
 	const REL_NEXT = 'next';
 	const REL_NOFOLLOW = 'nofollow';
 	const REL_NOREFERRER = 'noreferrer';
+	const REL_NOOPENER = 'noopener';
 	const REL_PINGBACK = 'pingback';
 	const REL_PREFETCH = 'prefetch';
 	const REL_PREV = 'prev';

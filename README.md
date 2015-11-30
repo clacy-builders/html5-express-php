@@ -8,7 +8,7 @@ Add the following to your project's `composer.json` file:
 ```json
 {
     "require": {
-        "ml-express/html5": ">=0.4"
+        "ml-express/html5": ">=0.11"
     }
 }
 ```
