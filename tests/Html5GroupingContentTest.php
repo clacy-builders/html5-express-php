@@ -19,15 +19,11 @@ class Html5GroupingContentTest extends Express_TestCase
 	{
 		return array(
 				array(Html5::createSub()->p('content'), '<p>content</p>'),
-				array(
-						Html5::createSub()->p("lorem\nipsum\n\t\t\tdolor", true),
-						"<p>\n\tlorem\n\tipsum\n\tdolor\n</p>"
-				),
 				array(Html5::createSub()->p(), '<p></p>'),
 				array(Html5::createSub()->hr(), '<hr>'),
 				array(
-						Html5::createSub()->pre()->appendText('lorem')->appendText(' ipsum'),
-						'<pre>lorem ipsum</pre>'
+						Html5::createSub()->pre("body {\n\tfont-family: tahoma;\n}"),
+						"<pre>body {\n\tfont-family: tahoma;\n}</pre>"
 				),
 				array(Html5::createSub()->pre('content'), '<pre>content</pre>'),
 				array(

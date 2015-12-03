@@ -178,13 +178,6 @@ class Html5DocumentMetadataTest extends Express_TestCase
 						'<meta charset="UTF-8">'
 				),
 				array(
-						Html5::createSub()->style(array(
-								'body {', "\tbackground-color: #369;", '}')),
-						"<style>\n" .
-						"\tbody {\n\t\tbackground-color: #369;\n\t}\n" .
-						"</style>"
-				),
-				array(
 						Html5::createSub()->style(
 								"body {\n\tbackground-color: #369;\n}"),
 						"<style>\n" .

@@ -311,10 +311,11 @@ class Html5 extends Xml
 	{
 		return $this
 				->append('style')
+				->setOption(self::OPTION_LTRIM, false)
 				->setType($type)
 				->setMedia($media)
 				->setScoped($scoped)
-				->appendLines($content, false);
+				->appendText($content);
 	}
 
 	//////// Sections ////////
@@ -439,14 +440,10 @@ class Html5 extends Xml
 	 * The <code>p</code> element.
 	 *
 	 * @param content string
-	 * @param lines boolean
-	 * <p>Wether to split and indent the content or not.</p>
 	 */
-	public function p($content = '', $lines = false, $ltrim = true)
+	public function p($content = '')
 	{
-		return $lines
-				? $this->append('p')->appendLines($content, $ltrim)
-				: $this->append('p', $content);
+		return $this->append('p', $content);
 	}
 
 	/**
@@ -464,7 +461,7 @@ class Html5 extends Xml
 	 */
 	public function pre($content = '')
 	{
-		return $this->append('pre', $content)->in_line();
+		return $this->append('pre', $content)->setOption(self::OPTION_LTRIM, false);
 	}
 
 	/**
@@ -790,7 +787,12 @@ class Html5 extends Xml
 			$content = str_replace("\t", $spaces, $content);
 		}
 		$content = htmlspecialchars($content);
-		return $this->pre()->code($content);
+		return $this
+				->pre()
+				->in_line()
+				->setOption(self::OPTION_LTRIM, false)
+				->code($content)
+				->setOption(self::OPTION_LINE_BREAK, self::DEFAULT_LINE_BREAK);
 	}
 
 	/**
@@ -2760,6 +2762,11 @@ class Html5 extends Xml
 	public function setHreflang($hreflang)
 	{
 		return $this->attrib('hreflang', $hreflang);
+	}
+
+	public function setId($id)
+	{
+		return $this->attrib('id', $id);
 	}
 
 	const INPUTMODE_VERBATIM = 'verbatim';
