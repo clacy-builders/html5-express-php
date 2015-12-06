@@ -789,7 +789,7 @@ class Html5 extends Xml
 		$content = htmlspecialchars($content);
 		return $this
 				->pre()
-				->in_line()
+				->inLine()
 				->setOption(self::OPTION_LTRIM, false)
 				->code($content)
 				->setOption(self::OPTION_LINE_BREAK, self::DEFAULT_LINE_BREAK);

@@ -99,7 +99,7 @@ trait Calendar
 			if (($d == 1 && $m == 1) || $first) {
 				$section = $this->section()->setClass('calendar year-' . $y);
 				if ($yearFormat !== '') {
-					$section->h1()->in_line()->time($this->format($day, $yearFormat), $y);
+					$section->h1()->inLine()->time($this->format($day, $yearFormat), $y);
 				}
 			}
 
@@ -109,7 +109,7 @@ trait Calendar
 
 				$thead = $table->thead();
 				$thead->tr()->setClass('month')
-						->th(null, $showWeekNumbers ? 8 : 7)->in_line()
+						->th(null, $showWeekNumbers ? 8 : 7)->inLine()
 						->time($this->format($day, $monthFormat), $y . '-' . $m);
 
 				// weekdays
@@ -129,7 +129,7 @@ trait Calendar
 				$tr = $tbody->tr();
 				// number of week
 				if ($showWeekNumbers) {
-					$tr->td(null)->in_line()
+					$tr->td(null)->inLine()
 							->time($day->format('W'), $day->format('o-\WW'))
 							->setClass('week');
 				}
@@ -140,7 +140,7 @@ trait Calendar
 			}
 
 			// day
-			$td = $tr ->td()->in_line();
+			$td = $tr ->td()->inLine();
 			$link = $title = $classes = null;
 			if (is_array($links) && isset($links[$iso])) {
 				if (isset($links[$iso]['link'])) $link = $links[$iso]['link'];
