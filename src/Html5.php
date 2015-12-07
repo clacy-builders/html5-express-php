@@ -2818,6 +2818,11 @@ class Html5 extends Xml
 		return $this->attrib('label', $label);
 	}
 
+	public function setLang($lang)
+	{
+		return static::SGML_MODE ? $this->attrib('lang', $lang) : parent::setLang($lang);
+	}
+
 	/**
 	 * Identifies a list of autocomplete options.
 	 *

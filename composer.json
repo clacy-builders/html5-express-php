@@ -4,9 +4,10 @@
 	"description": "HTML5 Express is a library for creating HTML5 documents. It comes with the calendar trait.",
 	"keywords": ["html5", "html", "builder", "writer", "calendar"],
 	"license": "MIT",
+	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.4.0",
-		"ml-express/xml": "dev-master"
+		"ml-express/xml": "dev-master@dev"
 	},
 	"autoload": {
 		"psr-4": {

@@ -7,11 +7,13 @@ HTML5 Express for PHP requires PHP 5.4 or newer.
 Add the following to your project's `composer.json` file:
 ```json
 {
+    "minimum-stability": "dev",
     "require": {
-        "ml-express/html5": ">=0.11"
+        "ml-express/html5": "dev-master@dev"
     }
 }
 ```
+
 
 Run `composer install` or `composer update`.
 
@@ -24,14 +26,14 @@ require_once 'vendor/autoload.php';
 
 use ML_Express\HTML5\Html5;
 
-$dbRows = array(
-        array('id' => 42, 'name' => 'Foo', 'town' => 'Berlin', 'amount' => 20),
-        array('id' => 43, 'name' => 'Foo', 'town' => 'Berlin', 'amount' => 12),
-        array('id' => 50, 'name' => 'Foo', 'town' => 'Cologne', 'amount' => 12),
-        array('id' => 51, 'name' => 'Bar', 'town' => 'Cologne', 'amount' => 12),
-        array('id' => 68, 'name' => 'Bar', 'town' => 'Hamburg', 'amount' => 15),
-        array('id' => 69, 'name' => 'Bar', 'town' => 'Hamburg', 'amount' => 15)
-);
+$dbRows = [
+        ['id' => 42, 'name' => 'Foo', 'town' => 'Berlin', 'amount' => 20],
+        ['id' => 43, 'name' => 'Foo', 'town' => 'Berlin', 'amount' => 12],
+        ['id' => 50, 'name' => 'Foo', 'town' => 'Cologne', 'amount' => 12],
+        ['id' => 51, 'name' => 'Bar', 'town' => 'Cologne', 'amount' => 12],
+        ['id' => 68, 'name' => 'Bar', 'town' => 'Hamburg', 'amount' => 15],
+        ['id' => 69, 'name' => 'Bar', 'town' => 'Hamburg', 'amount' => 15]
+];
 
 $bgColor = '0, 51, 102';
 
@@ -76,6 +78,7 @@ print $html->getMarkup();
 ```
 
 The generated markup:
+
 ```html
 <!DOCTYPE html>
 <html>
