@@ -18,58 +18,64 @@ class Html5GroupingContentTest extends Express_TestCase
 	public function provider()
 	{
 		return array(
-				array(Html5::createSub()->p('content'), '<p>content</p>'),
-				array(Html5::createSub()->p(), '<p></p>'),
-				array(Html5::createSub()->hr(), '<hr>'),
+				array(Html5::c_()->p('content'), '<p>content</p>'),
+				array(Html5::c_()->p(), '<p></p>'),
+				array(Html5::c_()->hr(), '<hr>'),
 				array(
-						Html5::createSub()->pre("body {\n\tfont-family: tahoma;\n}"),
+						Html5::c_()->pre("body {\n\tfont-family: tahoma;\n}"),
 						"<pre>body {\n\tfont-family: tahoma;\n}</pre>"
 				),
-				array(Html5::createSub()->pre('content'), '<pre>content</pre>'),
+				array(Html5::c_()->pre('content'), '<pre>content</pre>'),
 				array(
-						Html5::createSub()->blockquote('content'),
+						Html5::c_()->div()->div()->pre('the quick brown fox
+jumps over the lazy dog.'), '<div>
+	<div>
+		<pre>the quick brown fox
+jumps over the lazy dog.</pre>
+	</div>
+</div>'
+				),
+				array(
+						Html5::c_()->blockquote('content'),
 						'<blockquote>content</blockquote>'
 				),
 				array(
-						Html5::createSub()->blockquote(null, 'http://...'),
+						Html5::c_()->blockquote(null, 'http://...'),
 						'<blockquote cite="http://...">'
 				),
-				array(Html5::createSub()->ol(), '<ol>'),
+				array(Html5::c_()->ol(), '<ol>'),
 				array(
-						Html5::createSub()->ol(Html5::TYPE_LOWER_ROMAN, 5, true),
+						Html5::c_()->ol(Html5::TYPE_LOWER_ROMAN, 5, true),
 						'<ol type="i" start="5" reversed>'
 				),
-				array(Html5::createSub()->ul(), '<ul>'),
-				array(Html5::createSub()->li('content', 5), '<li value="5">content</li>'),
+				array(Html5::c_()->ul(), '<ul>'),
+				array(Html5::c_()->li('content', 5), '<li value="5">content</li>'),
 				array(
-						Html5::createSub()->liItems(['lorem', 'ipsum', 'dolor']),
+						Html5::c_()->liItems(['lorem', 'ipsum', 'dolor']),
 						'<li>lorem</li>
 <li>ipsum</li>
 <li>dolor</li>'
 				),
 				array(
-						Html5::createSub()->liItems(['lorem', 'ipsum', 'dolor'], true),
+						Html5::c_()->liItems(['lorem', 'ipsum', 'dolor'], true),
 						'<li value="0">lorem</li>
 <li value="1">ipsum</li>
 <li value="2">dolor</li>'
 				),
 				array(
-						Html5::createSub()
+						Html5::c_()
 								->liItems([2 => 'lorem', '1' => 'ipsum', 'foo' => 'dolor'], true),
 						'<li value="2">lorem</li>
 <li value="1">ipsum</li>
 <li>dolor</li>'
 				),
-				array(Html5::createSub()->dl(), '<dl>'),
-				array(Html5::createSub()->dt('content'), '<dt>content</dt>'),
-				array(Html5::createSub()->dd('content'), '<dd>content</dd>'),
-				array(Html5::createSub()->figure(), '<figure>'),
-				array(
-						Html5::createSub()->figcaption('content'),
-						'<figcaption>content</figcaption>'
-				),
-				array(Html5::createSub()->main(), '<main>'),
-				array(Html5::createSub()->div(), '<div></div>')
+				array(Html5::c_()->dl(), '<dl>'),
+				array(Html5::c_()->dt('content'), '<dt>content</dt>'),
+				array(Html5::c_()->dd('content'), '<dd>content</dd>'),
+				array(Html5::c_()->figure(), '<figure>'),
+				array(Html5::c_()->figcaption('content'), '<figcaption>content</figcaption>'),
+				array(Html5::c_()->main(), '<main>'),
+				array(Html5::c_()->div(), '<div></div>')
 		);
 	}
 }

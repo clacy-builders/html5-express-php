@@ -311,7 +311,7 @@ class Html5 extends Xml
 	{
 		return $this
 				->append('style')
-				->setOption(self::OPTION_LTRIM, false)
+				->setOption(self::OPTION_TEXT_MODE, self::TEXT_MODE_NO_LTRIM)
 				->setType($type)
 				->setMedia($media)
 				->setScoped($scoped)
@@ -461,7 +461,8 @@ class Html5 extends Xml
 	 */
 	public function pre($content = '')
 	{
-		return $this->append('pre', $content)->setOption(self::OPTION_LTRIM, false);
+		return $this->append('pre', $content)
+				->setOption(self::OPTION_TEXT_MODE, self::TEXT_MODE_PREPEND);
 	}
 
 	/**
@@ -787,12 +788,7 @@ class Html5 extends Xml
 			$content = str_replace("\t", $spaces, $content);
 		}
 		$content = htmlspecialchars($content);
-		return $this
-				->pre()
-				->inLine()
-				->setOption(self::OPTION_LTRIM, false)
-				->code($content)
-				->setOption(self::OPTION_LINE_BREAK, self::DEFAULT_LINE_BREAK);
+		return $this->pre()->inLine()->code($content);
 	}
 
 	/**

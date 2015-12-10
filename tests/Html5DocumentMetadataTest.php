@@ -19,41 +19,37 @@ class Html5DocumentMetadataTest extends Express_TestCase
 	{
 		return array(
 				array(
-						Html5::createSub()->head(),
+						Html5::c_()->head(),
 						"<head>\n\t<meta charset=\"UTF-8\">\n</head>"
 				),
 				array(
-						Html5::createSub()->title('content'),
+						Html5::c_()->title('content'),
 						'<title>content</title>'
 				),
 				array(
-						Html5::createSub()->base(null, Html5::TARGET_PARENT),
+						Html5::c_()->base(null, Html5::TARGET_PARENT),
 						'<base target="_parent">'
 				),
 				array(
-						Html5::createSub()->base('../'),
+						Html5::c_()->base('../'),
 						'<base href="../">'
 				),
 				array(
-						Html5::createSub()->css('style.css'),
+						Html5::c_()->css('style.css'),
 						'<link rel="stylesheet" href="style.css">'
 				),
 				array(
-						Html5::createSub()->css('screen.css', 'screen'),
+						Html5::c_()->css('screen.css', 'screen'),
 						'<link rel="stylesheet" href="screen.css" media="screen">'
 				),
 				array(
-						Html5::createSub()->css(
-								'contrast.css', null,
-								'High Contrast', true),
+						Html5::c_()->css('contrast.css', null, 'High Contrast', true),
 						'<link' .
 						' rel="alternate stylesheet" href="contrast.css"' .
 						' title="High Contrast">'
 				),
 				array(
-						Html5::createSub()->css(
-								'contrast.css', 'screen',
-								'High Contrast', true),
+						Html5::c_()->css('contrast.css', 'screen', 'High Contrast', true),
 						'<link' .
 						' rel="alternate stylesheet" href="contrast.css"' .
 						' media="screen" title="High Contrast">'
@@ -62,46 +58,45 @@ class Html5DocumentMetadataTest extends Express_TestCase
 				// @todo hier fehlt alternate
 
 				array(
-						Html5::createSub()->atom('feed.xml'),
+						Html5::c_()->atom('feed.xml'),
 						'<link' .
 						' rel="alternate" href="feed.xml"' .
 						' type="application/atom+xml">'
 				),
 				array(
-						Html5::createSub()->atom('feed.xml', 'Atom Feed'),
+						Html5::c_()->atom('feed.xml', 'Atom Feed'),
 						'<link' .
 						' rel="alternate" href="feed.xml"' .
 						' type="application/atom+xml" title="Atom Feed">'
 				),
 				array(
-						Html5::createSub()->rss('feed.xml'),
+						Html5::c_()->rss('feed.xml'),
 						'<link' .
 						' rel="alternate" href="feed.xml"' .
 						' type="application/rss+xml">'
 				),
 				array(
-						Html5::createSub()->rss('feed.xml', 'RSS Feed'),
+						Html5::c_()->rss('feed.xml', 'RSS Feed'),
 						'<link' .
 						' rel="alternate" href="feed.xml"' .
 						' type="application/rss+xml" title="RSS Feed">'
 				),
 				array(
-						Html5::createSub()->icon(),
+						Html5::c_()->icon(),
 						'<link rel="icon" href="favicon.ico">'
 				),
 				array(
-						Html5::createSub()->icon('favicon.ico'),
+						Html5::c_()->icon('favicon.ico'),
 						'<link rel="icon" href="favicon.ico">'
 				),
 				array(
-						Html5::createSub()->icon(
-								'favicon.ico', 'image/vnd.microsoft.icon'),
+						Html5::c_()->icon('favicon.ico', 'image/vnd.microsoft.icon'),
 						'<link' .
 						' rel="icon" href="favicon.ico"' .
 						' type="image/vnd.microsoft.icon">'
 				),
 				array(
-						Html5::createSub()->icon(
+						Html5::c_()->icon(
 								'favicon.ico', 'image/vnd.microsoft.icon',
 								'16x16 32x32'),
 						'<link' .
@@ -110,22 +105,21 @@ class Html5DocumentMetadataTest extends Express_TestCase
 						' sizes="16x16 32x32">'
 				),
 				array(
-						Html5::createSub()->shortcut_icon(),
+						Html5::c_()->shortcut_icon(),
 						'<link rel="shortcut icon" href="favicon.ico">'
 				),
 				array(
-						Html5::createSub()->shortcut_icon('favicon.ico'),
+						Html5::c_()->shortcut_icon('favicon.ico'),
 						'<link rel="shortcut icon" href="favicon.ico">'
 				),
 				array(
-						Html5::createSub()->shortcut_icon(
-								'favicon.ico', 'image/vnd.microsoft.icon'),
+						Html5::c_()->shortcut_icon('favicon.ico', 'image/vnd.microsoft.icon'),
 						'<link' .
 						' rel="shortcut icon" href="favicon.ico"' .
 						' type="image/vnd.microsoft.icon">'
 				),
 				array(
-						Html5::createSub()->shortcut_icon(
+						Html5::c_()->shortcut_icon(
 								'favicon.ico', 'image/vnd.microsoft.icon',
 								'16x16 32x32'),
 						'<link' .
@@ -134,64 +128,73 @@ class Html5DocumentMetadataTest extends Express_TestCase
 						' sizes="16x16 32x32">'
 				),
 				array(
-						Html5::createSub()->meta('my-name', 'my content'),
+						Html5::c_()->meta('my-name', 'my content'),
 						'<meta name="my-name" content="my content">'
 				),
 				array(
-						Html5::createSub()->application_name('MyApp'),
+						Html5::c_()->application_name('MyApp'),
 						'<meta name="application-name" content="MyApp">'
 				),
 				array(
-						Html5::createSub()->description('Lorem Ipsum Dolor'),
+						Html5::c_()->description('Lorem Ipsum Dolor'),
 						'<meta name="description" content="Lorem Ipsum Dolor">'
 				),
 				array(
-						Html5::createSub()->author('M. E. Lee'),
+						Html5::c_()->author('M. E. Lee'),
 						'<meta name="author" content="M. E. Lee">'
 				),
 				array(
-						Html5::createSub()->generator('ML Express PHP'),
+						Html5::c_()->generator('ML Express PHP'),
 						'<meta name="generator" content="ML Express PHP">'
 				),
 				array(
-						Html5::createSub()->keywords('lorem, ipsum, dolor'),
+						Html5::c_()->keywords('lorem, ipsum, dolor'),
 						'<meta name="keywords" content="lorem, ipsum, dolor">'
 				),
 				array(
-						Html5::createSub()->keywords(array('lorem', 'ipsum', 'dolor')),
+						Html5::c_()->keywords(array('lorem', 'ipsum', 'dolor')),
 						'<meta name="keywords" content="lorem,ipsum,dolor">'
 				),
 				array(
-						Html5::createSub()->pragma('refresh', 10),
+						Html5::c_()->pragma('refresh', 10),
 						'<meta http-equiv="refresh" content="10">'
 				),
 				array(
-						Html5::createSub()->refresh(0, 'index.php'),
+						Html5::c_()->refresh(0, 'index.php'),
 						'<meta http-equiv="refresh" content="0; URL=index.php">'
 				),
 				array(
-						Html5::createSub()->refresh(10),
+						Html5::c_()->refresh(10),
 						'<meta http-equiv="refresh" content="10">'
 				),
 				array(
-						Html5::createSub()->charset(),
+						Html5::c_()->charset(),
 						'<meta charset="UTF-8">'
 				),
 				array(
-						Html5::createSub()->style(
-								"body {\n\tbackground-color: #369;\n}"),
-						"<style>\n" .
-						"\tbody {\n\t\tbackground-color: #369;\n\t}\n" .
-						"</style>"
-				),
-				array(
-						Html5::createSub()->style(
+						Html5::c_()->style(
 								"body {\n\tbackground-color: #369;\n}",
 								true, 'screen', 'text/css'),
-						"<style type=\"text/css\" media=\"screen\" scoped>\n".
-						"\tbody {\n\t\tbackground-color: #369;\n\t}\n" .
-						"</style>"
+						'<style type="text/css" media="screen" scoped>
+	body {
+		background-color: #369;
+	}
+</style>'
 				),
+				array(
+						Html5::c_('html')->head()->style(
+								"body {\n\tbackground-color: #369;\n}"),
+						'<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			body {
+				background-color: #369;
+			}
+		</style>
+	</head>
+</html>'
+				)
 		);
 	}
 }
