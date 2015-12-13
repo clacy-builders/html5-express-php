@@ -2489,7 +2489,7 @@ class Html5 extends Xml
 
 	public function setCoords($coords)
 	{
-		return $this->attrib('coords', \ML_Express\join($coords, ','));
+		return $this->complexAttrib('coords', $coords, ',');
 	}
 
 	const CROSSORIGIN_ANONYMOUS = 'anonymous';
@@ -2718,7 +2718,7 @@ class Html5 extends Xml
 	 */
 	public function setHeaders($headers)
 	{
-		return $this->attrib('headers', \ML_Express\join($headers));
+		return $this->complexAttrib('headers', $headers, ' ', true);
 	}
 
 	/**
@@ -2881,7 +2881,7 @@ class Html5 extends Xml
 	 */
 	public function setMedia($media)
 	{
-		return $this->attrib('media', \ML_Express\join($media, ','));
+		return $this->complexAttrib('media', $media, ',', true);
 	}
 
 	/**
@@ -3150,7 +3150,7 @@ class Html5 extends Xml
 
 	public function setSandbox($sandbox)
 	{
-		return $this->attrib('sandbox', \ML_Express\join($sandbox));
+		return $this->complexAttrib('sandbox', $sandbox, ' ', true);
 	}
 
 	const SCOPE_COL = 'col';
@@ -3339,7 +3339,7 @@ class Html5 extends Xml
 
 	public function setSrcset($srcset)
 	{
-		return $this->attrib('srcset', \ML_Express\join($srcset, ','));
+		return $this->complexAttrib('srcset', $srcset, ',', true);
 	}
 
 	/**

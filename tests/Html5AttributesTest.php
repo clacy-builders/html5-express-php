@@ -4,6 +4,7 @@ namespace ML_Express\HTML5\Tests;
 
 require_once 'vendor/ml-express/xml/src/Xml.php';
 require_once 'vendor/ml-express/xml/src/XmlAttributes.php';
+require_once 'vendor/ml-express/xml/src/functions.php';
 require_once 'vendor/ml-express/xml/src/shared/ClassAttribute.php';
 require_once 'vendor/ml-express/xml/src/shared/StyleAttribute.php';
 require_once 'vendor/ml-express/xml/tests/Express_TestCase.php';
@@ -116,11 +117,33 @@ class Html5AttributesTest extends Express_TestCase
 						'<e enctype="text/plain">'
 				),
 
+				// setHeaders()
+				array(
+						Html5::c_('e')->setHeaders(['r1', 'r2'])->setHeaders('r3'),
+						'<e headers="r1 r2 r3">'
+				),
+
+				// setMedia()
+				array(
+						Html5::c_('e')
+								->setMedia([Html5::MEDIA_SCREEN, Html5::MEDIA_PRINT])
+								->setMedia(Html5::MEDIA_TV),
+						'<e media="screen,print,tv">'
+				),
+
 				// setRel()
 				array(
 						Html5::createSub('e')->setRel([
 								Html5::REL_AUTHOR, Html5::REL_NOFOLLOW, Html5::REL_AUTHOR]),
 						'<e rel="author nofollow">'
+				),
+
+				// setSandbox()
+				array(
+						Html5::c_('e')
+								->setSandbox([Html5::SANDBOX_SAME_ORIGIN, Html5::SANDBOX_FORMS])
+								->setSandbox(Html5::SANDBOX_SCRIPTS),
+						'<e sandbox="allow-same-origin allow-forms allow-scripts">'
 				),
 
 				// setSelected()
