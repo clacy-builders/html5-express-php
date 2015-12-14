@@ -512,23 +512,6 @@ class Html5 extends Xml
 	}
 
 	/**
-	 * Appends <code>li</code> elements.
-	 *
-	 * @param items array
-	 * <p>An array containing the contents for the list elements.</p>
-	 *
-	 * @param valueAttribute boolean [optional]
-	 * <p>Whether to use integer keys as value attribute or not.</p>
-	 */
-	public function liItems($items, $valueAttribute = false)
-	{
-		foreach ($items as $value => $content) {
-			$this->li($content, $valueAttribute && is_int($value) ? $value : null);
-		}
-		return $this;
-	}
-
-	/**
 	 * A dl element.
 	 */
 	public function dl()

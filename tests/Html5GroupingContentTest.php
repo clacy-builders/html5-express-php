@@ -50,25 +50,6 @@ jumps over the lazy dog.</pre>
 				),
 				array(Html5::c_()->ul(), '<ul>'),
 				array(Html5::c_()->li('content', 5), '<li value="5">content</li>'),
-				array(
-						Html5::c_()->liItems(['lorem', 'ipsum', 'dolor']),
-						'<li>lorem</li>
-<li>ipsum</li>
-<li>dolor</li>'
-				),
-				array(
-						Html5::c_()->liItems(['lorem', 'ipsum', 'dolor'], true),
-						'<li value="0">lorem</li>
-<li value="1">ipsum</li>
-<li value="2">dolor</li>'
-				),
-				array(
-						Html5::c_()
-								->liItems([2 => 'lorem', '1' => 'ipsum', 'foo' => 'dolor'], true),
-						'<li value="2">lorem</li>
-<li value="1">ipsum</li>
-<li>dolor</li>'
-				),
 				array(Html5::c_()->dl(), '<dl>'),
 				array(Html5::c_()->dt('content'), '<dt>content</dt>'),
 				array(Html5::c_()->dd('content'), '<dd>content</dd>'),
