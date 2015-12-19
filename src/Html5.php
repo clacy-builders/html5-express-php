@@ -23,11 +23,10 @@ class Html5 extends Xml
 	 * @param     string    $manifest    Application cache manifest.
 	 * @return    Html5
 	 */
-	public static function createHTML($lang = null, $manifest = null)
+	public static function createHtml($lang = null, $manifest = null)
 	{
-		$class = get_called_class();
-		return (new $class('html'))
-				->attrib('lang', $lang)
+		return static::createRoot()
+				->setLang($lang)
 				->attrib('manifest', $manifest);
 	}
 
@@ -38,11 +37,7 @@ class Html5 extends Xml
 	 */
 	public function head()
 	{
-		$head = $this->append('head', '');
-		if (static::SGML_MODE) {
-			$head->charset();
-		}
-		return $head;
+		return $this->append('head', '')->charset()->getParent();
 	}
 
 	/**
