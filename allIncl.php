@@ -8,4 +8,5 @@ require_once __DIR__ . '/../xml/src/shared/ClassAttribute.php';
 require_once __DIR__ . '/../xml/src/shared/StyleAttribute.php';
 
 require_once __DIR__ . '/src/Html5.php';
+require_once __DIR__ . '/src/XHtml5.php';
 require_once __DIR__ . '/src/extensions/Calendar.php';
