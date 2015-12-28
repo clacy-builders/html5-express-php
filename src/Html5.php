@@ -13,19 +13,18 @@ class Html5 extends Xml
 	const FILENAME_EXTENSION = 'html';
 	const XML_DECLARATION = false;
 	const DOCTYPE = '<!DOCTYPE html>';
-	const SGML_MODE = true;
-	const ROOT_ELEMENT = 'html';
+	const HTML_MODE = true;
 
 	/**
 	 * Creates html element.
 	 *
-	 * @param     string    $lang        The document's language.
-	 * @param     string    $manifest    Application cache manifest.
-	 * @return    Html5
+	 * @param  string  $lang      The document's language.
+	 * @param  string  $manifest  Application cache manifest.
+	 * @return Html5
 	 */
 	public static function createHtml($lang = null, $manifest = null)
 	{
-		return static::createRoot()
+		return static::createRoot('html')
 				->setLang($lang)
 				->attrib('manifest', $manifest);
 	}
@@ -286,7 +285,7 @@ class Html5 extends Xml
 	 */
 	public function charset()
 	{
-		if (!static::SGML_MODE) return $this;
+		if (!static::HTML_MODE) return $this;
 		return $this
 				->append('meta')
 				->attrib('charset', static::CHARACTER_ENCODING);
@@ -2794,7 +2793,7 @@ class Html5 extends Xml
 
 	public function setLang($lang)
 	{
-		return static::SGML_MODE ? $this->attrib('lang', $lang) : parent::setLang($lang);
+		return static::HTML_MODE ? $this->attrib('lang', $lang) : parent::setLang($lang);
 	}
 
 	/**
