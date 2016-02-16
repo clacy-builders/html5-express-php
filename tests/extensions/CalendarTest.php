@@ -2,11 +2,7 @@
 
 namespace ML_Express\HTML5\Tests;
 
-require_once 'vendor/ml-express/xml/src/Xml.php';
-require_once 'vendor/ml-express/xml/src/XmlAttributes.php';
-require_once 'vendor/ml-express/xml/src/functions.php';
-require_once 'vendor/ml-express/xml/src/shared/ClassAttribute.php';
-require_once 'vendor/ml-express/xml/src/shared/StyleAttribute.php';
+require_once 'vendor/ml-express/xml/allIncl.php';
 require_once 'vendor/ml-express/xml/tests/Express_TestCase.php';
 require_once 'src/Html5.php';
 require_once 'src/extensions/Calendar.php';

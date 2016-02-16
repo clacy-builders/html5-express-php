@@ -2,12 +2,18 @@
 namespace ML_Express\HTML5;
 
 use ML_Express\Xml;
+use ML_Express\Shared\AddQuery;
 use ML_Express\Shared\ClassAttribute;
+use ML_Express\Shared\DimensionAttributes;
+use ML_Express\Shared\MediaAttribute;
+use ML_Express\Shared\MediaAttributeConstants;
 use ML_Express\Shared\StyleAttribute;
 
-class Html5 extends Xml
+class Html5 extends Xml implements MediaAttributeConstants
 {
-	use ClassAttribute, StyleAttribute;
+	use ClassAttribute, DimensionAttributes, MediaAttribute, StyleAttribute, AddQuery {
+		addQuery as xmlAddQuery;
+	}
 
 	const MIME_TYPE = 'text/html';
 	const FILENAME_EXTENSION = 'html';
@@ -602,32 +608,23 @@ class Html5 extends Xml
 	}
 
 	/**
-	 * Adds a query string to an attribute, the <code>href</code> attribute by default.
+	 * Adds a query string to an attribute, by default to the <code>href</code> attribute.
 	 *
-	 * @param queryParts array
-	 * <p>Assotiave array with query arguments</p>
-	 *
-	 * @param attribute string [optional]
-	 * <p>Name of the attribute</p>
+	 * @param  array   $queryParts  Assotiave array with query arguments.
+	 * @param  string  $attribute   Name of the attribute.
 	 */
-	public function addQuery($queryParts, $attribute = 'href') {
-		$url = $this->attributes->getAttrib($attribute);
-
-		$query = array();
-		foreach ($queryParts as $key => $value) {
-			if (empty($value)) continue;
-			$query[] = is_int($key) ? $value : $key . '=' . urlencode($value);
+	public function addQuery($queryParts, $attribute = null) {
+		if ($attribute === null) {
+			switch ($this->name) {
+				case 'img':
+				case 'video':
+				case 'audio':
+				case 'source':
+				case 'track': $attribute = 'src'; break;
+				default: $attribute = 'href';
+			}
 		}
-		if (empty($query)) return $this;
-
-		$prefix = strpos($url, '?') === false ? '?' : '&';
-		$query = $prefix . implode('&', $query);
-
-		$position = strpos($url, '#');
-		if ($position === false) {
-			return $this->attrib($attribute, $url . $query);
-		}
-		return $this->attrib($attribute, substr_replace($url, $query, $position, 0));
+		return $this->xmlAddQuery($queryParts, $attribute);
 	}
 
 	/**
@@ -998,8 +995,7 @@ class Html5 extends Xml
 				->setSrc($src)
 				->setSrcset($srcset)
 				->setAlt($alt)
-				->setWidth($width)
-				->setHeight($height)
+				->setDimensions($width, $height)
 				->setUsemap($usemap)
 				->setIsmap($ismap);
 	}
@@ -1041,8 +1037,7 @@ class Html5 extends Xml
 				->append('iframe')
 				->setSrc($src)
 				->setSrcdoc($srcdoc)
-				->setWidth($width)
-				->setHeight($height)
+				->setDimensions($width, $height)
 				->setName($name)
 				->setSandbox($sandbox)
 				->setSeamless($seamless)
@@ -1063,8 +1058,7 @@ class Html5 extends Xml
 				->append('embed')
 				->setSrc($src)
 				->setType($type)
-				->setWidth($width)
-				->setHeight($height);
+				->setDimensions($width, $height);
 	}
 
 	/**
@@ -1091,8 +1085,7 @@ class Html5 extends Xml
 				->setData($data)
 				->setType($type)
 				->setName($name)
-				->setWidth($width)
-				->setHeight($height)
+				->setDimensions($width, $height)
 				->setForm($form)
 				->setUsemap($usemap)
 				->setTypemustmatch($typemustmatch);
@@ -1156,8 +1149,7 @@ class Html5 extends Xml
 				->append('video', '')
 				->setMediagroup($mediagroup)
 				->setSrc($src)
-				->setWidth($width)
-				->setHeight($height)
+				->setDimensions($width, $height)
 				->setPoster($poster)
 				->setPreload($preload)
 				->setAutoplay($autoplay)
@@ -2011,8 +2003,8 @@ class Html5 extends Xml
 	 * @param    string         $src               Address of the resource
 	 * @param    string|null    $alt               Replacement text for use when images are not
 	 *                                             available
-	 * @param    int|null       $width             See setWidth()
-	 * @param    int|null       $height            See setHeight()
+	 * @param    int|null       $width
+	 * @param    int|null       $height
 	 * @param    string|null    $name              See setName()
 	 * @param    boolean        $autofocus         See setAutofocus()
 	 * @param    boolean        $disabled          See setDisabled()
@@ -2030,21 +2022,20 @@ class Html5 extends Xml
 			$formnovalidate = null, $formtarget = null, $form = null)
 	{
 		return $this
-		->append('input')
-		->setType('submit')
-		->setName($name)
-		->setSrc($src)
-		->attrib('alt', $alt)
-		->setWidth($width)
-		->setHeight($height)
-		->setFormAction($formaction)
-		->setFormMethod($formmethod)
-		->setFormenctype($formenctype)
-		->setFormnovalidate($formnovalidate)
-		->setFormtarget($formtarget)
-		->setAutofocus($autofocus)
-		->setDisabled($disabled)
-		->setForm($form);
+				->append('input')
+				->setType('submit')
+				->setName($name)
+				->setSrc($src)
+				->attrib('alt', $alt)
+				->setDimensions($width, $height)
+				->setFormAction($formaction)
+				->setFormMethod($formmethod)
+				->setFormenctype($formenctype)
+				->setFormnovalidate($formnovalidate)
+				->setFormtarget($formtarget)
+				->setAutofocus($autofocus)
+				->setDisabled($disabled)
+				->setForm($form);
 	}
 
 	/**
@@ -2711,11 +2702,7 @@ class Html5 extends Xml
 	}
 
 	/**
-	 * <ul>
-	 * <li><code>link()</code>, <code>a()</code>, <code>area()</code><br>Address of the hyperlink
-	 * <li><code>base()</code><br>Document base URL
-	 *
-	 * @param    string    $href
+	 * @param  string  $href
 	 */
 	public function setHref($href)
 	{
@@ -2833,32 +2820,6 @@ class Html5 extends Xml
 	public function setMaxlength($maxlength)
 	{
 		return $this->attrib('maxlength', $maxlength);
-	}
-
-	const MEDIA_ALL = 'all';
-	const MEDIA_AURAL = 'aural';
-	const MEDIA_BRAILLE = 'braille';
-	const MEDIA_HANDHELD = 'handheld';
-	const MEDIA_PROJECTION = 'projection';
-	const MEDIA_PRINT = 'print';
-	const MEDIA_SCREEN = 'screen';
-	const MEDIA_TTY = 'tty';
-	const MEDIA_TV = 'tv';
-
-	/**
-	 * @see link()
-	 * @see stylesheet()
-	 * @see css()
-	 * @see alternate()
-	 * @see style()
-	 * @see source()
-	 * @see sources()
-	 *
-	 * @param    string|array    $media
-	 */
-	public function setMedia($media)
-	{
-		return $this->complexAttrib('media', $media, ',', true);
 	}
 
 	/**
@@ -3439,18 +3400,6 @@ class Html5 extends Xml
 	public function setValue($value)
 	{
 		return $this->attrib('value', $value);
-	}
-
-	/**
-	 * Horizontal dimension.
-	 *
-	 * @see image()
-	 *
-	 * @param    int    $width
-	 */
-	public function setWidth($width)
-	{
-		return $this->attrib('width', $width);
 	}
 
 	const WRAP_SOFT = 'soft';

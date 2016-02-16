@@ -2,11 +2,7 @@
 
 namespace ML_Express\HTML5\Tests;
 
-require_once 'vendor/ml-express/xml/src/Xml.php';
-require_once 'vendor/ml-express/xml/src/XmlAttributes.php';
-require_once 'vendor/ml-express/xml/src/functions.php';
-require_once 'vendor/ml-express/xml/src/shared/ClassAttribute.php';
-require_once 'vendor/ml-express/xml/src/shared/StyleAttribute.php';
+require_once 'vendor/ml-express/xml/allIncl.php';
 require_once 'vendor/ml-express/xml/tests/Express_TestCase.php';
 require_once 'src/Html5.php';
 
@@ -80,8 +76,14 @@ class Html5SemanticsEditsTest extends Express_TestCase
 				array(
 						Html5::createSub()
 								->audio('/uploads/2711')
-								->addQuery(['mp3'], 'src'),
+								->addQuery(['mp3']),
 						'<audio src="/uploads/2711?mp3"></audio>'
+				),
+				array(
+						Html5::createSub()
+								->a('Home', 'index.php')->setPing('stats.php')
+								->addQuery(['id' => 123], 'ping'),
+						'<a href="index.php" ping="stats.php?id=123">Home</a>'
 				),
 				array(Html5::createSub()->em('content'), '<em>content</em>'),
 				array(Html5::createSub()->strong('content'), '<strong>content</strong>'),
