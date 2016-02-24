@@ -8,12 +8,13 @@ use ML_Express\Shared\DimensionAttributes;
 use ML_Express\Shared\MediaAttribute;
 use ML_Express\Shared\MediaAttributeConstants;
 use ML_Express\Shared\StyleAttribute;
+use ML_Express\Shared\TitleAttribute;
+use ML_Express\Shared\TypeAttribute;
 
 class Html5 extends Xml implements MediaAttributeConstants
 {
-	use ClassAttribute, DimensionAttributes, MediaAttribute, StyleAttribute, AddQuery {
-		addQuery as xmlAddQuery;
-	}
+	use ClassAttribute, DimensionAttributes, MediaAttribute, StyleAttribute,
+			TitleAttribute, TypeAttribute, AddQuery { addQuery as xmlAddQuery; }
 
 	const MIME_TYPE = 'text/html';
 	const FILENAME_EXTENSION = 'html';
@@ -3321,42 +3322,11 @@ class Html5 extends Xml implements MediaAttributeConstants
 		return $this->attrib('target', $target);
 	}
 
-	public function setTitle($title)
-	{
-		return $this->attrib('title', $title);
-	}
-
 	const TYPE_DECIMAL = '1';
 	const TYPE_LOWER_ALPHA = 'a';
 	const TYPE_UPPER_ALPHA = 'A';
 	const TYPE_LOWER_ROMAN = 'i';
 	const TYPE_UPPER_ROMAN = 'I';
-
-	/**
-	 * <ul>
-	 * <li><code>link()</code>, <code>alternate()</code>,
-	 *     <code>icon()</code>, <code>shortcut_icon()</code>,
-	 *     <code>a()</code>, <code>area()</code>:<br>
-	 *     Hint for the type of the referenced resource
-	 * <li><code>style()</code>, <code>embed()</code>, <code>object()</code>,
-	 *     <code>source()</code>, <code>sources()</code>:<br>
-	 *     Type of embedded resource.<br>For example <code>HTML5::MIME_WEBM</code>
-	 * <li><code>ol()</code><br>
-	 *     Kind of list marker<br>
-	 *     Possible values are
-	 *     <ul>
-	 *     <li><code>HTML5::TYPE_DECIMAL</code>
-	 *     <li><code>HTML5::TYPE_LOWER_ALPHA</code>
-	 *     <li><code>HTML5::TYPE_UPPER_ALPHA</code>
-	 *     <li><code>HTML5::TYPE_LOWER_ROMAN</code>
-	 *     <li><code>HTML5::TYPE_UPPER_ROMAN</code></ul></ul>
-	 *
-	 * @param    string    $type
-	 */
-	public function setType($type)
-	{
-		return $this->attrib('type', $type);
-	}
 
 	/**
 	 * Whether the type attribute and the Content-Type value need to match
