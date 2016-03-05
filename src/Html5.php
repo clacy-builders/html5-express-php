@@ -40,7 +40,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>head</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function head()
@@ -51,7 +51,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>title</code> element.
 	 *
-	 * @param  string  $title
+	 * @param  string  $title   
 	 * @return Html5
 	 */
 	public function title($title)
@@ -90,9 +90,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @param  string  $sizes     Sizes of the icons (for `rel="icon"`).
 	 * @return Html5
 	 */
-	public function link(
-			$rel, $href, $title = null, $type = null,
-			$hreflang = null, $media = null, $sizes = null)
+	public function link($rel, $href,
+			$title = null, $type = null, $hreflang = null, $media = null, $sizes = null)
 	{
 		return $this
 				->append('link')
@@ -108,10 +107,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A css link.
 	 *
-	 * @param    string         $href         Address of the hyperlink.
-	 * @param    string|null    $media        Applicable media.
-	 * @param    string|null    $title        Title of the link.
-	 * @param    boolean        $alternate    Whether it is an alternate stylesheet or not.
+	 * @param  string   $href       Address of the hyperlink.
+	 * @param  string  	$media      Applicable media.
+	 * @param  string   $title      Title of the link.
+	 * @param  boolean  $alternate  Whether it is an alternate stylesheet or not.
 	 * @return Html5
 	 */
 	public function stylesheet($href, $media = null, $title = null, $alternate = false)
@@ -123,10 +122,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A css link.
 	 *
-	 * @param    string         $href         Address of the hyperlink.
-	 * @param    string|null    $media        Applicable media.
-	 * @param    string|null    $title        Title of the link.
-	 * @param    boolean        $alternate    Whether it is an alternate stylesheet or not.
+	 * @param  string   $href       Address of the hyperlink.
+	 * @param  string   $media      Applicable media.
+	 * @param  string   $title      Title of the link.
+	 * @param  boolean  $alternate  Whether it is an alternate stylesheet or not.
 	 * @return Html5
 	 */
 	public function css($href, $media = null, $title = null, $alternate = false)
@@ -137,11 +136,11 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A link to an alternative version of the page.
 	 *
-	 * @param    string         $href        Address of the hyperlink.
-	 * @param    string|null    $title       Title of the link.
-	 * @param    string|null    $type        Hint for the type of the referenced resource.
-	 * @param    string|null    $hreflang    Language of the linked resource.
-	 * @param    string|null    $media       Applicable media.
+	 * @param  string  $href      Address of the hyperlink.
+	 * @param  string  $title     Title of the link.
+	 * @param  string  $type      Hint for the type of the referenced resource.
+	 * @param  string  $hreflang  Language of the linked resource.
+	 * @param  string  $media     Applicable media.
 	 * @return Html5
 	 */
 	public function alternate($href, $title = null, $type = null, $hreflang = null, $media = null)
@@ -152,8 +151,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A atom feed link.
 	 *
-	 * @param    string         $href     Address of the hyperlink.
-	 * @param    string|null    $title    Title of the link.
+	 * @param  string  $href   Address of the hyperlink.
+	 * @param  string  $title  Title of the link.
 	 * @return Html5
 	 */
 	public function atom($href, $title = null)
@@ -164,8 +163,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A rss-feed link
 	 *
-	 * @param    string         $href     Address of the hyperlink.
-	 * @param    string|null    $title    Title of the link.
+	 * @param  string  $href   Address of the hyperlink.
+	 * @param  string  $title  Title of the link.
 	 * @return Html5
 	 */
 	public function rss($href, $title = null)
@@ -176,11 +175,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A link to a favicon.
 	 *
-	 * @param    string         $href        Address of the hyperlink.
-	 * @param    string|null    $type        Hint for the type of the referenced resource.
-	 * @param    string|null    $sizes       Sizes of the icons.
-	 * @param    boolean        $shortcut    Whether to use the <code>shortcut</code> keyword
-	 *                                       or not.
+	 * @param  string   $href      Address of the hyperlink.
+	 * @param  string   $type      Hint for the type of the referenced resource.
+	 * @param  string   $sizes     Sizes of the icons.
+	 * @param  boolean  $shortcut  Whether to use the <code>shortcut</code> keyword or not.
 	 * @return Html5
 	 */
 	public function icon($href = 'favicon.ico', $type = null, $sizes = null, $shortcut = false)
@@ -192,9 +190,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A link to a favicon using <code>shortcut icon</code>.
 	 *
-	 * @param    string         $href     Address of the hyperlink.
-	 * @param    string|null    $type     Hint for the type of the referenced resource.
-	 * @param    string|null    $sizes    Sizes of the icons.
+	 * @param  string  $href   Address of the hyperlink.
+	 * @param  string  $type   Hint for the type of the referenced resource.
+	 * @param  string  $sizes  Sizes of the icons.
 	 * @return Html5
 	 */
 	public function shortcut_icon($href = 'favicon.ico', $type = null, $sizes = null)
@@ -205,8 +203,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>meta</code> element.
 	 *
-	 * @param    string    $name
-	 * @param    string    $content
+	 * @param  string  $name
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function meta($name, $content)
@@ -221,7 +219,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * Appends a <code>meta</code> element giving the name of the web application
 	 * that the page represents.
 	 *
-	 * @param    string    $application_name
+	 * @param  string  $application_name
 	 * @return Html5
 	 */
 	public function application_name($application_name)
@@ -232,7 +230,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>meta</code> element giving the name of one of the page's authors.
 	 *
-	 * @param    string    $author
+	 * @param  string  $author
 	 * @return Html5
 	 */
 	public function author($author)
@@ -244,7 +242,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * Appends a <code>meta</code> element that describes the page for use in a directory
 	 * of pages, e.g. in a search engine.
 	 *
-	 * @param    string    $description
+	 * @param  string  $description
 	 * @return Html5
 	 */
 	public function description($description)
@@ -256,7 +254,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * Appends a <code>meta</code> element that identifies one of the software packages
 	 * used to generate the document.
 	 *
-	 * @param    string    $generator
+	 * @param  string  $generator
 	 * @return Html5
 	 */
 	public function generator($generator)
@@ -267,8 +265,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>meta</code> element defining keywords relevant to the page.
 	 *
-	 * @param    string|string[]    $keywords    A string containing comma-separated
-	 *                                           tokens, or an array of these tokens.
+	 * @param  string|string[]  $keywords  A string containing comma-separated tokens,
+	 *                                     or an array of these tokens.
 	 * @return Html5
 	 */
 	public function keywords($keywords)
@@ -279,8 +277,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A pragma directive.
 	 *
-	 * @param    string    $http_equiv    Pragma directive.
-	 * @param    string    $content       Value of the element.
+	 * @param  string  $http_equiv  Pragma directive.
+	 * @param  string  $content     Value of the element.
 	 * @return Html5
 	 */
 	public function pragma($http_equiv, $content)
@@ -294,8 +292,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * A pragma directive which acts as timed redirect.
 	 *
-	 * @param    string|int     $seconds
-	 * @param    string|null    $url
+	 * @param  string|int  $seconds
+	 * @param  string      $url
 	 * @return Html5
 	 */
 	public function refresh($seconds, $url = null)
@@ -308,7 +306,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>meta</code> element specifying the document's character encoding.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function charset()
@@ -322,15 +320,13 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>style</code> element.
 	 *
-	 * @param    string|array    $content    The embeded style information.
-	 * @param    boolean         $scoped
-	 * @param    string|null     $media      Applicable media.
-	 * @param    string|null     $type       Type of embedded resource.
+	 * @param  string|array  $content  The embeded style information.
+	 * @param  boolean       $scoped
+	 * @param  string        $media    Applicable media.
+	 * @param  string        $type     Type of embedded resource.
 	 * @return Html5
 	 */
-	public function style(
-			$content, $scoped = false,
-			$media = null, $type = null)
+	public function style($content, $scoped = false, $media = null, $type = null)
 	{
 		return $this
 				->append('style')
@@ -345,7 +341,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>body</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function body()
@@ -355,7 +351,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends an <code>article</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function article()
@@ -365,7 +361,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>section</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function section()
@@ -375,7 +371,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>nav</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function nav()
@@ -385,7 +381,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends an <code>aside</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function aside()
@@ -396,7 +392,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>h1</code> element.
 	 *
-	 * @param    string    $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function h1($content = '')
@@ -407,7 +403,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>h2</code> element.
 	 *
-	 * @param    string    $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function h2($content = '')
@@ -418,7 +414,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>h3</code> element.
 	 *
-	 * @param    string    $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function h3($content = '')
@@ -429,7 +425,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>h4</code> element.
 	 *
-	 * @param    string    $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function h4($content = '')
@@ -440,7 +436,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>h5</code> element.
 	 *
-	 * @param    string    $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function h5($content = '')
@@ -451,7 +447,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>h6</code> element.
 	 *
-	 * @param    string    $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function h6($content = '')
@@ -461,7 +457,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>hgroup</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function hgroup()
@@ -471,7 +467,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>header</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function header()
@@ -481,7 +477,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>footer</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function footer()
@@ -491,7 +487,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends an <code>address</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function address()
@@ -504,7 +500,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>p</code> element.
 	 *
-	 * @param content string
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function p($content = '')
@@ -514,7 +510,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>hr</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function hr()
@@ -525,7 +521,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>pre</code> element
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function pre($content = '')
@@ -537,7 +533,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>blockquote</code> element.
 	 *
-	 * @param string $cite A valid URL potentially surrounded by space.
+	 * @param  string  $cite  A valid URL potentially surrounded by space.
 	 * @return Html5
 	 */
 	public function blockquote($content = '', $cite = null)
@@ -548,10 +544,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>ol</code> element.
 	 *
-	 * @param    string|null    $type        Kind of list marker.
-	 *                                       See const declarations starting with TYPE.
-	 * @param    int|null       $start       Ordinal value of the first item.
-	 * @param    bool           $reversed    Number the list backwards.
+	 * @param  string   $type      Kind of list marker.
+	 *                             See const declarations starting with TYPE.
+	 * @param  int      $start     Ordinal value of the first item.
+	 * @param  boolean  $reversed  Number the list backwards.
 	 * @return Html5
 	 */
 	public function ol($type = null, $start = null, $reversed = false)
@@ -565,7 +561,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends an <code>ul</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function ul()
@@ -576,8 +572,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>li</code> element.
 	 *
-	 * @param    string      $content
-	 * @param    int|null    $value      Ordinal value of the list item.
+	 * @param  string  $content
+	 * @param  int     $value    Ordinal value of the list item.
 	 * @return Html5
 	 */
 	public function li($content = '', $value = null)
@@ -587,7 +583,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>dl</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function dl()
@@ -598,7 +594,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>dt</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function dt($content = '')
@@ -609,7 +605,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>dd</code> element
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function dd($content = '')
@@ -630,7 +626,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>figcaption</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function figcaption($content = '')
@@ -640,7 +636,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>main</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function main()
@@ -651,7 +647,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>div</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function div($content = '') {
@@ -663,23 +659,21 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>a</a> element.
 	 *
-	 * @param    string               $content
-	 * @param    string               $href        Address of the hyperlink
-	 * @param    string|null          $target      Browsing context for hyperlink navigation.
-	 *                                             See const declarations starting with TARGET.
-	 * @param    string|null          $rel         Relationship between the document containing
-	 *                                             the hyperlink and the destination resource.
-	 * @param    string|null          $type        Hint for the type of the referenced resource.
-	 * @param    string|null          $hreflang    Language of the linked resource.
-	 * @param    string|array|null    $ping        URLs to ping (space separated or array).
-	 * @param    string|null          $download    Whether to download the resource instead of
-	 *                                             navigating to it, and its file name if so.
+	 * @param  string        $content
+	 * @param  string        $href      Address of the hyperlink
+	 * @param  string        $target    Browsing context for hyperlink navigation.
+	 *                                  See const declarations starting with TARGET.
+	 * @param  string        $rel       Relationship between the document containing
+	 *                                  the hyperlink and the destination resource.
+	 * @param  string        $type      Hint for the type of the referenced resource.
+	 * @param  string        $hreflang  Language of the linked resource.
+	 * @param  string|array  $ping      URLs to ping (space separated or array).
+	 * @param  string        $download  Whether to download the resource instead of navigating to
+	 *                                  it, and its file name if so.
 	 * @return Html5
 	 */
-	public function a(
-			$content, $href,
-			$target = null, $rel = null, $type = null,
-			$hreflang = null, $ping = null, $download = null)
+	public function a($content, $href, $target = null,
+			$rel = null, $type = null, $hreflang = null, $ping = null, $download = null)
 	{
 		return $this
 				->append('a', $content)
@@ -715,7 +709,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>em</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function em($content = '')
@@ -726,7 +720,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>strong</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function strong($content = '')
@@ -737,7 +731,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>small</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function small($content = '')
@@ -748,7 +742,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>s</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function s($content = '')
@@ -759,7 +753,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>cite</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function cite($content = '')
@@ -770,9 +764,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>q</code> element.
 	 *
-	 * @param    string         $content
-	 * @param    string|null    $cite       Link to the source of the quotation
-	 *                                      or more information about the edit.
+	 * @param  string  $content
+	 * @param  string  $cite     Link to the source of the quotation or more information
+	 *                           about the edit.
 	 * @return Html5
 	 */
 	public function q($content = '', $cite = null)
@@ -783,8 +777,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>dfn</code> element.
 	 *
-	 * @param    string         $content
-	 * @param    string|null    $title      The term being defined.
+	 * @param  string  $content
+	 * @param  string  $title    The term being defined.
 	 * @return Html5
 	 */
 	public function dfn($content = '', $title = null)
@@ -795,8 +789,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>abbr</code> element.
 	 *
-	 * @param    string         $content
-	 * @param    string|null    $title      Full term or expansion of abbreviation.
+	 * @param  string  $content
+	 * @param  string  $title    Full term or expansion of abbreviation.
 	 * @return Html5
 	 */
 	public function abbr($content = '', $title = null)
@@ -807,8 +801,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>data</code> element.
 	 *
-	 * @param    string        $content
-	 * @param    mixed|null    $value      Machine-readable value.
+	 * @param  string  $content
+	 * @param  mixed   $value    Machine-readable value.
 	 * @return Html5
 	 */
 	public function data($content = '', $value = null)
@@ -819,8 +813,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>time</code> element.
 	 *
-	 * @param    string         $content
-	 * @param    string|null    $datetime    Machine-readable value.
+	 * @param  string  $content
+	 * @param  string  $datetime  Machine-readable value.
 	 * @return Html5
 	 */
 	public function time($content = '', $datetime = null)
@@ -832,7 +826,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>code</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function code($content = '')
@@ -849,8 +843,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *             ->setClass('html5');
 	 * </pre></code>
 	 *
-	 * @param    string         $content
-	 * @param    string|null    $spaces    Replacement for tabs.
+	 * @param  string  $content
+	 * @param  string  $spaces   Replacement for tabs.
 	 * @return Html5
 	 */
 	public function codeblock($content, $spaces = '    ')
@@ -865,7 +859,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>var</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function v($content = '')
@@ -876,7 +870,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>samp</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function samp($content = '')
@@ -887,7 +881,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>kbd</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function kbd($content = '')
@@ -898,7 +892,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>sub</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function sub($content = '')
@@ -909,7 +903,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>sup</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function sup($content = '')
@@ -920,7 +914,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>i</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function i($content = '')
@@ -931,7 +925,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>b</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function b($content = '')
@@ -942,7 +936,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>u</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function u($content = '')
@@ -953,7 +947,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>mark</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function mark($content = '')
@@ -964,7 +958,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>ruby</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function ruby($content = '')
@@ -975,7 +969,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>rt</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function rt($content = '')
@@ -986,7 +980,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>rp</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function rp($content = '')
@@ -997,9 +991,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>bdi</code> element
 	 *
-	 * @param    string         $content
-	 * @param    string|null    $dir        @todo explaining text
-	 *                                      See const declarations starting with DIR.
+	 * @param  string  $content
+	 * @param  string  $dir      @todo explaining text
+	 *                           See const declarations starting with DIR.
 	 * @return Html5
 	 */
 	public function bdi($content = '', $dir = null)
@@ -1010,9 +1004,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>bdo</code> element.
 	 *
-	 * @param    string         $content
-	 * @param    string|null    $dir        @todo explaining text
-	 *                                      See const declarations starting with DIR.
+	 * @param  string  $content
+	 * @param  string  $dir      @todo explaining text;
+	 *                           See const declarations starting with DIR.
 	 * @return Html5
 	 */
 	public function bdo($content = '', $dir = null)
@@ -1023,7 +1017,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>span</code> element.
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function span($content = '')
@@ -1033,7 +1027,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>br</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function br()
@@ -1043,7 +1037,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>wbr</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function wbr()
@@ -1056,10 +1050,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends ins element.
 	 *
-	 * @param string         $content
-	 * @param string|null    $datetime    Date and (optionally) time of the change.
-	 * @param string|null    $cite        Link to the source of the quotation or more
-	 *                                    information about the edit.
+	 * @param string  $content
+	 * @param string  $datetime    Date and (optionally) time of the change.
+	 * @param string  $cite        Link to the source of the quotation or more
+	 *                             information about the edit.
 	 * @return Html5
 	 */
 	public function ins($content = '', $datetime = null, $cite = null)
@@ -1071,12 +1065,12 @@ class Html5 extends Xml implements MediaAttributeConstants
 	}
 
 	/**
-	 * Appends del element.
+	 * Appends a <code>del</code> element.
 	 *
-	 * @param string         $content
-	 * @param string|null    $datetime    Date and (optionally) time of the change.
-	 * @param string|null    $cite        Link to the source of the quotation or more
-	 *                                    information about the edit.
+	 * @param  string  $content
+	 * @param  string  $datetime  Date and (optionally) time of the change.
+	 * @param  string  $cite      Link to the source of the quotation or more information
+	 *                            about the edit.
 	 * @return Html5
 	 */
 	public function del($content = '', $datetime = null, $cite = null)
@@ -1093,21 +1087,18 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * Appends an <code>img</code> element.
 	 * @todo crossorigin attribute
 	 *
-	 * @param    string                  $src       Address of the resource.
-	 * @param    string                  $alt       Replacement text for use when images are not
-	 *                                              available.
-	 * @param    string|string[]|null    $srcset    Images to use in different situations
-	 *                                              (e.g. high-resolution displays,
-	 *                                              small monitors, etc)
-	 * @param    int|null                $width     Horizontal dimension.
-	 * @param    int|null                $height    Vertical dimension.
-	 * @param    string|null             $usemap
-	 * @param    boolean                 $ismap     Whether the image is a server-side image map.
+	 * @param  string           $src     Address of the resource.
+	 * @param  string           $alt     Replacement text for use when images are not available.
+	 * @param  string|string[]  $srcset  Images to use in different situations (e.g.
+	 *                                   high-resolution displays, small monitors, etc)
+	 * @param  int              $width   Horizontal dimension.
+	 * @param  int              $height  Vertical dimension.
+	 * @param  string           $usemap
+	 * @param  boolean          $ismap   Whether the image is a server-side image map.
 	 * @return Html5
 	 */
-	public function img(
-			$src, $alt = '', $srcset = null, $width = null, $height = null,
-			$usemap = null, $ismap = false)
+	public function img($src, $alt = '', $srcset = null,
+			$width = null, $height = null, $usemap = null, $ismap = false)
 	{
 		return $this
 				->append('img')
@@ -1128,25 +1119,22 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *         [Html5::SANDBOX_TOP_NAVIGATION, Html5::SANDBOX_FORMS]);
 	 * </pre></code>
 	 *
-	 * @param    string|null             $src                Address of the resource.
-	 * @param    integer|null            $width              Horizontal dimension.
-	 * @param    integer|null            $height             Vertical dimension.
-	 * @param    string|null             $name               Name of nested browsing context.
-	 * @param    string|array|boolean    $sandbox            Security rules for nested content.
-	 *                                                       The <code>SANDBOX</code> Constants
-	 *                                                       space-separated or in an array.
-	 * @param    boolean                 $seamless           Whether to apply the document's styles
-	 *                                                       to the nested content.
-	 * @param    string|null             $srcdoc             A document to render in the iframe.
-	 * @param    boolean                 $allowfullscreen    Whether to allow the iframe's contents
-	 *                                                       to use
-	 *                                                       <code>requestFullscreen()</code>.
+	 * @param  string                $src              Address of the resource.
+	 * @param  integer               $width            Horizontal dimension.
+	 * @param  integer               $height           Vertical dimension.
+	 * @param  string                $name             Name of nested browsing context.
+	 * @param  string|array|boolean  $sandbox          Security rules for nested content.
+	 *                                                 The <code>SANDBOX</code> Constants
+	 *                                                 space-separated or in an array.
+	 * @param  boolean               $seamless         Whether to apply the document's styles
+	 *                                                 to the nested content.
+	 * @param  string                $srcdoc           A document to render in the iframe.
+	 * @param  boolean               $allowfullscreen  Whether to allow the iframe's contents
+	 *                                                 to use <code>requestFullscreen()</code>.
 	 * @return Html5
 	 */
-	public function iframe(
-			$src = null, $width = null, $height = null,
-			$name = null, $sandbox = false, $seamless = false,
-			$srcdoc = null, $allowfullscreen = false)
+	public function iframe($src = null, $width = null, $height = null, $name = null,
+			$sandbox = false, $seamless = false, $srcdoc = null, $allowfullscreen = false)
 	{
 		if (!empty($srcdoc)) {
 			$srcdoc = str_replace('&', '&amp;', $srcdoc);
@@ -1167,10 +1155,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>embed</code> element.
 	 *
-	 * @param    string         $src       Address of the resource.
-	 * @param    string|null    $type      Type of embedded resource.
-	 * @param    int|null       $width     Horizontal dimension.
-	 * @param    int|null       $height    Vertical dimension.
+	 * @param  string  $src     Address of the resource.
+	 * @param  string  $type    Type of embedded resource.
+	 * @param  int     $width   Horizontal dimension.
+	 * @param  int     $height  Vertical dimension.
 	 * @return Html5
 	 */
 	public function embed($src, $type = null, $width = null, $height = null)
@@ -1185,22 +1173,19 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>object</code> element.
 	 *
-	 * @param    string|null    $data             Address of the resource.
-	 * @param    string|null    $type             Type of embedded resource (a valid MIME type).
-	 * @param    string|null    $name             Name of nested browsing context.
-	 * @param    int|null       $width            Horizontal dimension.
-	 * @param    int|null       $height           Vertical dimension.
-	 * @param    string|null    $form             Associates the control with a form element.
-	 * @param    string|null    $usemap           Name of image map to use.
-	 * @param    boolean        $typemustmatch    Whether the type attribute and the
-	 *                                            Content-Type value need to match for the
-	 *                                            resource to be used.
+	 * @param  string   $data           Address of the resource.
+	 * @param  string   $type           Type of embedded resource (a valid MIME type).
+	 * @param  string   $name           Name of nested browsing context.
+	 * @param  int      $width          Horizontal dimension.
+	 * @param  int      $height         Vertical dimension.
+	 * @param  string   $form           Associates the control with a form element.
+	 * @param  string   $usemap         Name of image map to use.
+	 * @param  boolean  $typemustmatch  Whether the type attribute and the Content-Type value
+	 *                                  need to match for the resource to be used.
 	 * @return Html5
 	 */
-	public function object(
-			$data = null, $type = null, $name = null, $width = null,
-			$height = null, $form = null, $usemap = null,
-			$typemustmatch = false)
+	public function object($data = null, $type = null, $name = null,
+			$width = null, $height = null, $form = null, $usemap = null, $typemustmatch = false)
 	{
 		return $this
 				->append('object', '')
@@ -1216,11 +1201,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>param</code> element.
 	 *
-	 * @param     string    $name     Name of parameter.
-	 * @param     string    $value    Value of parameter.
-	 * @return    Xml       The created param element or current element if <code>$value</code> is
-	 *                      null or false.
-	 * @return Html5
+	 * @param  string  $name   Name of parameter.
+	 * @param  string  $value  Value of parameter.
+	 * @return Html5           The created <code>param</code> element or current element if
+	 *                         <code>$value</code> is null or false.
 	 */
 	public function param($name, $value)
 	{
@@ -1232,9 +1216,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	}
 
 	/**
-	 * Appends param elements.
+	 * Appends multiple <code>param</code> elements.
 	 *
-	 * @param    array    $params    The keys are the names.
+	 * @param  array  $params  The keys are the names.
 	 * @return Html5
 	 */
 	public function params($params)
@@ -1248,25 +1232,23 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>video</code> element.
 	 *
-	 * @param    int|null       $width          Horizontal dimension.
-	 * @param    int|null       $height         Vertical dimension.
-	 * @param    string|null    $src            Address of the resource.
-	 * @param    string|null    $poster         Poster frame to show prior to video playback.
-	 * @param    boolean        $autoplay
-	 * @param    boolean        $controls       Show user agent controls.
-	 * @param    boolean        $loop           Whether to loop the media resource.
-	 * @param    boolean        $muted          Whether to mute the media resource by default.
-	 * @param    string|null    $preload        Hints how much buffering the media resource
-	 *                                          will likely need.
-	 *                                          See const declarations starting with PRELOAD.
-	 * @param    string|null    $crossorigin    How the element handles crossorigin requests.
-	 *                                          See const declarations starting with CROSSORIGIN.
-	 * @param    string|null    $mediagroup     Groups media elements together with an
-	 *                                          implicit MediaController
+	 * @param  int      $width        Horizontal dimension.
+	 * @param  int      $height       Vertical dimension.
+	 * @param  string   $src          Address of the resource.
+	 * @param  string   $poster       Poster frame to show prior to video playback.
+	 * @param  boolean  $autoplay
+	 * @param  boolean  $controls     Show user agent controls.
+	 * @param  boolean  $loop         Whether to loop the media resource.
+	 * @param  boolean  $muted        Whether to mute the media resource by default.
+	 * @param  string   $preload      Hints how much buffering the media resource will likely need.
+	 *                                See const declarations starting with PRELOAD.
+	 * @param  string   $crossorigin  How the element handles crossorigin requests.
+	 *                                See const declarations starting with CROSSORIGIN.
+	 * @param  string   $mediagroup   Groups media elements together with an implicit
+	 *                                MediaController
 	 * @return Html5
 	 */
-	public function video(
-			$width = null, $height = null, $src = null, $poster = null,
+	public function video($width = null, $height = null, $src = null, $poster = null,
 			$autoplay = false, $controls = false, $loop = false, $muted = false,
 			$preload = null, $crossorigin = null, $mediagroup = null)
 	{
@@ -1287,24 +1269,21 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends an <code>audio</code> element.
 	 *
-	 * @param    string|null    $src            Address of the resource.
-	 * @param    boolean        $autoplay
-	 * @param    boolean        $controls       Show user agent controls.
-	 * @param    boolean        $loop           Whether to loop the media resource.
-	 * @param    boolean        $muted          Whether to mute the media resource by default.
-	 * @param    string|null    $preload        Hints how much buffering the media resource
-	 *                                          will likely need.
-	 *                                          See const declarations starting with PRELOAD.
-	 * @param    string|null    $crossorigin    How the element handles crossorigin requests.
-	 *                                          See const declarations starting with CROSSORIGIN.
-	 * @param    string|null    $mediagroup     Groups media elements together with an
-	 *                                          implicit MediaController
+	 * @param  string   $src          Address of the resource.
+	 * @param  boolean  $autoplay
+	 * @param  boolean  $controls     Show user agent controls.
+	 * @param  boolean  $loop         Whether to loop the media resource.
+	 * @param  boolean  $muted        Whether to mute the media resource by default.
+	 * @param  string   $preload      Hints how much buffering the media resource will likely need.
+	 *                                See const declarations starting with PRELOAD.
+	 * @param  string   $crossorigin  How the element handles crossorigin requests.
+	 *                                See const declarations starting with CROSSORIGIN.
+	 * @param  string   $mediagroup   Groups media elements together with an implicit
+	 *                                MediaController.
 	 * @return Html5
 	 */
-	public function audio(
-			$src = null, $autoplay = false, $controls = false, $loop = false,
-			$muted = false, $preload = null, $crossorigin = null,
-			$mediagroup = null)
+	public function audio($src = null, $autoplay = false, $controls = false, $loop = false,
+			$muted = false, $preload = null, $crossorigin = null, $mediagroup = null)
 	{
 		return $this
 				->append('audio', '')
@@ -1321,9 +1300,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>source</code> element.
 	 *
-	 * @param    string               $src      Address of the resource.
-	 * @param    string|null          $type     Type of embedded resource.
-	 * @param    string|array|null    $media    Applicable media.
+	 * @param  string        $src    Address of the resource.
+	 * @param  string        $type   Type of embedded resource.
+	 * @param  string|array  $media  Applicable media.
 	 * @return Html5
 	 */
 	public function source($src, $type = null, $media = null)
@@ -1344,7 +1323,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	const MIME_WAV = 'audio/wav';
 
 	/**
-	 * Appends source elements (to a video or audio element).
+	 * Appends <code>source</code> elements.
 	 *
 	 * Example: <code><pre>
 	 * ->video(320, 200)->setPoster('media/poster.jpg')->setControls();
@@ -1359,10 +1338,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *      Your Browser doesn't support &hellip;
 	 * &lt;/video></pre></code>
 	 *
-	 * @param    string               $path
-	 * @param    array|null           $types
-	 * @param    string|array|null    $media    Applicable media.
-	 * @return Html5
+	 * @param  string        $path
+	 * @param  array         $types
+	 * @param  string|array  $media  Applicable media.
+	 * @return Html5                 The current <code>video</code> or <code>audio</code> element.
 	 */
 	public function sources($path, $types = null, $media = null)
 	{
@@ -1377,10 +1356,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 		$default_video_formats = array('mp4', 'webm', 'ogv');
 		$default_audio_formats = array('mp3', 'ogg');
 		if ($types === null) {
-			$types =
-					$this->name == 'video'
-					? $default_video_formats
-					: $default_audio_formats;
+			$types = $this->name == 'video' ? $default_video_formats : $default_audio_formats;
 		}
 		foreach ($types as $key => $val) {
 			if (is_int($key)) {
@@ -1396,23 +1372,21 @@ class Html5 extends Xml implements MediaAttributeConstants
 	}
 
 	/**
-	 * Appends a <code>track element to a video</code> element.
+	 * Appends a <code>track</code> element to a <code>video</code> element.
 	 *
-	 * @param    string     $src        Address of the resource
-	 * @param    string     $kind       The type of text track.<br>Possible values are <ul>
-	 *                                  <li>Html5::KIND_SUBTITLES
-	 *                                  <li>Html5::KIND_CAPTIONS
-	 *                                  <li>Html5::KIND_DESCRIPTIONS
-	 *                                  <li>Html5::KIND_CHAPTERS
-	 *                                  <li>Html5::KIND_METADATA
-	 * @param    boolean    $default    Enable the track if no other text track is more suitable.
-	 * @param    string     $srclang    Language of the text track
-	 * @param    string     $label      User-visible label
+	 * @param  string   $src      Address of the resource
+	 * @param  string   $kind     The type of text track.<br>Possible values are <ul>
+	 *                            <li><code>Html5::KIND_SUBTITLES</code>
+	 *                            <li><code>Html5::KIND_CAPTIONS</code>
+	 *                            <li><code>Html5::KIND_DESCRIPTIONS</code>
+	 *                            <li><code>Html5::KIND_CHAPTERS</code>
+	 *                            <li><code>Html5::KIND_METADATA</code>
+	 * @param  boolean  $default  Enable the track if no other text track is more suitable.
+	 * @param  string   $srclang  Language of the text track
+	 * @param  string   $label    User-visible label
 	 * @return Html5
 	 */
-	public function track(
-			$src, $kind = null, $default = null, $srclang = null,
-			$label = null)
+	public function track($src, $kind = null, $default = null, $srclang = null, $label = null)
 	{
 		return $this
 				->append('track')
@@ -1426,7 +1400,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a <code>map</code> element.
 	 *
-	 * @param    string    $name    Name of image map to reference from the usemap attribute.
+	 * @param  string  $name  Name of image map to reference from the <code>usemap</code>
+	 *                        attribute.
 	 * @return Html5
 	 */
 	public function map($name)
@@ -1435,44 +1410,35 @@ class Html5 extends Xml implements MediaAttributeConstants
 	}
 
 	/**
-	 * Appends an <code>area element to a map</code> element.
+	 * Appends an <code>area</code> element to a <code>map</code> element.
 	 *
-	 * @param    string                $shape       The kind of shape to be created in an image
-	 *                                              map.<br>
-	 *                                              Possible values are <ul>
-	 *                                              <li>Html5::SHAPE_RECT
-	 *                                              <li>Html5::SHAPE_CIRCLE
-	 *                                              <li>Html5::SHAPE_POLY.
-	 *                                              </ul>
-	 * @param    string|array          $coords      Coordinates for the shape to be created
-	 *                                              in an image map (comma separated).
-	 * @param    string|null           $href        Address of the hyperlink.
-	 * @param    string|null           $alt         Replacement text for use when images are not
-	 *                                              available.
-	 * @param    string|null           $target      Browsing context for hyperlink navigation.<br>
-	 *                                              Possible values are <ul>
-	 *                                              <li>Html5::TARGET_BLANK
-	 *                                              <li>Html5::TARGET_SELF
-	 *                                              <li>Html5::TARGET_PARENT
-	 *                                              <li>Html5::TARGET_TOP
-	 *                                              </ul>
-	 * @param    string|null           $type        Hint for the type of the referenced resource.
-	 * @param    string|null           $download    Whether to download the resource instead of
-	 *                                              navigating to it, and its file name if so.
-	 * @param    string|null           $rel         Relationship between the document containing
-	 *                                              the hyperlink and the destination resource.<br>
-	 *                                              For example: <ul>
-	 *                                              <li>Html5::REL_ALTERNATE
-	 *                                              <li>Html5::REL_NEXT
-	 *                                              </ul>
-	 * @param    string|null           $hreflang    Language of the linked resource.
-	 * @param    string|array|null     $ping        URLs to ping (space separated or array).
+	 * @param  string        $shape     The kind of shape to be created in an image map.<br>
+	 *                                  Possible values are <ul>
+	 *                                  <li>Html5::SHAPE_RECT
+	 *                                  <li>Html5::SHAPE_CIRCLE
+	 *                                  <li>Html5::SHAPE_POLY</ul>
+	 * @param  string|array  $coords    Coordinates for the shape to be created in an image map
+	 *                                  (comma separated).
+	 * @param  string        $href      Address of the hyperlink.
+	 * @param  string        $alt       Replacement text for use when images are not available.
+	 * @param  string        $target    Browsing context for hyperlink navigation.<br>
+	 *                                  Possible values are <ul>
+	 *                                  <li>Html5::TARGET_BLANK
+	 *                                  <li>Html5::TARGET_SELF
+	 *                                  <li>Html5::TARGET_PARENT
+	 *                                  <li>Html5::TARGET_TOP</ul>
+	 * @param  string        $type      Hint for the type of the referenced resource.
+	 * @param  string        $download  Whether to download the resource instead of navigating to
+	 * 									it, and its file name if so.
+	 * @param  string        $rel       Relationship between the document containing the hyperlink
+	 *                                  and the destination resource.<br> For example: <ul>
+	 *                                  <li>Html5::REL_ALTERNATE<li>Html5::REL_NEXT</ul>
+	 * @param  string        $hreflang  Language of the linked resource.
+	 * @param  string|array  $ping      URLs to ping (space separated or array).
 	 * @return Html5
 	 */
-	public function area(
-			$shape, $coords, $href = null, $alt = null,
-			$target = null, $type = null, $download = null,
-			$rel = null, $hreflang = null, $ping = null)
+	public function area($shape, $coords, $href = null, $alt = null, $target = null,
+			$type = null, $download = null, $rel = null, $hreflang = null, $ping = null)
 	{
 		if ($href !== null && $alt === null) {
 			$alt = '';
@@ -1493,57 +1459,45 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends an <code>area</code> element. Shape is Html5::SHAPE_RECT
-	 * 
+	 *
 	 * @return Html5
 	 */
-	public function rect(
-			$coords, $href = null, $alt = null,
-			$target = null, $type = null, $download = false,
-			$rel = null, $hreflang = null, $ping = null)
+	public function rect($coords, $href = null, $alt = null, $target = null,
+			$type = null, $download = false, $rel = null, $hreflang = null, $ping = null)
 	{
-		return $this->area(
-				self::SHAPE_RECT, $coords, $href, $alt, $target,
-				$type, $download, $rel, $hreflang, $ping
-		);
+		return $this->area(self::SHAPE_RECT,
+				$coords, $href, $alt, $target, $type, $download, $rel, $hreflang, $ping);
 	}
 
 	/**
 	 * Appends an <code>area</code> element. Shape is Html5::SHAPE_CIRCLE.
-	 * 
+	 *
 	 * @return Html5
 	 */
-	public function circle(
-			$coords, $href = null, $alt = null,
-			$target = null, $type = null, $download = false,
-			$rel = null, $hreflang = null, $ping = null)
+	public function circle($coords, $href = null, $alt = null, $target = null,
+			$type = null, $download = false, $rel = null, $hreflang = null, $ping = null)
 	{
-		return $this->area(
-				self::SHAPE_CIRCLE, $coords, $href, $alt, $target,
-				$type, $download, $rel, $hreflang, $ping
-		);
+		return $this->area(self::SHAPE_CIRCLE,
+				$coords, $href, $alt, $target, $type, $download, $rel, $hreflang, $ping);
 	}
 
 	/**
 	 * Appends an <code>area</code> element. Shape is Html5::SHAPE_POLY.
-	 * 
+	 *
 	 * @return Html5
 	 */
-	public function poly(
-			$coords, $href = null, $alt = null,
-			$target = null, $type = null, $download = false,
-			$rel = null, $hreflang = null, $ping = null)
+	public function poly($coords, $href = null, $alt = null, $target = null,
+			$type = null, $download = false, $rel = null, $hreflang = null, $ping = null)
 	{
-		return $this->area(
-				self::SHAPE_POLY, $coords, $href, $alt, $target, $type,
-				$download, $rel, $hreflang, $ping
-		);
+		return $this->area(self::SHAPE_POLY,
+				$coords, $href, $alt, $target, $type, $download, $rel, $hreflang, $ping);
 	}
 
 	//////// Tabular Data ////////
 
 	/**
 	 * Appends a <code>table</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function table($sortable = false)
@@ -1553,7 +1507,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>caption</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function caption($content = '')
@@ -1563,7 +1517,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>colgroup</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function colgroup($span = null)
@@ -1575,7 +1529,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>col</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function col($span = null)
@@ -1587,7 +1541,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>tbody</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function tbody()
@@ -1597,7 +1551,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>thead</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function thead()
@@ -1607,7 +1561,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>tfoot</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function tfoot()
@@ -1617,7 +1571,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * Appends a <code>tr</code> element.
-	 * 
+	 *
 	 * @return Html5
 	 */
 	public function tr()
@@ -1626,13 +1580,12 @@ class Html5 extends Xml implements MediaAttributeConstants
 	}
 
 	/**
-	 * Appends a <code>td element or converts a th element to a td</code> element.
-	 * 
+	 * Appends a <code>td</code> element
+	 * or converts a <code>th</code> element to a <code>td</code> element.
+	 *
 	 * @return Html5
 	 */
-	public function td(
-			$content = '', $colspan = null, $rowspan = null,
-			$headers = null)
+	public function td($content = '', $colspan = null, $rowspan = null, $headers = null)
 	{
 		if ($this->name == 'th') {
 			$this->name = 'td';
@@ -1647,14 +1600,13 @@ class Html5 extends Xml implements MediaAttributeConstants
 	}
 
 	/**
-	 * Appends a <code>th element or converts a td element to a th</code> element.
-	 * 
+	 * Appends a <code>th</code> element
+	 * or converts a <code>td</code> element to a <code>th</code> element.
+	 *
 	 * @return Html5
 	 */
-	public function th(
-			$content = '', $colspan = null, $rowspan = null,
-			$headers = null, $scope = null, $abbr = null,
-			$sorted = null)
+	public function th($content = '', $colspan = null, $rowspan = null,
+			$headers = null, $scope = null, $abbr = null, $sorted = null)
 	{
 		if ($this->name == 'td') {
 			$this->name = 'th';
@@ -1671,8 +1623,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 				->setSorted($sorted);
 	}
 
-	public function tcells($data, $keys = null,
-			$cellCallback = null, $cellCallbackData = null)
+	public function tcells($data, $keys = null, $cellCallback = null, $cellCallbackData = null)
 	{
 		if (!is_array($keys)) {
 			$keys = \ML_Express\keys($data, $keys);
@@ -1762,20 +1713,18 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;form></code>
 	 *
-	 * @param    string|null            $action            URL to use for form submission.
-	 * @param    string|null            $method            See <code>setMethod()</code>
-	 * @param    string|null            $enctype           See <code>setEnctype()</code>
-	 * @param    string|array|null      $accept_charset    See <code>setAccept_charset()</code>
-	 * @param    string|boolean|null    $autocomplete      See <code>setAutocomplete()</code>
-	 * @param    boolean                $novalidate        See <code>setNovalidate()</code>
-	 * @param    string|null            $target            See <code>setTarget()</code>
-	 * @param    string|null            $name              See <code>setName()</code>
+	 * @param  string          $action          URL to use for form submission.
+	 * @param  string          $method          See <code>setMethod()</code>
+	 * @param  string          $enctype         See <code>setEnctype()</code>
+	 * @param  string|array    $accept_charset  See <code>setAccept_charset()</code>
+	 * @param  string|boolean  $autocomplete    See <code>setAutocomplete()</code>
+	 * @param  boolean         $novalidate      See <code>setNovalidate()</code>
+	 * @param  string          $target          See <code>setTarget()</code>
+	 * @param  string          $name            See <code>setName()</code>
 	 * @return Html5
 	 */
-	public function form(
-			$action = null, $method = null, $enctype = null,
-			$accept_charset = null, $autocomplete = null, $novalidate = false,
-			$target = null, $name = null)
+	public function form($action = null, $method = null, $enctype = null, $accept_charset = null,
+			$autocomplete = null, $novalidate = false, $target = null, $name = null)
 	{
 		return $this
 				->append('form', '')
@@ -1792,9 +1741,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;label></code>
 	 *
-	 * @param    string         $content
-	 * @param    string|null    $for        See setFor()
-	 * @param    string|null    $form       See setForm()
+	 * @param  string  $content
+	 * @param  string  $for      See setFor()
+	 * @param  string  $form     See setForm()
 	 * @return Html5
 	 */
 	public function label($content = '', $for = null, $form = null)
@@ -1808,10 +1757,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;input type="hidden"></code>
 	 *
-	 * @param    string         $name     Name of form control to use for form submission and
-	 *                                    in the form.elements API
-	 * @param    mixed          $value    Value of the form control
-	 * @param    string|null    $form     Associates the control with a form element
+	 * @param  string  $name   Name of form control to use for form submission
+	 *                         and in the form.elements API
+	 * @param  mixed   $value  Value of the form control
+	 * @param  string  $form   Associates the control with a form element
 	 * @return Html5
 	 */
 	public function hidden($name, $value, $form = null)
@@ -1853,9 +1802,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * $form->hiddens($names, $values);
 	 * </pre></code>
 	 *
-	 * @param    array          $names     See above
-	 * @param    array|null     $values    See above
-	 * @param    string|null    $form      See setForm()
+	 * @param  array   $names   See above
+	 * @param  array   $values  See above
+	 * @param  string  $form    See setForm()
 	 * @return Html5
 	 */
 	public function hiddens($names, $values = null, $form = null)
@@ -1870,26 +1819,25 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;input type="text"></code>
 	 *
-	 * @param    string|null    $name            See setName()
-	 * @param    mixed|null     $value           See setValue()
-	 * @param    string|null    $placeholder     See setPlaceholder()
-	 * @param    int|null       $minlength       See setMinlength()
-	 * @param    int|null       $maxlength       See setMaxlength()
-	 * @param    string|null    $pattern         See setPattern()
-	 * @param    boolean        $required        See setRequired()
-	 * @param    string|null    $list            See setList()
-	 * @param    int|null       $size            See setSize()
-	 * @param    string|null    $autocomplete    See setAutocomplete()
-	 * @param    boolean        $readonly        See setReadonly()
-	 * @param    boolean        $disabled        See setDisabled()
-	 * @param    boolean        $autofocus       See setAutofocus()
-	 * @param    string|null    $dirname         See setDirname()
-	 * @param    string|null    $inputmode       See setInputmode()
-	 * @param    string|null    $form            See setForm()
+	 * @param  string   $name          See setName()
+	 * @param  mixed    $value         See setValue()
+	 * @param  string   $placeholder   See setPlaceholder()
+	 * @param  int      $minlength     See setMinlength()
+	 * @param  int      $maxlength     See setMaxlength()
+	 * @param  string   $pattern       See setPattern()
+	 * @param  boolean  $required      See setRequired()
+	 * @param  string   $list          See setList()
+	 * @param  int      $size          See setSize()
+	 * @param  string   $autocomplete  See setAutocomplete()
+	 * @param  boolean  $readonly      See setReadonly()
+	 * @param  boolean  $disabled      See setDisabled()
+	 * @param  boolean  $autofocus     See setAutofocus()
+	 * @param  string   $dirname       See setDirname()
+	 * @param  string   $inputmode     See setInputmode()
+	 * @param  string   $form          See setForm()
 	 * @return Html5
 	 */
-	public function text(
-			$name = null, $value = null, $placeholder = null, $size = null,
+	public function text($name = null, $value = null, $placeholder = null, $size = null,
 			$minlength = null, $maxlength = null, $pattern = null,
 			$required = false, $list = null, $autocomplete = null,
 			$readonly = false, $disabled = false, $autofocus = false,
@@ -1916,10 +1864,8 @@ class Html5 extends Xml implements MediaAttributeConstants
 				->setForm($form);
 	}
 
-	private function checkable(
-			$type, $name = null, $value = null, $checked = false,
-			$required = false, $disabled = false, $autofocus = false,
-			$form = null)
+	private function checkable($type, $name = null, $value = null, $checked = false,
+			$required = false, $disabled = false, $autofocus = false, $form = null)
 	{
 		return $this
 				->append('input')
@@ -1938,17 +1884,16 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see checkboxes()
 	 *
-	 * @param    string|null    $name         See setName()
-	 * @param    mixed          $value        See setValue()
-	 * @param    mixed          $checked      See setChecked()
-	 * @param    boolean        $required     See setRequired()
-	 * @param    mixed          $disabled     See setDisabled()
-	 * @param    boolean        $autofocus    See setAutofocus()
-	 * @param    string|null    $form         See setForm()
+	 * @param  string  	$name       See setName()
+	 * @param  mixed    $value      See setValue()
+	 * @param  mixed    $checked    See setChecked()
+	 * @param  boolean  $required   See setRequired()
+	 * @param  mixed    $disabled   See setDisabled()
+	 * @param  boolean  $autofocus  See setAutofocus()
+	 * @param  string   $form       See setForm()
 	 * @return Html5
 	 */
-	public function checkbox(
-			$name = null, $value = null, $checked = false, $required = false,
+	public function checkbox($name = null, $value = null, $checked = false, $required = false,
 			$disabled = false, $autofocus = false, $form = null)
 	{
 		return $this->checkable(
@@ -1961,17 +1906,16 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see radios()
 	 *
-	 * @param    string|null    $name         See setName()
-	 * @param    mixed          $value        See setValue()
-	 * @param    mixed          $checked      See setChecked()
-	 * @param    boolean        $required     See setRequired()
-	 * @param    mixed          $disabled     See setDisabled()
-	 * @param    boolean        $autofocus    See setAutofocus()
-	 * @param    string|null    $form         See setForm()
+	 * @param  string  	$name       See setName()
+	 * @param  mixed    $value      See setValue()
+	 * @param  mixed    $checked    See setChecked()
+	 * @param  boolean  $required   See setRequired()
+	 * @param  mixed    $disabled   See setDisabled()
+	 * @param  boolean  $autofocus  See setAutofocus()
+	 * @param  string   $form       See setForm()
 	 * @return Html5
 	 */
-	public function radio(
-			$name = null, $value = null, $checked = false, $required = false,
+	public function radio($name = null, $value = null, $checked = false, $required = false,
 			$disabled = false, $autofocus = false, $form = null)
 	{
 		return $this->checkable(
@@ -2050,19 +1994,17 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see radios()
 	 * @see options()
 	 *
-	 * @param    string        $name         See setName()
-	 * @param    array         $values       See above
-	 * @param    array|null    $labels       See above
-	 * @param    mixed         $checked      Is compared with the value attribute.<br>
-	 *                                       Set it to <code>true</code>,
-	 *                                       to check all checkboxes.<br>
-	 *                                       See setChecked()
-	 * @param    boolean       $required     Marks the first item as required.
-	 * @param    mixed         $disabled     Is compared with the value attribute.<br>
-	 *                                       Set it to <code>true</code>,
-	 *                                       to disable all checkboxes.<br>
-	 *                                       See setDisabled()
-	 * @param    boolean       $autofocus    Marks the first item as autofocus.
+	 * @param  string  $name        See setName()
+	 * @param  array   $values      See above
+	 * @param  array   $labels      See above
+	 * @param  mixed   $checked     Is compared with the value attribute.<br>
+	 *                              Set it to <code>true</code>, to check all checkboxes.<br>
+	 *                              See setChecked()
+	 * @param  boolean  $required   Marks the first item as required.
+	 * @param  mixed    $disabled   Is compared with the value attribute.<br>
+	 *                              Set it to <code>true</code>, to disable all checkboxes.<br>
+	 *                              See setDisabled()
+	 * @param  boolean  $autofocus  Marks the first item as autofocus.
 	 * @return Html5
 	 */
 	public function checkboxes($name, $values, $labels = null,
@@ -2076,17 +2018,16 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Appends a group of radio buttons.
 	 *
-	 * @param    string        $name         See setName()
-	 * @param    array         $values       See checkboxes()
-	 * @param    array|null    $labels       See checkboxes()
-	 * @param    mixed         $checked      Is compared with the value attribute.<br>
-	 *                                       See setChecked()
-	 * @param    boolean       $required     Marks the first item as required.
-	 * @param    mixed         $disabled     Is compared with the value attribute.<br>
-	 *                                       Set it to <code>true</code>,
-	 *                                       to disable all checkboxes.<br>
-	 *                                       See setDisabled()
-	 * @param    boolean       $autofocus    Marks the first item as autofocus.
+	 * @param  string   $name       See setName()
+	 * @param  array    $values     See checkboxes()
+	 * @param  array   	$labels     See checkboxes()
+	 * @param  mixed    $checked    Is compared with the value attribute.<br>
+	 *                              See setChecked()
+	 * @param  boolean  $required   Marks the first item as required.
+	 * @param  mixed    $disabled   Is compared with the value attribute.<br>
+	 *                              Set it to <code>true</code>, to disable all checkboxes.<br>
+	 *                              See setDisabled()
+	 * @param  boolean  $autofocus  Marks the first item as autofocus.
 	 * @return Html5
 	 */
 	public function radios($name, $values, $labels = null,
@@ -2100,17 +2041,16 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;input type="file"></code>
 	 *
-	 * @param    string|null    $name         See setName()
-	 * @param    mixed|null     $accept       See setAccept()
-	 * @param    boolean        $multiple     See setMultiple()
-	 * @param    boolean        $required     See setRequired()
-	 * @param    boolean        $disabled     See setDisabled()
-	 * @param    boolean        $autofocus    See setAutofocus()
-	 * @param    string|null    $form         See setForm()
+	 * @param  string   $name       See setName()
+	 * @param  mixed    $accept     See setAccept()
+	 * @param  boolean  $multiple   See setMultiple()
+	 * @param  boolean  $required   See setRequired()
+	 * @param  boolean  $disabled   See setDisabled()
+	 * @param  boolean  $autofocus  See setAutofocus()
+	 * @param  string   $form       See setForm()
 	 * @return Html5
 	 */
-	public function file(
-			$name = null, $accept = null, $multiple = false, $required = false,
+	public function file($name = null, $accept = null, $multiple = false, $required = false,
 			$disabled = false, $autofocus = false, $form = null)
 	{
 		return $this
@@ -2128,20 +2068,19 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;input type="submit"></code>
 	 *
-	 * @param    string $value
-	 * @param    string|null    $name              See setName()
-	 * @param    boolean        $autofocus         See setAutofocus()
-	 * @param    boolean        $disabled          See setDisabled()
-	 * @param    string|null    $formaction        See setFormaction()
-	 * @param    string|null    $formmethod        See setFormmethod()
-	 * @param    string|null    $formenctype       See setFormenctype()
-	 * @param    boolean        $formnovalidate    See setFormnovalidate()
-	 * @param    string|null    $formtarget        See setFormtarget()
-	 * @param    string|null    $form              See setForm()
+	 * @param  string   $value
+	 * @param  string   $name            See setName()
+	 * @param  boolean  $autofocus       See setAutofocus()
+	 * @param  boolean  $disabled        See setDisabled()
+	 * @param  string   $formaction      See setFormaction()
+	 * @param  string   $formmethod      See setFormmethod()
+	 * @param  string   $formenctype     See setFormenctype()
+	 * @param  boolean  $formnovalidate  See setFormnovalidate()
+	 * @param  string   $formtarget      See setFormtarget()
+	 * @param  string   $form            See setForm()
 	 * @return Html5
 	 */
-	public function submit(
-			$value, $name = null, $autofocus = false, $disabled = false,
+	public function submit($value, $name = null, $autofocus = false, $disabled = false,
 			$formaction = null, $formmethod = null, $formenctype = null,
 			$formnovalidate = null, $formtarget = null, $form = null)
 	{
@@ -2163,24 +2102,22 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;input type="image"></code>
 	 *
-	 * @param    string         $src               Address of the resource
-	 * @param    string|null    $alt               Replacement text for use when images are not
-	 *                                             available
-	 * @param    int|null       $width
-	 * @param    int|null       $height
-	 * @param    string|null    $name              See setName()
-	 * @param    boolean        $autofocus         See setAutofocus()
-	 * @param    boolean        $disabled          See setDisabled()
-	 * @param    string|null    $formaction        See setFormaction()
-	 * @param    string|null    $formmethod        See setFormmethod()
-	 * @param    string|null    $formenctype       See setFormenctype()
-	 * @param    boolean        $formnovalidate    See setFormnovalidate()
-	 * @param    string|null    $formtarget        See setFormtarget()
-	 * @param    string|null    $form              See setForm()
+	 * @param  string   $src             Address of the resource
+	 * @param  string   $alt             Replacement text for use when images are not available
+	 * @param  int      $width
+	 * @param  int      $height
+	 * @param  string   $name            See setName()
+	 * @param  boolean  $autofocus       See setAutofocus()
+	 * @param  boolean  $disabled        See setDisabled()
+	 * @param  string   $formaction      See setFormaction()
+	 * @param  string   $formmethod      See setFormmethod()
+	 * @param  string   $formenctype     See setFormenctype()
+	 * @param  boolean  $formnovalidate  See setFormnovalidate()
+	 * @param  string   $formtarget      See setFormtarget()
+	 * @param  string   $form            See setForm()
 	 * @return Html5
 	 */
-	public function image(
-			$src, $alt, $width = null, $height = null,
+	public function image($src, $alt, $width = null, $height = null,
 			$name = null, $autofocus = false, $disabled = false,
 			$formaction = null, $formmethod = null, $formenctype = null,
 			$formnovalidate = null, $formtarget = null, $form = null)
@@ -2205,16 +2142,15 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;input type="reset"></code>
 	 *
-	 * @param    string         $value        Value of the form control
-	 * @param    string|null    $name         See setName()
-	 * @param    boolean        $autofocus    See setAutofocus()
-	 * @param    boolean        $disabled     See setDisabled()
-	 * @param    boolean        $form         See setForm()
+	 * @param  string   $value      Value of the form control
+	 * @param  string  	$name       See setName()
+	 * @param  boolean  $autofocus  See setAutofocus()
+	 * @param  boolean  $disabled   See setDisabled()
+	 * @param  boolean  $form       See setForm()
 	 * @return Html5
 	 */
-	public function reset(
-			$value, $name = null, $autofocus = false, $disabled = false,
-			$form = null)
+	public function reset($value, $name = null,
+			$autofocus = false, $disabled = false, $form = null)
 	{
 		return $this
 				->append('input')
@@ -2229,16 +2165,15 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * <code>&lt;input type="button"></code>
 	 *
-	 * @param    string         $value        Value of the form control
-	 * @param    string|null    $name         See setName()
-	 * @param    boolean        $autofocus    See setAutofocus()
-	 * @param    boolean        $disabled     See setDisabled()
-	 * @param    boolean        $form         See setForm()
+	 * @param  string   $value      Value of the form control
+	 * @param  string   $name       See setName()
+	 * @param  boolean  $autofocus  See setAutofocus()
+	 * @param  boolean  $disabled   See setDisabled()
+	 * @param  boolean  $form       See setForm()
 	 * @return Html5
 	 */
-	public function inpButton(
-			$value, $name = null, $autofocus = false, $disabled = false,
-			$form = null)
+	public function inpButton($value,
+			$name = null, $autofocus = false, $disabled = false, $form = null)
 	{
 		return $this
 		->append('input')
@@ -2256,22 +2191,19 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see option()
 	 * @see optgroup()
 	 *
-	 * @param    string|null            $name            Name of form control to use
-	 *                                                   for form submission and in the
-	 *                                                   form.elements API
-	 * @param    boolean                $required        See setRequired()
-	 * @param    string|boolean|null    $autocomplete    See setAutocomplete()
-	 * @param    boolean                $disabled        See setDisabled()
-	 * @param    boolean                $autofocus       See setAutofocus()
-	 * @param    int|null               $size            See setSize()
-	 * @param    boolean                $multiple        See setMultiple()
-	 * @param    string|null            $form            See setForm()
+	 * @param  string          $name          Name of form control to use for form submission
+	 *                                        and in the form.elements API
+	 * @param  boolean         $required      See setRequired()
+	 * @param  string|boolean  $autocomplete  See setAutocomplete()
+	 * @param  boolean         $disabled      See setDisabled()
+	 * @param  boolean         $autofocus     See setAutofocus()
+	 * @param  int             $size          See setSize()
+	 * @param  boolean         $multiple      See setMultiple()
+	 * @param  string          $form          See setForm()
 	 * @return Html5
 	 */
-	public function select(
-			$name = null, $required = false, $autocomplete = null,
-			$disabled = false, $autofocus = false, $size = null,
-			$multiple = false, $form = null)
+	public function select($name = null, $required = false, $autocomplete = null,
+			$disabled = false, $autofocus = false, $size = null, $multiple = false, $form = null)
 	{
 		if ($multiple) {
 			$name = self::nameForGroup($name);
@@ -2296,17 +2228,16 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see datalist()
 	 * @see optgroup()
 	 *
-	 * @param    string|null       $content
-	 * @param    string|null       $value       See setValue()
-	 * @param    boolean           $selected    See setSelected()
-	 * @param    boolean           $disabled    See setDisabled()
-	 * @param    string|boolean    $label       User-visible label<br>Set it to <code>true</code>
-	 *                                          to use <code>$content</code> as label attribute
+	 * @param  string          $content
+	 * @param  string          $value     See setValue()
+	 * @param  boolean         $selected  See setSelected()
+	 * @param  boolean         $disabled  See setDisabled()
+	 * @param  string|boolean  $label     User-visible label<br>Set it to <code>true</code>
+	 *                                    to use <code>$content</code> as label attribute
 	 * @return Html5
 	 */
-	public function option(
-			$content = null, $value = null, $selected = false,
-			$disabled = false, $label = false)
+	public function option($content = null, $value = null,
+			$selected = false, $disabled = false, $label = false)
 	{
 		if ($label === true) {
 			$label = $content;
@@ -2325,19 +2256,18 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see option()
 	 *
-	 * @param    array          $values               See checkboxes()
-	 * @param    array|null     $labels               See checkboxes()
-	 * @param    mixed|array    $selected             Is compared with the value attribute.<br>
-	 *                                                See setSelected()
-	 * @psaram    mixed|array    $disabled             Is compared with the value attribute.<br>
-	 *                                                See setDisabled()
-	 * @param    boolean        $useLabelAttribute    Set it to <code>true</code> to use label
-	 *                                                attribute
+	 * @param  array        $values             See checkboxes()
+	 * @param  array        $labels             See checkboxes()
+	 * @param  mixed|array  $selected           Is compared with the value attribute.<br>
+	 *                                          See setSelected()
+	 * @param  mixed|array  $disabled           Is compared with the value attribute.<br>
+	 *                                          See setDisabled()
+	 * @param  boolean      $useLabelAttribute  Set it to <code>true</code> to use label
+	 *                                          attribute
 	 * @return Html5
 	 */
-	public function options(
-			$values, $labels = null, $selected = false,
-			$disabled = false, $useLabelAttribute = false)
+	public function options($values, $labels = null,
+			$selected = false, $disabled = false, $useLabelAttribute = false)
 	{
 		list($values, $labels) = \ML_Express\arrays($values, $labels);
 		foreach ($values as $i => $value) {
@@ -2402,14 +2332,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * The <code>fieldset</code> element represents a set of form controls optionally grouped
 	 * under a common name.
 	 *
-	 * @param name string [optional]
-	 * <p>Name of form control to use in the <code>form.elements</code> API</p>
-	 *
-	 * @param disabled boolean [optional]
-	 * <p>Whether the form control is disabled</p>
-	 *
-	 * @param form string [optional]
-	 * <p>Associates the control with a <code>form</code> element</p>
+	 * @param  string   $name      Name of form control to use in the
+	 *                             <code>form.elements</code> API</p>
+	 * @param  boolean  $disabled  Whether the form control is disabled.
+	 * @param  string   $form      Associates the control with a <code>form</code> element.
 	 * @return Html5
 	 */
 	public function fieldset($name = null, $disabled = false, $form = null)
@@ -2426,7 +2352,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * The <code>legend</code> element represents a caption for the rest of the contents
 	 * of the <code>legend</code> element's parent <code>fieldset</code> element, if any.
 	 *
-	 * @param content string [optional]
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function legend($content = '')
@@ -2442,7 +2368,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see th()
 	 *
-	 * @param string $abbr
+	 * @param  string  $abbr
 	 * @return Html5
 	 */
 	public function setAbbr($abbr)
@@ -2455,21 +2381,16 @@ class Html5 extends Xml implements MediaAttributeConstants
 	const ACCEPT_AUDIO = 'audio/*';
 
 	/**
-	 * Hint for expected file type in file upload controls (space separated or
-	 * in an array).
+	 * Sets the <code>accept</code> attribute.
 	 *
-	 * Possible values:
-	 * <ul>
-	 * <li><code>HTML5::ACCEPT_IMAGE</code>
-	 * <li><code>HTML5::ACCEPT_VIDEO</code>
-	 * <li><code>HTML5::ACCEPT_AUDIO</code>
-	 * <li>A valid MIME type with no parameters
-	 * <li>File extension: A string whose first character is a full stop (.)
-	 * </ul>
-	 *
-	 * @see file()
-	 *
-	 * @param    string|array    $accept
+	 * @param  string|array  $accept  Hint for expected file type in file upload controls
+	 *                                (space separated or in an array).
+	 *                                Possible values: <ul><li><code>HTML5::ACCEPT_IMAGE</code>
+	 *                                <li><code>HTML5::ACCEPT_VIDEO</code>
+	 *                                <li><code>HTML5::ACCEPT_AUDIO</code>
+	 *                                <li>A valid MIME type with no parameters
+	 *                                <li>File extension: A string whose first character is a full
+	 *                                stop (.)</ul>
 	 * @return Html5
 	 */
 	public function setAccept($accept)
@@ -2478,12 +2399,11 @@ class Html5 extends Xml implements MediaAttributeConstants
 	}
 
 	/**
-	 * Character encodings to use for form submission (space separated or in an
-	 * array).
+	 * Character encodings to use for form submission (space separated or in an array).
 	 *
 	 * @see form()
 	 *
-	 * @param    string|array    $accept_charset
+	 * @param  string|array  $accept_charset
 	 * @return Html5
 	 */
 	public function setAccept_charset($accept_charset)
@@ -2505,8 +2425,9 @@ class Html5 extends Xml implements MediaAttributeConstants
 	const AUTOCOMPLETE_OFF = 'off';
 
 	/**
+	 * Sets the <code>autocomplete</code> attribute.
 	 * <ul>
-	 * <li><code>form()</form>:<br>
+	 * <li><code>form()</code>:<br>
 	 * Default setting for autofill feature for controls in the form.
 	 * <li><code>text()</code>, <code>search()</code>, <code>select()</code>:<br>
 	 * Hint for form autofill feature.
@@ -2518,7 +2439,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * <li><code>HTML5::AUTOCOMPLETE_OFF</code> or <code>false</code>
 	 * </ul>
 	 *
-	 * @param    string|boolean    $autocomplete
+	 * @param  string|boolean  $autocomplete
 	 * @return Html5
 	 */
 	public function setAutocomplete($autocomplete = self::AUTOCOMPLETE_ON)
@@ -2535,7 +2456,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Automatically focus the form control when the page is loaded.
 	 *
-	 * @param    boolean    $autofocus
+	 * @param  boolean  $autofocus
 	 * @return Html5
 	 */
 	public function setAutofocus($autofocus = true)
@@ -2550,7 +2471,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see video()
 	 * @see audio()
 	 *
-	 * @param boolean $autoplay
+	 * @param  boolean  $autoplay
 	 * @return Html5
 	 */
 	public function setAutoplay($autoplay = true)
@@ -2564,7 +2485,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see ins()
 	 * @see del()
 	 *
-	 * @param string $cite
+	 * @param  string  $cite
 	 * @return Html5
 	 */
 	public function setCite($cite)
@@ -2581,12 +2502,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * $label->radio('choice', 'php')->setChecked(array('cpp', 'java'));
 	 * </pre></code>
 	 *
-	 * @see checkbox()
-	 * @see radio()
-	 * @see checkboxes()
-	 * @see radios()
-	 *
-	 * @param    mixed    $checked
+	 * @param  mixed  $checked
 	 * @return Html5
 	 */
 	public function setChecked($checked = true)
@@ -2605,7 +2521,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see td()
 	 * @see th()
 	 *
-	 * @param int $colspan
+	 * @param  int  $colspan
 	 * @return Html5
 	 */
 	public function setColspan($colspan)
@@ -2618,7 +2534,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see meta()
 	 *
-	 * @param string $content
+	 * @param  string  $content
 	 * @return Html5
 	 */
 	public function setContent($content)
@@ -2654,7 +2570,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see video()
 	 * @see audio()
 	 *
-	 * @param string $value
+	 * @param  string  $value
 	 * @return Html5
 	 */
 	public function setCrossorigin($value)
@@ -2668,7 +2584,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see object()
 	 *
-	 * @param string $data
+	 * @param  string  $data
 	 * @return Html5
 	 */
 	public function setData($data, $name = null)
@@ -2706,7 +2622,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see search()
 	 * @see textarea()
 	 *
-	 * @param    string    $dirname
+	 * @param  string  $dirname
 	 * @return Html5
 	 */
 	public function setDirname($dirname)
@@ -2730,7 +2646,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see option()
 	 * @see options()
 	 *
-	 * @param    mixed    $disabled
+	 * @param  mixed  $disabled
 	 * @return Html5
 	 */
 	public function setDisabled($disabled = true)
@@ -2768,7 +2684,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see form()
 	 *
-	 * @param    string    $enctype
+	 * @param  string  $enctype
 	 * @return Html5
 	 */
 	public function setEnctype($enctype = self::ENCTYPE_MULTIPART)
@@ -2781,7 +2697,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see label()
 	 *
-	 * @param    string    $for
+	 * @param  string  $for
 	 * @return Html5
 	 */
 	public function setFor($for)
@@ -2795,7 +2711,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see label()
 	 * @see input()
 	 *
-	 * @param    string    $form
+	 * @param  string  $form
 	 * @return Html5
 	 */
 	public function setForm($form)
@@ -2808,7 +2724,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see submit()
 	 *
-	 * @param    string    $formaction
+	 * @param  string  $formaction
 	 * @return Html5
 	 */
 	public function setFormaction($formaction)
@@ -2822,7 +2738,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see submit()
 	 * @see setEnctype()
 	 *
-	 * @param    string    $formenctype
+	 * @param  string  $formenctype
 	 * @return Html5
 	 */
 	public function setFormenctype($formenctype)
@@ -2836,7 +2752,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see submit()
 	 * @see setMethod()
 	 *
-	 * @param    string    $formmethod
+	 * @param  string  $formmethod
 	 * @return Html5
 	 */
 	public function setFormmethod($formmethod)
@@ -2850,7 +2766,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see submit()
 	 * @see setNovalidate()
 	 *
-	 * @param    string    $formnovalidate
+	 * @param  string  $formnovalidate
 	 * @return Html5
 	 */
 	public function setFormnovalidate($formnovalidate)
@@ -2864,7 +2780,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see submit()
 	 * @see setTarget()
 	 *
-	 * @param    string    $formtarget
+	 * @param  string  $formtarget
 	 * @return Html5
 	 */
 	public function setFormtarget($formtarget)
@@ -2878,7 +2794,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see td()
 	 * @see th()
 	 *
-	 * @param string|array $headers
+	 * @param  string|array  $headers
 	 * @return Html5
 	 */
 	public function setHeaders($headers)
@@ -2891,7 +2807,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see image()
 	 *
-	 * @param    int    $height
+	 * @param  int  $height
 	 * @return Html5
 	 */
 	public function setHeight($height)
@@ -2916,7 +2832,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see a()
 	 * @see area()
 	 *
-	 * @param string $hreflang
+	 * @param  string  $hreflang
 	 * @return Html5
 	 */
 	public function setHreflang($hreflang)
@@ -2950,7 +2866,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see text()
 	 * @search()
 	 *
-	 * @param    string    $inputmode
+	 * @param  string  $inputmode
 	 * @return Html5
 	 */
 	public function setInputmode($inputmode)
@@ -2990,7 +2906,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see text()
 	 * @see search()
 	 *
-	 * @param    string    $list
+	 * @param  string  $list
 	 * @return Html5
 	 */
 	public function setList($list)
@@ -3004,7 +2920,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see video()
 	 * @see audio()
 	 *
-	 * @param boolean $loop
+	 * @param  boolean  $loop
 	 * @return Html5
 	 */
 	public function setLoop($loop = true)
@@ -3018,7 +2934,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see text()
 	 * @see search()
 	 *
-	 * @param    int    $maxlength
+	 * @param  int  $maxlength
 	 * @return Html5
 	 */
 	public function setMaxlength($maxlength)
@@ -3032,7 +2948,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see video()
 	 * @see audio()
 	 *
-	 * @param string $group
+	 * @param  string  $group
 	 * @return Html5
 	 */
 	public function setMediagroup($group)
@@ -3053,7 +2969,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see form()
 	 *
-	 * @param    string    $method
+	 * @param  string  $method
 	 * @return Html5
 	 */
 	public function setMethod($method)
@@ -3067,7 +2983,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see text()
 	 * @see search()
 	 *
-	 * @param    int    $minlength
+	 * @param  int  $minlength
 	 * @return Html5
 	 */
 	public function setMinlength($minlength)
@@ -3080,7 +2996,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see select()
 	 *
-	 * @param    boolean    $multiple
+	 * @param  boolean  $multiple
 	 * @return Html5
 	 */
 	public function setMultiple($multiple = true)
@@ -3094,7 +3010,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see video()
 	 * @see audio()
 	 *
-	 * @param boolean $muted
+	 * @param  boolean  $muted
 	 * @return Html5
 	 */
 	public function setMuted($muted = true)
@@ -3113,7 +3029,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * Name of form control to use for form submission and in the <code>form.elements</code> API
 	 * </ul>
 	 *
-	 * @param    string    $name
+	 * @param  string  $name
 	 * @return Html5
 	 */
 	public function setName($name)
@@ -3126,7 +3042,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see form()
 	 *
-	 * @param    boolean    $novalidate
+	 * @param  boolean  $novalidate
 	 * @return Html5
 	 */
 	public function setNovalidate($novalidate = true)
@@ -3140,7 +3056,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see text()
 	 * @see search()
 	 *
-	 * @param    string    $pattern
+	 * @param  string  $pattern
 	 * @return Html5
 	 */
 	public function setPattern($pattern)
@@ -3154,7 +3070,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see a()
 	 * @see area().
 	 *
-	 * @param string|array $urls
+	 * @param  string|array  $urls
 	 * @return Html5
 	 */
 	public function setPing($urls)
@@ -3168,7 +3084,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see text()
 	 * @see search()
 	 *
-	 * @param    string    $placeholder
+	 * @param  string  $placeholder
 	 * @return Html5
 	 */
 	public function setPlaceholder($placeholder)
@@ -3181,7 +3097,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see video()
 	 *
-	 * @param boolean $poster
+	 * @param  boolean  $poster
 	 * @return Html5
 	 */
 	public function setPoster($source) {
@@ -3198,7 +3114,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see video()
 	 * @see audio()
 	 *
-	 * @param string $value
+	 * @param  string  $value
 	 * @return Html5
 	 */
 	public function setPreload($value)
@@ -3212,7 +3128,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see text()
 	 * @see search()
 	 *
-	 * @param    boolean    $readonly
+	 * @param  boolean  $readonly
 	 * @return Html5
 	 */
 	public function setReadonly($readonly = true)
@@ -3248,7 +3164,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see a()
 	 * @see area()
 	 *
-	 * @param    string    $rel
+	 * @param  string  $rel
 	 * @return Html5
 	 */
 	public function setRel($rel)
@@ -3260,7 +3176,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Whether the control is required for form submission.
 	 *
-	 * @param    boolean    $required
+	 * @param  boolean  $required
 	 * @return Html5
 	 */
 	public function setRequired($required = true)
@@ -3273,7 +3189,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see ol()
 	 *
-	 * @param boolean $reversed
+	 * @param  boolean  $reversed
 	 * @return Html5
 	 */
 	public function setReversed($reversed = true)
@@ -3292,7 +3208,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see td()
 	 * @see th()
 	 *
-	 * @param int $rowspan
+	 * @param  int  $rowspan
 	 * @return Html5
 	 */
 	public function setRowspan($rowspan)
@@ -3324,12 +3240,11 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * <li>Html5::SCOPE_COL
 	 * <li>Html5::SCOPE_COLGROUP
 	 * <li>Html5::SCOPE_ROW
-	 * <li>Html5::SCOPE_ROWGROUP
-	 * </ul>
+	 * <li>Html5::SCOPE_ROWGROUP</ul>
 	 *
 	 * @see th()
 	 *
-	 * @param string $scope
+	 * @param  string  $scope
 	 * @return Html5
 	 */
 	public function setScope($scope)
@@ -3342,7 +3257,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see track()
 	 *
-	 * @param string $language
+	 * @param  string  $language
 	 * @return Html5
 	 */
 	public function setSrclang($language)
@@ -3355,7 +3270,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see style()
 	 *
-	 * @param string $scoped
+	 * @param  string  $scoped
 	 * @return Html5
 	 */
 	public function setScoped($scoped = true)
@@ -3378,7 +3293,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see option()
 	 *
-	 * @param    mixed    $selected
+	 * @param  mixed  $selected
 	 * @return Html5
 	 */
 	public function setSelected($selected = true)
@@ -3395,11 +3310,10 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * Possible values are <ul>
 	 * <li>Html5::SHAPE_RECT
 	 * <li>Html5::SHAPE_CIRCLE
-	 * <li>Html5::SHAPE_POLY
-	 * </ul>
+	 * <li>Html5::SHAPE_POLY</ul>
 	 *
 	 * @see area()
-	 * @param string $shape
+	 * @param  string  $shape
 	 * @return Html5
 	 */
 	public function setShape($shape)
@@ -3414,7 +3328,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see search()
 	 * @see select()
 	 *
-	 * @param    int    $size
+	 * @param  int  $size
 	 * @return Html5
 	 */
 	public function setSize($size)
@@ -3428,7 +3342,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see icon()
 	 * @see shortcut_icon()
 	 *
-	 * @param string $sizes
+	 * @param  string  $sizes
 	 * @return Html5
 	 */
 	public function setSizes($sizes)
@@ -3441,7 +3355,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see table()
 	 *
-	 * @param boolean $sortable
+	 * @param  boolean  $sortable
 	 * @return Html5
 	 */
 	public function setSortable($sortable = true)
@@ -3459,7 +3373,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see th()
 	 *
-	 * @param int|string $sorted
+	 * @param  int|string  $sorted
 	 * @return Html5
 	 */
 	public function setSorted($sorted)
@@ -3481,7 +3395,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see colgroup()
 	 * @see col()
 	 *
-	 * @param int $span
+	 * @param  int  $span
 	 * @return Html5
 	 */
 	public function setSpan($span)
@@ -3494,7 +3408,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see image()
 	 *
-	 * @param    string    $src
+	 * @param  string  $src
 	 * @return Html5
 	 */
 	public function setSrc($src)
@@ -3517,7 +3431,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see ol()
 	 *
-	 * @param int $start
+	 * @param  int  $start
 	 * @return Html5
 	 */
 	public function setStart($start)
@@ -3533,21 +3447,19 @@ class Html5 extends Xml implements MediaAttributeConstants
 	/**
 	 * Browsing context for hyperlink navigation or form submission.
 	 *
-	 * Possible values are:
-	 * <ul>
+	 * Possible values are: <ul>
 	 * <li><code>HTML5::TARGET_BLANK</code>
 	 * <li><code>HTML5::TARGET_SELF</code>
 	 * <li><code>HTML5::TARGET_PARENT</code>
 	 * <li><code>HTML5::TARGET_TOP</code>
-	 * <li>framename
-	 * </ul>
+	 * <li>framename</ul>
 	 *
 	 * @see base()
 	 * @see a()
 	 * @see area()
 	 * @see form()
 	 *
-	 * @param    string    $target
+	 * @param  string  $target
 	 * @return Html5
 	 */
 	public function setTarget($target)
@@ -3567,7 +3479,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 *
 	 * @see object()
 	 *
-	 * @param    boolean    $typemustmatch
+	 * @param  boolean  $typemustmatch
 	 * @return Html5
 	 */
 	public function setTypemustmatch($typemustmatch = true)
@@ -3581,7 +3493,7 @@ class Html5 extends Xml implements MediaAttributeConstants
 	 * @see img()
 	 * @see object()
 	 *
-	 * @param string $usemap
+	 * @param  string  $usemap
 	 * @return Html5
 	 */
 	public function setUsemap($usemap) {
@@ -3593,14 +3505,14 @@ class Html5 extends Xml implements MediaAttributeConstants
 
 	/**
 	 * <ul>
-	 * <li><code>li()</code>:<br>Ordinal value of the list item
-	 * <li><code>data()</code>:<br>Machine-readable value
-	 * <li><code>param()</code>:<br>Value of parameter
+	 * <li><code>li</code>:<br>Ordinal value of the list item
+	 * <li><code>data</code>:<br>Machine-readable value
+	 * <li><code>param</code>:<br>Value of parameter
 	 * <li><code>checkbox()</code>, <code>radio()</code>:<br>Value of the form control
-	 * <li><code>option()</code>:<br>Value to be used for form submission
+	 * <li><code>option</code>:<br>Value to be used for form submission
 	 * </ul>
 	 *
-	 * @param    string|int    $value
+	 * @param  string|int  $value
 	 * @return Html5
 	 */
 	public function setValue($value)
