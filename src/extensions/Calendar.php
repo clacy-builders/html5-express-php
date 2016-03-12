@@ -14,43 +14,35 @@ trait Calendar
 	 *
 	 * @link http://php.net/manual/en/function.strftime.php
 	 *
-	 * @param from \DateTime|string
-	 * <p>First day which should be shown on the calendar.<br>
-	 * A string of the format <code>Y-m-d</code> or a <code>DateTime</code> object.</p>
-	 *
-	 * @param till \DateTime|string
-	 * <p>Day after the last day which should be shown on the calendar.</p>
-	 *
-	 * @param firstWeekday int|string [optional]
-	 * <p>0 (for Monday) through 6 (for Sunday) or an ISO 3166 country code
-	 * for example <code>BR</code> for Brazil, <code>SE</code> for Sweden.</p>
-	 *
-	 * @param links array [optional]
-	 * <p>An assotiative array with ISO 8601 dates <code>YYYY-mm-dd</code> as keys.
-	 * For example:<br>
-	 * <code>
-	 * ['2015-04-03' => ['link' => '/archive/2016/04/foo', 'title' => 'Foo', 'classes' => 'post']]
-	 * </code></p>
-	 *
-	 * @param weekdayFormat string|array [optional]
-	 * <p>Neither a format string containing <code>%a</code> or <code>%A</code>
-	 * or an array starting with Monday, for example:<br>
-	 * <code>['M', 'T', 'W', 'T', 'F', 'S', 'S']</code></p>
-	 *
-	 * @param monthFormat string [optional]
-	 * <p>You may use <code>%b</code>, <code>%B</code> or <code>%m</code>, also in combination with
-	 * <code>%Y</code> or <code>%y</code></p>
-	 *
-	 * @param yearFormat string [optional]
-	 * <p>You may use <code>%Y</code>, <code>%y</code> or an empty string.</p>
-	 *
-	 * @param dayFormat string [optional]
-	 * <p>You may use <code>%d</code> or <code>%#d</code>
-	 * (<code>%e</code> doesn't work on Windows).</p>
-	 *
-	 * @param showWeekNumbers boolean|string [optional]
-	 * <p>Wether ISO 8601 week numbers are displayed or not.
-	 * You may use a string for the corresponding column header, for example <code>'Wk'</code>.</p>
+	 * @param  \DateTime|string  $from             First day which should be shown on the calendar.
+	 *                                             <br>A string of the format <code>Y-m-d</code>
+	 *                                             or a <code>DateTime</code> object.
+	 * @param  \DateTime|string  $till             Day after the last day which should be shown on
+	 *                                             the calendar.
+	 * @param  int|string        $firstWeekday     0 (for Monday) through 6 (for Sunday)
+	 *                                             or an ISO 3166 country code for example
+	 *                                             <code>BR</code> for Brazil,
+	 *                                             <code>SE</code> for Sweden.
+	 * @param  array             $links            An associative array with ISO 8601 dates
+	 *                                             <code>YYYY-mm-dd</code> as keys. Each item of
+	 *                                             this array is also an associative array with the
+	 *                                             following keys: 'link', 'title', 'classes'.
+	 * @param  string|array      $weekdayFormat    Neither a format string containing
+	 *                                             <code>%a</code> or <code>%A</code> or an array
+	 *                                             starting with Monday, for example:
+	 *                                             <code>['M', 'T', 'W', 'T', 'F', 'S', 'S']</code>.
+	 * @param  string            $monthFormat      You may use <code>%b</code>, <code>%B</code>
+	 *                                             or <code>%m</code>, also in combination with
+	 *                                             <code>%Y</code> or <code>%y</code>.
+	 * @param  string            $yearFormat       You may use <code>%Y</code>, <code>%y</code>
+	 *                                             or an empty string.
+	 * @param  string            $dayFormat        You may use <code>%d</code> or <code>%#d</code>
+	 *                                             (<code>%e</code> doesn't work on Windows).
+	 * @param  boolean|string    $showWeekNumbers  Wether ISO 8601 week numbers are displayed
+	 *                                             or not. You may use a string for the
+	 *                                             corresponding column header, for example
+	 *                                             <code>'Wk'</code>.
+	 * @return \ML_Express\HTML5\Html5
 	 */
 	public function calendar($from, $till, $firstWeekday = 0, $links = null,
 			$weekdayFormat = null, $monthFormat = null, $yearFormat = null,
@@ -170,12 +162,9 @@ trait Calendar
 	 *
 	 * @link http://unicode.org/repos/cldr/trunk/common/supplemental/supplementalData.xml
 	 *
-	 * @param countryCode string
-	 * <p>An ISO 3166 country code
-	 * for example <code>BR</code> for Brazil, <code>SE</code> for Sweden.</p>
-	 *
-	 * @return
-	 * <p>0 for Monday trough 6 for Sunday.</p>
+	 * @param  string  $countryCode  An ISO 3166 country code, for example <code>BR</code>
+	 *                               for Brazil, <code>SE</code> for Sweden.
+	 * @return int                   0 for Monday trough 6 for Sunday.
 	 */
 	public static function getFirstWeekday($countryCode)
 	{
