@@ -2,6 +2,8 @@
 
 namespace ML_Express\HTML5\Extensions;
 
+use ML_Express\Calendar\Calendar as Cal;
+
 /**
  * @link https://github.com/ml-express/html5-express-php/wiki/Calendar
  */
@@ -12,222 +14,98 @@ trait Calendar
 	 *
 	 * Years are represented by sections, months are represented by tables.
 	 *
-	 * @link http://php.net/manual/en/function.strftime.php
-	 *
-	 * @param  \DateTime|string  $from             First day which should be shown on the calendar.
-	 *                                             <br>A string of the format <code>Y-m-d</code>
-	 *                                             or a <code>DateTime</code> object.
-	 * @param  \DateTime|string  $till             Day after the last day which should be shown on
-	 *                                             the calendar.
-	 * @param  int|string        $firstWeekday     0 (for Monday) through 6 (for Sunday)
-	 *                                             or an ISO 3166 country code for example
-	 *                                             <code>BR</code> for Brazil,
-	 *                                             <code>SE</code> for Sweden.
-	 * @param  array             $links            An associative array with ISO 8601 dates
-	 *                                             <code>YYYY-mm-dd</code> as keys. Each item of
-	 *                                             this array is also an associative array with the
-	 *                                             following keys: 'link', 'title', 'classes'.
-	 * @param  string|array      $weekdayFormat    Neither a format string containing
-	 *                                             <code>%a</code> or <code>%A</code> or an array
-	 *                                             starting with Monday, for example:
-	 *                                             <code>['M', 'T', 'W', 'T', 'F', 'S', 'S']</code>.
-	 * @param  string            $monthFormat      You may use <code>%b</code>, <code>%B</code>
-	 *                                             or <code>%m</code>, also in combination with
-	 *                                             <code>%Y</code> or <code>%y</code>.
-	 * @param  string            $yearFormat       You may use <code>%Y</code>, <code>%y</code>
-	 *                                             or an empty string.
-	 * @param  string            $dayFormat        You may use <code>%d</code> or <code>%#d</code>
-	 *                                             (<code>%e</code> doesn't work on Windows).
-	 * @param  boolean|string    $showWeekNumbers  Wether ISO 8601 week numbers are displayed
-	 *                                             or not. You may use a string for the
-	 *                                             corresponding column header, for example
-	 *                                             <code>'Wk'</code>.
 	 * @return \ML_Express\HTML5\Html5
 	 */
-	public function calendar($from, $till, $firstWeekday = 0, $links = null,
-			$weekdayFormat = null, $monthFormat = null, $yearFormat = null,
-			$dayFormat = null, $showWeekNumbers = false)
+	public function calendar(Cal $calendar, $showIsoWeeks = false, $listEntries = false)
 	{
-		$dayFormat = $dayFormat === null ? '%#d' : $dayFormat;
-		$weekdayFormat = $weekdayFormat === null ? '%a' : $weekdayFormat;
-		$monthFormat = $monthFormat === null ? '%B' : $monthFormat;
-		$yearFormat = $yearFormat === null ? '%Y' : $yearFormat;
-
-		if (is_string($from)) {
-			$from = new \DateTime($from);
-		}
-		if (is_string($till)) {
-			$till = new \DateTime($till);
-		}
-		if (is_string($firstWeekday)) {
-			$firstWeekday = self::getFirstWeekday($firstWeekday);
-		}
-		if (!is_array($weekdayFormat)) {
-			$weekdays = $this->getWeekdays($weekdayFormat);
-		}
-		else {
-			$weekdays = $weekdayFormat;
-		}
-		if (is_string($showWeekNumbers)) {
-			$weekLabel = $showWeekNumbers;
-			$showWeekNumbers = true;
+		if (is_string($showIsoWeeks)) {
+			$weekLabel = $showIsoWeeks;
+			$showIsoWeeks = true;
 		} else {
 			$weekLabel = '';
 		}
-
-		list($weekdays, $weekdayClasses) = self::reorderWeekdays($firstWeekday, $weekdays);
-
-		$day = clone $from;
-		$first = true;
-		while ($day != $till) {
-			$iso = $day->format('Y-m-d');
-			$w = ((int) $day->format('N') - $firstWeekday + 6) % 7;
-			$d = (int) $day->format('d');
-			$m = $day->format('m');
-			$t = $day->format('t');
-			$y = $day->format('Y');
-
-			// new year?
-			if (($d == 1 && $m == 1) || $first) {
-				$section = $this->section()->setClass('calendar year-' . $y);
-				if ($yearFormat !== '') {
-					$section->h1()->inLine()->time($this->format($day, $yearFormat), $y);
-				}
+		$array = $calendar->buildArray();
+		$weekdayKeys = array_keys($array['weekdays']);
+		foreach ($array['years'] as $year) {
+			$section = $this->section()->setClass('calendar year-' . $year['time']);
+			if ($year['label']) {
+				$section->h1()->inLine()->time($year['label'], $year['time']);
 			}
-
-			// new month or first day?
-			if ($d == 1 || $first) {
-				$table = $section->table()->setClass('month-' . $m);
-
+			foreach ($year['months'] as $month) {
+				$table = $section->table()->setClass('month-' . $month['month']);
 				$thead = $table->thead();
-				$thead->tr()->setClass('month')
-						->th(null, $showWeekNumbers ? 8 : 7)->inLine()
-						->time($this->format($day, $monthFormat), $y . '-' . $m);
 
-				// weekdays
+				// month row
+				$thead->tr()->setClass('month')
+						->th(null, $showIsoWeeks ? 8 : 7)->inLine()
+						->time($month['label'], $month['time']);
+
+				// weekdays row
 				$tr = $thead->tr()->setClass('weekdays');
-				if ($showWeekNumbers) {
+				if ($showIsoWeeks) {
 					$tr->th($weekLabel)->setClass('week');
 				}
-				foreach ($weekdays as $weekdayName) {
-					$tr->th($weekdayName);
+				foreach ($array['weekdays'] as $weekday) {
+					$tr->th($weekday);
 				}
 
 				$tbody = $table->tbody();
-			}
 
-			// new week
-			if ($w == 0 || $d == 1 || $first) {
-				$tr = $tbody->tr();
-				// number of week
-				if ($showWeekNumbers) {
-					$tr->td(null)->inLine()
-							->time($day->format('W'), $day->format('o-\WW'))
-							->setClass('week');
+				// week rows
+				foreach ($month['weeks'] as $week) {
+					$tr = $tbody->tr();
+					if ($showIsoWeeks) {
+						$tr->td(null)->inLine()
+								->time($week['label'], $week['time'])->setClass('week');
+					}
+					// empty cells
+					if (isset($week['leading'])) {
+						$tr->td('', $week['leading']);
+					}
+
+					// day cells
+					foreach ($week['days'] as $i => $day) {
+						$td = $tr ->td();
+						if (isset($day['entries'])) {
+							if ($listEntries) {
+								$td->time($day['label'], $day['time'])->setClass($day['weekday']);
+								$ul = $td->ul();
+								foreach ($day['entries'] as $i => $entry) {
+									if (isset($entry['title'])) {
+										$li = $ul->li()->inline()->setClass(isset($entry['class'])
+												? $entry['class']
+												: null);
+										if (isset($entry['link'])) {
+											$li->a($entry['title'], $entry['link']);
+										}
+										else {
+											$li->appendText($entry['title']);
+										}
+									}
+								}
+							}
+							else {
+								$td->inline();
+								$entry = $day['entries'][0];
+								$elem = isset($entry['link']) ? $td->a(null, $entry['link']) : $td;
+								$elem->time($day['label'], $day['time'])
+										->setTitle(isset($entry['title']) ? $entry['title'] : null)
+										->setClass($day['weekday'])
+										->setClass(isset($entry['class']) ? $entry['class'] : null);
+							}
+						}
+						else {
+							$td->inLine()
+									->time($day['label'], $day['time'])->setClass($day['weekday']);
+						}
+ 					}
+ 					// fill last week; last day of month or in calendar?
+ 					if (isset($week['following'])) {
+ 						$tr->td('', $week['following']);
+ 					}
 				}
-				// empty cell
-				if ($w > 0) {
-					$tr->td('', $w);
-				}
 			}
-
-			// day
-			$td = $tr ->td()->inLine();
-			$link = $title = $classes = null;
-			if (is_array($links) && isset($links[$iso])) {
-				if (isset($links[$iso]['link'])) $link = $links[$iso]['link'];
-				if (isset($links[$iso]['title'])) $title = $links[$iso]['title'];
-				if (isset($links[$iso]['classes'])) $classes = $links[$iso]['classes'];
-			}
-			$elem = !empty($link) ? $td->a(null, $link) : $td;
-			$time = $elem->time($this->format($day, $dayFormat), $iso);
-			$time->setTitle($title);
-			$time->setClass($weekdayClasses[$w]);
-			$time->setClass($classes);
-
-			// $day is not needed anymore but $next
-			$next = $day->add(new \DateInterval('P1D'));
-
-			// fill last week; last day of month or in calendar?
-			if ($w != 6 && ($d == $t || $next == $till)) {
-				$tr->td('', 6 - $w);
-			}
-			$first = false;
 		}
 		return $this;
-	}
-
-	/**
-	 * Returns first day of the week in a calendar page view for a given country.
-	 *
-	 * @link http://unicode.org/repos/cldr/trunk/common/supplemental/supplementalData.xml
-	 *
-	 * @param  string  $countryCode  An ISO 3166 country code, for example <code>BR</code>
-	 *                               for Brazil, <code>SE</code> for Sweden.
-	 * @return int                   0 for Monday trough 6 for Sunday.
-	 */
-	public static function getFirstWeekday($countryCode)
-	{
-		$countryCode = strtoupper($countryCode);
-		$territories = array(
-				array(
-						'AD', 'AI', 'AL', 'AM', 'AN', 'AT', 'AX', 'AZ', 'BA', 'BE', 'BG', 'BM',
-						'BN', 'BY', 'CH', 'CL', 'CM', 'CR', 'CY', 'CZ', 'DE', 'DK', 'EC', 'EE',
-						'ES', 'FI', 'FJ', 'FO', 'FR', 'GB', 'GE', 'GF', 'GP', 'GR', 'HR', 'HU',
-						'IS', 'IT', 'KG', 'KZ', 'LB', 'LI', 'LK', 'LT', 'LU', 'LV', 'MC', 'MD',
-						'ME', 'MK', 'MN', 'MQ', 'MY', 'NL', 'NO', 'PL', 'PT', 'RE', 'RO', 'RS',
-						'RU', 'SE', 'SI', 'SK', 'SM', 'TJ', 'TM', 'TR', 'UA', 'UY', 'UZ', 'VA',
-						'VN', 'XK'
-				),
-				array(), array(), array(), array('BD', 'MV'),
-				array(
-						'AE', 'AF', 'BH', 'DJ', 'DZ', 'EG', 'IQ', 'IR', 'JO', 'KW', 'LY', 'MA',
-						'OM', 'QA', 'SD', 'SY'
-				),
-				array(
-						'AG', 'AR', 'AS', 'AU', 'BR', 'BS', 'BT', 'BW', 'BZ', 'CA', 'CN', 'CO',
-						'DM', 'DO', 'ET', 'GT', 'GU', 'HK', 'HN', 'ID', 'IE', 'IL', 'IN', 'JM',
-						'JP', 'KE', 'KH', 'KR', 'LA', 'MH', 'MM', 'MO', 'MT', 'MX', 'MZ', 'NI',
-						'NP', 'NZ', 'PA', 'PE', 'PH', 'PK', 'PR', 'PY', 'SA', 'SG', 'SV', 'TH',
-						'TN', 'TT', 'TW', 'UM', 'US', 'VE', 'VI', 'WS', 'YE', 'ZA', 'ZW'
-				)
-		);
-		foreach ($territories as $i => $territory) {
-			if (in_array($countryCode, $territory)) return $i;
-		}
-		return 0;
-	}
-
-	private function getWeekdays($format = '%a')
-	{
-		$array = array();
-		$day = new \DateTime('2014-01-06');
-		for ($i = 0; $i < 7; $i++) {
-			$array[$i] = $this->format($day, $format);
-			$day->add(new \DateInterval('P1D'));
-		}
-		return $array;
-	}
-
-	private function format(\DateTime $day, $format)
-	{
-		$class = get_class($this->getRoot());
-		return \ML_Express\formatDateTime($day, $format, $class::CHARACTER_ENCODING);
-	}
-
-	private static function reorderWeekdays($firstWeekday, $weekdayNames)
-	{
-		$weekdayClasses = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-		if ($firstWeekday > 0) {
-			$wdn = $wdc = array();
-			for ($i = $firstWeekday; $i < $firstWeekday + 7; $i++) {
-				$index = $i % 7;
-				$wdn[] = $weekdayNames[$index];
-				$wdc[] = $weekdayClasses[$index];
-			}
-			$weekdayNames = $wdn;
-			$weekdayClasses = $wdc;
-		}
-		return array($weekdayNames, $weekdayClasses);
 	}
 }

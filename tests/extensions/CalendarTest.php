@@ -4,23 +4,24 @@ namespace ML_Express\HTML5\Tests;
 
 require_once 'vendor/ml-express/xml/allIncl.php';
 require_once 'vendor/ml-express/xml/tests/Express_TestCase.php';
+require_once 'vendor/ml-express/calendar/allIncl.php';
 require_once 'src/Html5.php';
 require_once 'src/extensions/Calendar.php';
 
 use ML_Express\Tests\Express_TestCase;
 use ML_Express\HTML5\Html5;
 use ML_Express\HTML5\Extensions\Calendar;
+use ML_Express\Calendar\Calendar as Cal;
+use ML_Express\Calendar\Day;
 
 class CalendarTest extends Express_TestCase
 {
 	public function provider()
 	{
 		return array(
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								new \DateTime('2015-09-29'),
-								new \DateTime('2015-10-02')),
-						'<section class="calendar year-2015">
+			array(
+				Html::createSubL()->calendar(Cal::span('2015-09-29', '2015-10-01')),
+				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-09">
 		<thead>
@@ -70,10 +71,10 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar('2015-09-29', '2015-10-02'),
-						'<section class="calendar year-2015">
+			),
+			array(
+				Html::createSubL()->calendar(Cal::span('2015-09-29', '2015-10-01')),
+				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-09">
 		<thead>
@@ -123,9 +124,9 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar('2015-12-28', '2016-01-04'),
+			),
+			array(
+				Html::createSubL()->calendar(Cal::span('2015-12-28', '2016-01-03')),
 						'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-12">
@@ -181,11 +182,11 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								'2015-12-28', '2016-01-04', 0, null, null, '%B %Y', ''),
-						'<section class="calendar year-2015">
+			),
+			array(Html::createSubL()->calendar(Cal::span('2015-12-28', '2016-01-03')
+					->setMonthFormat('%B %Y')
+					->setYearFormat('')),
+				'<section class="calendar year-2015">
 	<table class="month-12">
 		<thead>
 			<tr class="month">
@@ -238,12 +239,11 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								'2016-01-01', '2016-01-02', 0, null,
-								null, null, null, '%d'),
-						'<section class="calendar year-2016">
+			),
+			array(
+				Html::createSubL()
+						->calendar(Cal::span('2016-01-01', '2016-01-01')->setDayFormat('%d')),
+				'<section class="calendar year-2016">
 	<h1><time>2016</time></h1>
 	<table class="month-01">
 		<thead>
@@ -269,13 +269,11 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								new \DateTime('2015-09-29'),
-								new \DateTime('2015-10-02'),
-								6),
-						'<section class="calendar year-2015">
+			),
+			array(
+				Html::createSubL()
+						->calendar(Cal::span('2015-09-29', '2015-10-01')->setFirstWeekday(6)),
+				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-09">
 		<thead>
@@ -325,14 +323,12 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								new \DateTime('2015-02-27'),
-								new \DateTime('2015-03-02'),
-								6, null,
-								['M', 'T', 'W', 'T', 'F', 'S', 'S']),
-						'<section class="calendar year-2015">
+			),
+			array(
+				Html::createSubL()->calendar(Cal::span('2015-02-27', '2015-03-01')
+						->setFirstWeekday(6)
+						->setWeekdayFormat(['M', 'T', 'W', 'T', 'F', 'S', 'S'])),
+				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-02">
 		<thead>
@@ -380,12 +376,10 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('de')->calendar(
-								new \DateTime('2015-02-27'),
-								new \DateTime('2015-03-02')),
-						'<section class="calendar year-2015">
+			),
+			array(
+				Html::createSubL('de')->calendar(Cal::span('2015-02-27', '2015-03-01')),
+				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-02">
 		<thead>
@@ -434,28 +428,19 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								new \DateTime('2015-02-27'),
-								new \DateTime('2015-03-02'), 0,
-								array(
-										'2015-02-28' => array(
-												'link' => '/birthdays/m-e-lee',
-												'classes' => 'birthday',
-												'title' => 'M. E. Lee\'s birthday'
-										),
-										'2015-03-01' => array(
-												'classes' => ['foo', 'bar'],
-												'title' => 'Foo'
-										),
-										'2015-05-31' => array(
-												'link' => '/birthdays/fred-barney',
-												'classes' => 'birthday',
-												'title' => 'Fred Barney\'s birthday'
-										),
-								)),
-						'<section class="calendar year-2015">
+			),
+			array(
+				Html::createSubL()->calendar(Cal::span('2015-02-27', '2015-03-01')
+						->setFirstWeekday(0)
+						->addEntries([
+								(new Day('2015-02-28'))
+										->setTitle('M. E. Lee\'s birthday')
+										->setLink('/birthdays/m-e-lee'),
+								(new Day('2015-02-28'))
+										->setTitle('Fred Barney\'s birthday')
+										->setLink('/birthdays/fred-barney')], 'birthday')
+						->addEntries((new Day('2015-03-01'))->setTitle('Foo'), 'foo bar')),
+				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-02">
 		<thead>
@@ -506,12 +491,84 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								new \DateTime('2015-02-27'),
-								new \DateTime('2015-03-02'), 'MV'),
-							'<section class="calendar year-2015">
+			),
+			array(
+				Html::createSubL()->calendar(Cal::span('2015-02-27', '2015-03-01')
+						->setFirstWeekday(0)
+						->addEntries([
+								(new Day('2015-02-28'))
+										->setTitle('M. E. Lee\'s birthday')
+										->setLink('/birthdays/m-e-lee'),
+								(new Day('2015-02-28'))
+										->setTitle('Fred Barney\'s birthday')
+										->setLink('/birthdays/fred-barney')], 'birthday')
+						->addEntries((new Day('2015-03-01'))->setTitle('Foo'), 'foo bar'),
+						false, true),
+				'<section class="calendar year-2015">
+	<h1><time>2015</time></h1>
+	<table class="month-02">
+		<thead>
+			<tr class="month">
+				<th colspan="7"><time datetime="2015-02">February</time></th>
+			</tr>
+			<tr class="weekdays">
+				<th>Mon</th>
+				<th>Tue</th>
+				<th>Wed</th>
+				<th>Thu</th>
+				<th>Fri</th>
+				<th>Sat</th>
+				<th>Sun</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="4"></td>
+				<td><time datetime="2015-02-27" class="fri">27</time></td>
+				<td>
+					<time datetime="2015-02-28" class="sat">28</time>
+					<ul>
+						<li class="birthday"><a href="/birthdays/m-e-lee">M. E. Lee\'s birthday</a></li>
+						<li class="birthday"><a href="/birthdays/fred-barney">Fred Barney\'s birthday</a></li>
+					</ul>
+				</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="month-03">
+		<thead>
+			<tr class="month">
+				<th colspan="7"><time datetime="2015-03">March</time></th>
+			</tr>
+			<tr class="weekdays">
+				<th>Mon</th>
+				<th>Tue</th>
+				<th>Wed</th>
+				<th>Thu</th>
+				<th>Fri</th>
+				<th>Sat</th>
+				<th>Sun</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="6"></td>
+				<td>
+					<time datetime="2015-03-01" class="sun">1</time>
+					<ul>
+						<li class="foo bar">Foo</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>'
+			),
+			array(
+				Html::createSubL()->calendar(Cal::span('2015-02-27', '2015-03-01')
+						->setFirstWeekday('MV')),
+				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-02">
 		<thead>
@@ -560,13 +617,10 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>',
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								new \DateTime('2015-01-01'),
-								new \DateTime('2015-01-05'),
-								null, null, null, null, null, null, true),
-						'<section class="calendar year-2015">
+			),
+			array(
+				Html::createSubL()->calendar(Cal::span('2015-01-01', '2015-01-04'), true),
+				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-01">
 		<thead>
@@ -596,13 +650,10 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
-				array(
-						Html::createSub()->setLocale('en')->calendar(
-								new \DateTime('2016-01-01'),
-								new \DateTime('2016-01-04'),
-								null, null, null, null, null, null, 'Wk'),
-						'<section class="calendar year-2016">
+			),
+			array(
+				Html::createSubL()->calendar(Cal::span('2016-01-01', '2016-01-03'), 'Wk'),
+				'<section class="calendar year-2016">
 	<h1><time>2016</time></h1>
 	<table class="month-01">
 		<thead>
@@ -631,7 +682,7 @@ class CalendarTest extends Express_TestCase
 		</tbody>
 	</table>
 </section>'
-				),
+			),
 		);
 	}
 }
@@ -640,9 +691,9 @@ class Html extends Html5
 {
 	use Calendar;
 
-	public function setLocale($locale)
+	public static function createSubL($locale = 'en')
 	{
 		setlocale(LC_TIME, $locale);
-		return $this;
+		return self::createSub();
 	}
 }
