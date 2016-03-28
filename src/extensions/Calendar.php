@@ -28,7 +28,8 @@ trait Calendar
 		if (is_string($showIsoWeeks)) {
 			$weekLabel = $showIsoWeeks;
 			$showIsoWeeks = true;
-		} else {
+		}
+		else {
 			$weekLabel = '';
 		}
 		$array = $calendar->buildArray();
@@ -111,6 +112,6 @@ trait Calendar
 				}
 			}
 		}
-		return $this;
+		return $section;
 	}
 }
