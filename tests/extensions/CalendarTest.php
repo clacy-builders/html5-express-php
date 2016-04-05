@@ -12,7 +12,7 @@ use ML_Express\Tests\Express_TestCase;
 use ML_Express\HTML5\Html5;
 use ML_Express\HTML5\Extensions\Calendar;
 use ML_Express\Calendar\Calendar as Cal;
-use ML_Express\Calendar\Day;
+use ML_Express\Calendar\DateTime;
 
 class CalendarTest extends Express_TestCase
 {
@@ -432,14 +432,11 @@ class CalendarTest extends Express_TestCase
 			array(
 				Html::createSubL()->calendar(Cal::span('2015-02-27', '2015-03-01')
 						->setFirstWeekday(0)
-						->addEntries([
-								(new Day('2015-02-28'))
-										->setTitle('M. E. Lee\'s birthday')
-										->setLink('/birthdays/m-e-lee'),
-								(new Day('2015-02-28'))
-										->setTitle('Fred Barney\'s birthday')
-										->setLink('/birthdays/fred-barney')], 'birthday')
-						->addEntries((new Day('2015-03-01'))->setTitle('Foo'), 'foo bar')),
+						->addEntry(DateTime::create('2015-02-28'),
+								'M. E. Lee\'s birthday', '/birthdays/m-e-lee', 'birthday')
+						->addEntry(DateTime::create('2015-02-28'),
+								'Fred Barney\'s birthday', '/birthdays/fred-barney', 'birthday')
+						->addEntry(DateTime::create('2015-03-01'), 'Foo', null, 'foo bar')),
 				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-02">
@@ -495,15 +492,12 @@ class CalendarTest extends Express_TestCase
 			array(
 				Html::createSubL()->calendar(Cal::span('2015-02-27', '2015-03-01')
 						->setFirstWeekday(0)
-						->addEntries([
-								(new Day('2015-02-28'))
-										->setTitle('M. E. Lee\'s birthday')
-										->setLink('/birthdays/m-e-lee'),
-								(new Day('2015-02-28'))
-										->setTitle('Fred Barney\'s birthday')
-										->setLink('/birthdays/fred-barney')], 'birthday')
-						->addEntries((new Day('2015-03-01'))->setTitle('Foo'), 'foo bar'),
-						false, true),
+						->addEntry(DateTime::create('2015-02-28'),
+								'M. E. Lee\'s birthday', '/birthdays/m-e-lee', 'birthday')
+						->addEntry(DateTime::create('2015-02-28'),
+								'Fred Barney\'s birthday', '/birthdays/fred-barney', 'birthday')
+						->addEntry(DateTime::create('2015-03-01'),
+								'Foo', null, 'foo bar'), false, true),
 				'<section class="calendar year-2015">
 	<h1><time>2015</time></h1>
 	<table class="month-02">
