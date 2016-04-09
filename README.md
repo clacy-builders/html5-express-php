@@ -9,7 +9,7 @@ Add the following to your project's `composer.json` file:
 {
     "minimum-stability": "dev",
     "require": {
-        "ml-express/html5": "dev-master@dev"
+        "ml-express/html5": "0.1"
     }
 }
 ```
@@ -20,9 +20,9 @@ Run `composer install` or `composer update`.
 ### Without Composer
 
  1. Install [XML Express for PHP](https://github.com/ml-express/xml-express-php)
- 2. Download the [ZIP file](https://github.com/ml-express/html5-express-php/archive/master.zip).
+ 2. Download the [ZIP file](https://github.com/ml-express/html5-express-php/archive/0.1.zip).
  3. Inside your project directory create the directories `/vendor/ml-express/html5`.
- 4. From the folder `html5-express-php-master` inside the ZIP file copy the files it contains
+ 4. From the folder `html5-express-php-0.1` inside the ZIP file copy the files it contains
     into the previously created `html5` folder.
 
 Replace
