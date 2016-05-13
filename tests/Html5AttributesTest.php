@@ -1,13 +1,13 @@
 <?php
 
-namespace ML_Express\HTML5\Tests;
+namespace ClacyBuilders\Html5\Tests;
 
-require_once 'vendor/ml-express/xml/allIncl.php';
-require_once 'vendor/ml-express/xml/tests/Express_TestCase.php';
+require_once 'vendor/clacy-builders/xml/allIncl.php';
+require_once 'vendor/clacy-builders/xml/tests/Express_TestCase.php';
 require_once 'src/Html5.php';
 
-use ML_Express\Tests\Express_TestCase;
-use ML_Express\HTML5\Html5;
+use ClacyBuilders\Tests\Express_TestCase;
+use ClacyBuilders\Html5\Html5;
 
 class Html5AttributesTest extends Express_TestCase
 {

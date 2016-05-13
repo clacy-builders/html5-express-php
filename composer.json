@@ -1,5 +1,5 @@
 {
-	"name": "ml-express/html5",
+	"name": "clacy-builders/html5",
 	"type": "library",
 	"description": "HTML5 Express is a library for creating HTML5 documents. It comes with the calendar trait.",
 	"keywords": ["html5", "html", "builder", "writer", "calendar"],
@@ -7,12 +7,12 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.4.0",
-		"ml-express/xml": "0.1",
-		"ml-express/calendar": "0.1"
+		"clacy-builders/xml": "dev-master",
+		"clacy-builders/calendar": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
-			"ML_Express\\HTML5\\": "src/"
+			"ClacyBuilders\\Html5\\": "src/"
 		}
 	}
 }

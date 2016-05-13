@@ -1,18 +1,18 @@
 <?php
 
-namespace ML_Express\HTML5\Tests;
+namespace ClacyBuilders\Html5\Tests;
 
-require_once 'vendor/ml-express/xml/allIncl.php';
-require_once 'vendor/ml-express/xml/tests/Express_TestCase.php';
-require_once 'vendor/ml-express/calendar/allIncl.php';
+require_once 'vendor/clacy-builders/xml/allIncl.php';
+require_once 'vendor/clacy-builders/xml/tests/Express_TestCase.php';
+require_once 'vendor/clacy-builders/calendar/allIncl.php';
 require_once 'src/Html5.php';
 require_once 'src/extensions/Calendar.php';
 
-use ML_Express\Tests\Express_TestCase;
-use ML_Express\HTML5\Html5;
-use ML_Express\HTML5\Extensions\Calendar;
-use ML_Express\Calendar\Calendar as Cal;
-use ML_Express\Calendar\DateTime;
+use ClacyBuilders\Tests\Express_TestCase;
+use ClacyBuilders\Html5\Html5;
+use ClacyBuilders\Html5\Extensions\Calendar;
+use ClacyBuilders\Calendar\Calendar as Cal;
+use ClacyBuilders\Calendar\DateTime;
 
 class CalendarTest extends Express_TestCase
 {

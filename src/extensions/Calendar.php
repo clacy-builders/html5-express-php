@@ -1,11 +1,11 @@
 <?php
 
-namespace ML_Express\HTML5\Extensions;
+namespace ClacyBuilders\Html5\Extensions;
 
-use ML_Express\Calendar\Calendar as Cal;
+use ClacyBuilders\Calendar\Calendar as Cal;
 
 /**
- * @link https://github.com/ml-express/html5-express-php/wiki/Calendar
+ * @link https://github.com/clacy-builders/html5-express-php/wiki/Calendar
  */
 trait Calendar
 {
@@ -21,7 +21,7 @@ trait Calendar
 	 * @param  boolean         $listEntries   Wether calendar entries appended as an
 	 *                                        <code>ul</code> element or not.
 	 *
-	 * @return \ML_Express\HTML5\Html5
+	 * @return \ClacyBuilders\Html5\Html5
 	 */
 	public function calendar(Cal $calendar, $showIsoWeeks = false, $listEntries = false)
 	{

@@ -1,7 +1,7 @@
 <?php
-namespace ML_Express\HTML5;
+namespace ClacyBuilders\Html5;
 
-use ML_Express\HTML5\Html5;
+use ClacyBuilders\Html5\Html5;
 
 class XHtml5 extends Html5
 {
